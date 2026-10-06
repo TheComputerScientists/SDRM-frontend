@@ -1,0 +1,22 @@
+// .ocs__btn interaction states.
+// - :focus-visible  visible keyboard focus ring. The base mixin's `.ocs__btn:focus { outline: none }`
+//   is re-emitted by later imports, so this selector uses :focus:focus-visible to outrank it.
+// - :disabled / [aria-disabled="true"]  dimmed, no hover lift, not-allowed cursor
+// Usage: <button class="ocs__btn medium alert-green fill" disabled>Full</button>
+
+.ocs__btn:focus:focus-visible {
+  outline: 3px solid var(--pref-text-color);
+  outline-offset: 2px;
+}
+
+.ocs__btn:disabled,
+.ocs__btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+
+  &:hover,
+  &:active {
+    transform: none;
+    opacity: 0.55;
+  }
+}
