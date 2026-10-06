@@ -1,4 +1,5 @@
 HOST ?= localhost
+REPO_NAME ?= SDRM-frontend
 PORT ?= 4500
 LOG_FILE = /tmp/jekyll$(PORT).log
 PYTHON := venv/bin/python3
@@ -86,7 +87,7 @@ default: serve-current
 	@make watch-notebooks &
 	@make watch-projects &
 	@make watch-files &
-	@echo "Server running in background on http://localhost:$(PORT)"
+	@echo "Server running in background on http://localhost:$(PORT)/$(REPO_NAME)/"
 	@echo "  View logs: tail -f $(LOG_FILE)"
 	@echo "  Stop: make stop"
 
@@ -426,7 +427,7 @@ dev: stop clean
 	@$(MAKE) watch-projects ORIGINAL_GOALS="$(ORIGINAL_GOALS)" &
 	@$(MAKE) watch-files ORIGINAL_GOALS="$(ORIGINAL_GOALS)" &
 	@$(MAKE) watch-dev-projects ORIGINAL_GOALS="$(ORIGINAL_GOALS)" &
-	@echo "Dev server running in background on http://localhost:$(PORT)"
+	@echo "Dev server running in background on http://localhost:$(PORT)/$(REPO_NAME)/"
 	@echo "  View logs: tail -f $(LOG_FILE)"
 	@echo "  Stop: make stop"
 
