@@ -1,0 +1,115 @@
+// SDRM buttons (links or <button>).
+//
+//   .sdrm__button            pill button (navy outline by default)
+//     --orange               orange fill, navy text (5.1:1)
+//     --yellow               yellow fill, navy text (9.2:1), hero CTA
+//     --blue                 blue fill, white text (5.1:1)
+//     --red                  red-orange fill, white text (4.8:1)
+//     --outline              white with navy outline
+//     --large                bigger padding and text
+//   .sdrm__actions           row of buttons
+//
+// Disabled buttons turn gray and keep readable text (7:1+).
+
+.sdrm__button {
+  --sdrm-btn-fill: #{$sdrm-white};
+  --sdrm-btn-ink: #{$sdrm-navy};
+  --sdrm-btn-edge: #{$sdrm-navy};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sdrm-space-2;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid var(--sdrm-btn-edge);
+  border-radius: $sdrm-radius-pill;
+  background: var(--sdrm-btn-fill);
+  color: var(--sdrm-btn-ink);
+  font-family: $sdrm-font-body;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+
+  &:hover {
+    color: var(--sdrm-btn-ink);
+    filter: brightness(0.94);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(20, 52, 90, 0.18);
+  }
+
+  &:active {
+    transform: none;
+    box-shadow: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    --sdrm-btn-fill: #{$sdrm-tint-gray};
+    --sdrm-btn-ink: #{$sdrm-muted};
+    --sdrm-btn-edge: #{$sdrm-tint-gray};
+    cursor: not-allowed;
+    filter: none;
+    transform: none;
+    box-shadow: none;
+  }
+
+  &--orange {
+    --sdrm-btn-fill: #{$sdrm-orange};
+    --sdrm-btn-ink: #{$sdrm-navy};
+    --sdrm-btn-edge: #{$sdrm-orange};
+  }
+
+  &--yellow {
+    --sdrm-btn-fill: #{$sdrm-yellow};
+    --sdrm-btn-ink: #{$sdrm-navy};
+    --sdrm-btn-edge: #{$sdrm-yellow};
+  }
+
+  &--blue {
+    --sdrm-btn-fill: #{$sdrm-blue-ink};
+    --sdrm-btn-ink: #{$sdrm-white};
+    --sdrm-btn-edge: #{$sdrm-blue-ink};
+  }
+
+  &--red {
+    --sdrm-btn-fill: #{$sdrm-red-ink};
+    --sdrm-btn-ink: #{$sdrm-white};
+    --sdrm-btn-edge: #{$sdrm-red-ink};
+  }
+
+  &--outline {
+    --sdrm-btn-fill: #{$sdrm-white};
+    --sdrm-btn-ink: #{$sdrm-navy};
+    --sdrm-btn-edge: #{$sdrm-navy};
+  }
+
+  &--large {
+    min-height: 3.5rem;
+    padding: 0.85rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+.sdrm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $sdrm-space-3;
+  margin: 0;
+
+  * + & {
+    margin-top: $sdrm-space-5;
+  }
+}

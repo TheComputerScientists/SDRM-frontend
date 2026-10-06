@@ -51,28 +51,28 @@ async function init(rootEl) {
   // Build every card once; filtering only toggles `hidden` so focus is never lost.
   const cards = new Map();
   data.opportunities.forEach((opp) => {
-    const pill = el("span", { className: "ocs__status-pill" });
+    const pill = el("span", { className: "sdrm__pill" });
     const signUp = el("button", {
-      className: "ocs__btn medium alert-green fill",
+      className: "sdrm__button sdrm__button--blue",
       attrs: { type: "button", "aria-describedby": `vol-${opp.id}-title vol-${opp.id}-spots` },
     });
     const cancel = el("button", {
-      className: "ocs__btn medium alert-yellow",
+      className: "sdrm__button sdrm__button--outline",
       text: "Cancel sign-up",
       attrs: { type: "button", "aria-describedby": `vol-${opp.id}-title` },
     });
     pill.id = `vol-${opp.id}-spots`;
 
-    const article = el("article", { className: "ocs__grid-cell" }, [
-      el("h3", { text: opp.title, attrs: { id: `vol-${opp.id}-title` } }),
-      el("p", { className: "ocs__links" }, [
-        el("span", { className: "ocs__status-pill ocs__status-pill--neutral", text: opp.day }),
-        el("span", { className: "ocs__status-pill ocs__status-pill--neutral", text: interestLabels[opp.interest] }),
+    const article = el("article", { className: "sdrm__card sdrm__card--topline" }, [
+      el("h3", { className: "sdrm__card-title", text: opp.title, attrs: { id: `vol-${opp.id}-title` } }),
+      el("p", { className: "sdrm__pills" }, [
+        el("span", { className: "sdrm__pill", text: opp.day }),
+        el("span", { className: "sdrm__pill", text: interestLabels[opp.interest] }),
         pill,
       ]),
-      el("p", { className: "ocs__text", text: opp.description }),
-      el("p", { className: "ocs__text" }, [el("strong", { text: "Time: " }), opp.time]),
-      el("p", { className: "ocs__links" }, [signUp, cancel]),
+      el("p", { className: "sdrm__text", text: opp.description }),
+      el("p", { className: "sdrm__card-detail" }, [el("strong", { text: "Time: " }), opp.time]),
+      el("p", { className: "sdrm__actions" }, [signUp, cancel]),
     ]);
 
     signUp.addEventListener("click", () => {
@@ -103,7 +103,7 @@ async function init(rootEl) {
     const signed = Boolean(signups[opp.id]);
 
     pill.textContent = spotsText(left);
-    pill.className = "ocs__status-pill " + (left === 0 ? "ocs__status-pill--neutral" : left <= 2 ? "ocs__status-pill--alert" : "ocs__status-pill--success");
+    pill.className = "sdrm__pill " + (left === 0 ? "sdrm__pill--full" : left <= 2 ? "sdrm__pill--alert" : "sdrm__pill--success");
 
     signUp.disabled = signed || left === 0;
     signUp.textContent = signed ? "Signed up" : left === 0 ? "Full" : "Sign up";

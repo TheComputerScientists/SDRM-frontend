@@ -79,15 +79,15 @@ async function init(rootEl) {
 function card(resource, needLabels, locationLabels) {
   const pills = el(
     "p",
-    { className: "ocs__links" },
-    resource.needs.map((n) => el("span", { className: "ocs__status-pill ocs__status-pill--neutral", text: needLabels[n] }))
+    { className: "sdrm__pills" },
+    resource.needs.map((n) => el("span", { className: "sdrm__pill", text: needLabels[n] }))
   );
-  const detail = (label, value) => el("p", { className: "ocs__text" }, [el("strong", { text: `${label}: ` }), value]);
+  const detail = (label, value) => el("p", { className: "sdrm__card-detail" }, [el("strong", { text: `${label}: ` }), value]);
 
-  return el("article", { className: "ocs__grid-cell" }, [
-    el("h3", { text: resource.name }),
+  return el("article", { className: "sdrm__card sdrm__card--topline" }, [
+    el("h3", { className: "sdrm__card-title", text: resource.name }),
     pills,
-    el("p", { className: "ocs__text", text: resource.description }),
+    el("p", { className: "sdrm__text", text: resource.description }),
     detail("Area", locationLabels[resource.location]),
     detail("Address", resource.address),
     detail("Hours", resource.hours),

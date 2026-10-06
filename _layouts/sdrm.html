@@ -1,20 +1,54 @@
----
-layout: opencs
----
 {%- comment -%}
-  Shared layout for the SDRM student project pages (index.md + sdrm/*).
-  Renders the page's single <h1> from page.title, an optional lead
-  (page.lead), the project sub-navigation, and the required project footer.
+  Standalone layout for the SDRM student project pages (index.md + sdrm/*).
+  Full HTML document with no parent layout: it loads only Google Fonts, our own
+  stylesheet (assets/css/sdrm.scss -> sdrm.css) and our own scripts. No template
+  includes, no Open Coding Society / minima CSS.
+
+  Front matter
+    title    page <h1> (and <title>)
+    lead     optional subheading under the title
+    kicker   optional small label above the title
+    hero     "custom" when the page renders its own hero with the <h1> (home);
+             otherwise a colored page banner is rendered here
+    tone     banner color: orange (default), red, blue, navy
 {%- endcomment -%}
-<div class="ocs__container">
-  {%- include sdrm/subnav.html -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.url == "/" %}{{ site.title | escape }}{% else %}{{ page.title | escape }} | {{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.lead | default: site.description | strip_html | escape }}">
+  <meta name="theme-color" content="#14345A">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/sdrm.css' | relative_url }}">
+</head>
+<body class="sdrm">
+  {%- include sdrm/header.html %}
 
-  <h1>{{ page.title | escape }}</h1>
-  {%- if page.lead %}
-  <p class="ocs__lead">{{ page.lead | escape }}</p>
-  {%- endif %}
+  <main id="main" tabindex="-1">
+    {%- unless page.hero == "custom" %}
+    <section class="sdrm__banner sdrm__banner--{{ page.tone | default: 'orange' }}" aria-labelledby="page-title">
+      <div class="sdrm__banner-inner">
+        {%- if page.kicker %}
+        <p class="sdrm__kicker sdrm__kicker--start sdrm__kicker--light">{{ page.kicker | escape }}</p>
+        {%- endif %}
+        <h1 class="sdrm__banner-title" id="page-title">{{ page.title | escape }}</h1>
+        {%- if page.lead %}
+        <p class="sdrm__banner-text">{{ page.lead | escape }}</p>
+        {%- endif %}
+      </div>
+    </section>
+    {%- endunless %}
 
-  {{ content }}
+    {{ content }}
+  </main>
 
-  {%- include sdrm/footer.html -%}
-</div>
+  {%- include sdrm/footer.html %}
+
+  <script src="{{ '/assets/js/sdrm/header.js' | relative_url }}" defer></script>
+</body>
+</html>

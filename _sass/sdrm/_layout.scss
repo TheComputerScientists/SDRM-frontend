@@ -1,0 +1,120 @@
+// SDRM layout: page sections, content column, splits and grids.
+//
+//   .sdrm__section                full-width band with vertical padding
+//     --cream | --white | --dots  background (alternate down the page)
+//     --navy                      dark band (white text, yellow focus)
+//   .sdrm__container              centered column, max 1200px
+//   .sdrm__section-header         centered heading block (kicker, heading, intro)
+//     .sdrm__section-heading / .sdrm__section-intro
+//   .sdrm__split                  two columns from 768px, stacked below
+//     --center                    vertically center the columns
+//   .sdrm__grid                   responsive card grid (1 / 2 / 3 columns)
+//
+// <section class="sdrm__section sdrm__section--white">
+//   <div class="sdrm__container">...</div>
+// </section>
+
+.sdrm__section {
+  padding-block: clamp(#{$sdrm-space-7}, calc(5vw + 1rem), #{$sdrm-space-9});
+
+  &--cream { background-color: $sdrm-cream; }
+  &--white { background-color: $sdrm-white; }
+
+  &--dots {
+    background-color: $sdrm-tint-yellow;
+    background-image: radial-gradient(rgba(242, 140, 40, 0.28) 1.5px, transparent 1.6px);
+    background-size: 24px 24px;
+  }
+
+  &--navy {
+    --sdrm-focus: #{$sdrm-focus-on-dark};
+    background-color: $sdrm-navy;
+    color: $sdrm-white;
+
+    h2,
+    h3 {
+      color: $sdrm-white;
+    }
+
+    code {
+      background: rgba($sdrm-white, 0.16);
+    }
+  }
+}
+
+.sdrm__container {
+  @include container;
+}
+
+.sdrm__section-header {
+  max-width: 46rem;
+  margin: 0 auto $sdrm-space-7;
+  text-align: center;
+}
+
+.sdrm__section-heading {
+  font-size: clamp(2rem, calc(2.5vw + 1.1rem), 3rem);
+  margin-bottom: $sdrm-space-4;
+}
+
+.sdrm__section-intro {
+  margin: 0;
+  color: $sdrm-muted;
+  font-size: 1.1875rem;
+
+  .sdrm__section--navy & {
+    color: $sdrm-white;
+  }
+}
+
+.sdrm__split {
+  display: grid;
+  gap: $sdrm-space-6;
+  align-items: start;
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $sdrm-space-7;
+  }
+
+  &--center {
+    align-items: center;
+  }
+
+  > * {
+    min-width: 0;
+  }
+}
+
+.sdrm__grid {
+  display: grid;
+  gap: $sdrm-space-5;
+  grid-template-columns: minmax(0, 1fr);
+  margin-bottom: 0;
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include bp(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &--two {
+    @include bp(lg) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+.sdrm__text {
+  margin-bottom: $sdrm-space-4;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sdrm__muted {
+  color: $sdrm-muted;
+}

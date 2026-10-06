@@ -1,0 +1,75 @@
+// SDRM design tokens: the only place colors, fonts, spacing, radii and shadows are defined.
+// Text/background pairs used by the components were checked for WCAG AA (ratios noted).
+
+// Brand palette (as given)
+$sdrm-cream: #FBF7F0;
+$sdrm-white: #FFFFFF;
+$sdrm-navy: #14345A;          // body text: 11.8:1 on cream
+$sdrm-orange: #F28C28;        // fills with navy text (5.1:1), borders, shapes
+$sdrm-blue: #1E9BE0;          // borders, shapes, accents only (not for white text)
+$sdrm-red: #E4572E;           // borders, shapes, accents only (not for white text)
+$sdrm-yellow: #FFD966;        // hero CTA fill with navy text (9.2:1)
+
+// Deeper tints for text and white-on-color fills
+$sdrm-orange-ink: #A8461A;    // orange text on cream/white (5.5:1)
+$sdrm-orange-deep: #B54A17;   // white text on it (5.3:1)
+$sdrm-orange-mid: #C2531A;    // white text on it (4.6:1)
+$sdrm-blue-ink: #1272B8;      // blue text, white text on it (5.1:1)
+$sdrm-blue-deep: #0D5A93;
+$sdrm-blue-light: #5BC0F5;    // on navy (6.2:1)
+$sdrm-red-ink: #C8481F;       // red text, white text on it (4.8:1)
+$sdrm-red-deep: #9E3415;
+$sdrm-navy-deep: #0E2742;
+$sdrm-navy-soft: #1F4A7A;
+$sdrm-green-ink: #1A7A44;     // success text on white (5.4:1)
+
+// Neutrals
+$sdrm-muted: #4A5B70;         // secondary text (6.5:1 on cream)
+$sdrm-line: #E6DED1;          // hairlines and dividers
+$sdrm-input-border: #6B7A8C;  // form control borders (3:1+ non-text contrast)
+$sdrm-tint-orange: #FFE9D6;
+$sdrm-tint-blue: #E1F1FB;
+$sdrm-tint-yellow: #FFF4CC;
+$sdrm-tint-green: #DDF3E5;
+$sdrm-tint-gray: #EEF1F5;
+$sdrm-zebra: #F6F1E8;
+
+// Typography
+$sdrm-font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+$sdrm-font-body: "DM Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+$sdrm-font-size: 1.125rem;    // 18px
+$sdrm-line-height: 1.6;
+
+// Spacing scale
+$sdrm-space-1: 0.25rem;
+$sdrm-space-2: 0.5rem;
+$sdrm-space-3: 0.75rem;
+$sdrm-space-4: 1rem;
+$sdrm-space-5: 1.5rem;
+$sdrm-space-6: 2rem;
+$sdrm-space-7: 3rem;
+$sdrm-space-8: 4.5rem;
+$sdrm-space-9: 6rem;
+
+// Layout
+$sdrm-max-width: 1200px;
+$sdrm-gutter: 1.25rem;
+
+// Shape and depth
+$sdrm-radius-sm: 10px;
+$sdrm-radius: 20px;
+$sdrm-radius-lg: 32px;
+$sdrm-radius-pill: 999px;
+$sdrm-shadow: 0 10px 30px rgba(20, 52, 90, 0.08), 0 2px 6px rgba(20, 52, 90, 0.06);
+$sdrm-shadow-lift: 0 18px 40px rgba(20, 52, 90, 0.14), 0 4px 10px rgba(20, 52, 90, 0.08);
+
+// Breakpoints (used through the `bp` mixin)
+$sdrm-breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 1024px
+);
+
+// Focus ring
+$sdrm-focus: $sdrm-blue-ink;
+$sdrm-focus-on-dark: $sdrm-yellow;
