@@ -1,0 +1,8 @@
+{
+  "_note": "TODO: verify. Placeholder numbers for the home page stat band in a student demo. They are NOT real San Diego Rescue Mission figures; replace them only with numbers confirmed on sdrescue.org.",
+  "stats": [
+    { "id": "meals", "value": 1000, "suffix": "+", "label": "Meals served each week (placeholder)", "source": "TODO: verify" },
+    { "id": "beds", "value": 250, "suffix": "", "label": "Shelter beds each night (placeholder)", "source": "TODO: verify" },
+    { "id": "volunteers", "value": 500, "suffix": "+", "label": "Volunteer shifts each month (placeholder)", "source": "TODO: verify" }
+  ]
+}

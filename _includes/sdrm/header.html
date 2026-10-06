@@ -1,36 +1,41 @@
-{%- comment -%} Site header for the SDRM pages: text logo, angled CTA bar, main nav. {%- endcomment -%}
-{%- assign sdrm_links = "/|Home;/sdrm/get-help/|Get Help;/sdrm/give/|Ways to Give;/sdrm/volunteer/|Volunteer;/sdrm/about/|About" | split: ";" -%}
-<header class="ocs__site-header" data-sdrm-header>
-  <a class="ocs__site-header-skip" href="#main">Skip to main content</a>
-  <div class="ocs__site-header-inner">
-    <a class="ocs__site-header-logo" href="{{ site.baseurl }}/">
-      <span class="ocs__site-header-logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" focusable="false"><path fill="currentColor" d="M16 3 2.5 14.2l1.9 2.3L6 15.2V28h20V15.2l1.6 1.3 1.9-2.3L16 3Zm0 21.2-.7-.6C11.2 20 8.8 17.9 8.8 15.3c0-2 1.6-3.6 3.6-3.6 1.5 0 2.8.8 3.6 2 .8-1.2 2.1-2 3.6-2 2 0 3.6 1.6 3.6 3.6 0 2.6-2.4 4.7-6.5 8.3l-.7.6Z"/></svg>
-      </span>
-      <span>
-        <span class="ocs__site-header-logo-name">Help &amp; Hope</span>
-        <span class="ocs__site-header-logo-tag">A student project</span>
-      </span>
-    </a>
+{%- comment -%} SDRM site header: slim action bar, then the white bar with our wordmark and main nav. {%- endcomment -%}
+{%- assign sdrm_links = "/|Home;/sdrm/get-help/|Get Help Now;/sdrm/give/|Ways to Give;/sdrm/volunteer/|Volunteer;/sdrm/about/|About" | split: ";" -%}
+<header class="sdrm__header" data-sdrm-header>
+  <a class="sdrm__header-skip" href="#main">Skip to main content</a>
 
-    <nav class="ocs__site-header-topbar" aria-label="Quick actions">
-      <a class="ocs__site-header-cta ocs__site-header-cta--orange" href="{{ site.baseurl }}/sdrm/get-help/">Get help now</a>
-      <a class="ocs__site-header-cta ocs__site-header-cta--blue" href="{{ site.baseurl }}/sdrm/volunteer/">Volunteer</a>
-      <a class="ocs__site-header-cta ocs__site-header-cta--red" href="{{ site.baseurl }}/sdrm/give/">Donate</a>
+  <div class="sdrm__header-topbar">
+    <nav class="sdrm__header-topbar-inner" aria-label="Quick actions">
+      <a class="sdrm__header-cta sdrm__header-cta--orange" href="{{ '/sdrm/get-help/' | relative_url }}">Get help now</a>
+      <a class="sdrm__header-cta sdrm__header-cta--blue" href="{{ '/sdrm/volunteer/' | relative_url }}">Volunteer</a>
+      <a class="sdrm__header-cta sdrm__header-cta--red" href="{{ '/sdrm/give/' | relative_url }}">Donate</a>
     </nav>
+  </div>
 
-    <button class="ocs__site-header-toggle" type="button" aria-expanded="false" aria-controls="sdrm-site-nav" hidden>
-      <span class="ocs__site-header-toggle-bars" aria-hidden="true"></span>
-      Menu
-    </button>
+  <div class="sdrm__header-main">
+    <div class="sdrm__header-main-inner">
+      <a class="sdrm__header-brand" href="{{ '/' | relative_url }}">
+        <span class="sdrm__header-brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" focusable="false"><path fill="currentColor" d="M16 3 2.5 14.2l1.9 2.3L6 15.2V28h20V15.2l1.6 1.3 1.9-2.3L16 3Zm0 21.2-.7-.6C11.2 20 8.8 17.9 8.8 15.3c0-2 1.6-3.6 3.6-3.6 1.5 0 2.8.8 3.6 2 .8-1.2 2.1-2 3.6-2 2 0 3.6 1.6 3.6 3.6 0 2.6-2.4 4.7-6.5 8.3l-.7.6Z"/></svg>
+        </span>
+        <span>
+          <span class="sdrm__header-brand-name">Help &amp; Hope</span>
+          <span class="sdrm__header-brand-tag">A student project</span>
+        </span>
+      </a>
 
-    <nav class="ocs__site-header-nav" id="sdrm-site-nav" aria-label="Main">
-      <ul class="ocs__site-header-links">
-        {%- for item in sdrm_links -%}
-        {%- assign parts = item | split: "|" %}
-        <li><a class="ocs__site-header-link" href="{{ site.baseurl }}{{ parts[0] }}"{% if page.url == parts[0] or page.url == "/index.html" and parts[0] == "/" %} aria-current="page"{% endif %}>{{ parts[1] }}</a></li>
-        {%- endfor %}
-      </ul>
-    </nav>
+      <button class="sdrm__header-toggle" type="button" aria-expanded="false" aria-controls="sdrm-site-nav" hidden>
+        <span class="sdrm__header-toggle-bars" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <nav class="sdrm__header-nav" id="sdrm-site-nav" aria-label="Main">
+        <ul class="sdrm__header-links">
+          {%- for item in sdrm_links -%}
+          {%- assign parts = item | split: "|" %}
+          <li><a class="sdrm__header-link" href="{{ parts[0] | relative_url }}"{% if page.url == parts[0] or page.url == "/index.html" and parts[0] == "/" %} aria-current="page"{% endif %}>{{ parts[1] }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>

@@ -1,0 +1,99 @@
+// SDRM stats: big colorful numbers.
+//
+//   .sdrm__stats              grid of stats (calculator results)
+//     --band                  three stats on the navy home band
+//   .sdrm__stat               one stat; color cycles orange / blue / red / navy
+//   .sdrm__stat-value         the big number
+//   .sdrm__stat-label         what it counts
+//   .sdrm__stats-note         small placeholder note under the band
+
+.sdrm__stats {
+  display: grid;
+  gap: $sdrm-space-4;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  margin-top: $sdrm-space-5;
+}
+
+.sdrm__stat {
+  --sdrm-stat-ink: #{$sdrm-orange-ink};
+  --sdrm-stat-line: #{$sdrm-orange};
+  display: flex;
+  flex-direction: column;
+  gap: $sdrm-space-1;
+  padding: $sdrm-space-4 $sdrm-space-5;
+  border-radius: $sdrm-radius-sm;
+  border-top: 5px solid var(--sdrm-stat-line);
+  background: $sdrm-cream;
+
+  &:nth-child(4n + 2) {
+    --sdrm-stat-ink: #{$sdrm-blue-ink};
+    --sdrm-stat-line: #{$sdrm-blue};
+  }
+
+  &:nth-child(4n + 3) {
+    --sdrm-stat-ink: #{$sdrm-red-ink};
+    --sdrm-stat-line: #{$sdrm-red};
+  }
+
+  &:nth-child(4n + 4) {
+    --sdrm-stat-ink: #{$sdrm-navy};
+    --sdrm-stat-line: #{$sdrm-yellow};
+  }
+}
+
+.sdrm__stat-value {
+  @include display(800);
+  color: var(--sdrm-stat-ink);
+  font-size: clamp(2.5rem, calc(2vw + 1.75rem), 3.25rem);
+  line-height: 1;
+}
+
+.sdrm__stat-label {
+  color: $sdrm-muted;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+// Navy home band
+.sdrm__stats--band {
+  gap: $sdrm-space-6;
+  margin-top: 0;
+  text-align: center;
+
+  @include bp(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sdrm__stat {
+    --sdrm-stat-ink: #{$sdrm-orange};   // 5.1:1 on navy
+    align-items: center;
+    padding: $sdrm-space-5 $sdrm-space-4;
+    border: 0;
+    background: transparent;
+
+    &:nth-child(3n + 2) { --sdrm-stat-ink: #{$sdrm-blue-light}; }  // 6.2:1
+    &:nth-child(3n + 3) { --sdrm-stat-ink: #{$sdrm-yellow}; }      // 9.2:1
+  }
+
+  .sdrm__stat + .sdrm__stat {
+    @include bp(md) {
+      border-left: 1px solid rgba($sdrm-white, 0.2);
+    }
+  }
+
+  .sdrm__stat-value {
+    font-size: clamp(3.25rem, calc(4vw + 2rem), 5rem);
+  }
+
+  .sdrm__stat-label {
+    color: $sdrm-white;
+    font-size: 1.125rem;
+  }
+}
+
+.sdrm__stats-note {
+  margin: $sdrm-space-6 0 0;
+  color: $sdrm-white;
+  font-size: 0.9375rem;
+  text-align: center;
+}

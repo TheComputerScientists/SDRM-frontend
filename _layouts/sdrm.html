@@ -1,46 +1,45 @@
 {%- comment -%}
   Standalone layout for the SDRM student project pages (index.md + sdrm/*).
-  It does not extend the template's opencs/minima chrome: it loads the shared
-  stylesheet (for the OCS ocs__ components) and scopes everything to the light
-  .ocs__theme--sdrm theme on <body>.
+  Full HTML document with no parent layout: it loads only Google Fonts, our own
+  stylesheet (assets/css/sdrm.scss -> sdrm.css) and our own scripts. No template
+  includes, no Open Coding Society / minima CSS.
 
   Front matter
     title    page <h1> (and <title>)
     lead     optional subheading under the title
-    hero     "custom" when the page renders its own .ocs__hero with the <h1> (home);
-             otherwise a compact title banner is rendered here
-    tone     compact banner gradient: orange (default), red, blue, navy
+    kicker   optional small label above the title
+    hero     "custom" when the page renders its own hero with the <h1> (home);
+             otherwise a colored page banner is rendered here
+    tone     banner color: orange (default), red, blue, navy
 {%- endcomment -%}
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.url == "/" %}{{ site.title | escape }}{% else %}{{ page.title | escape }} | {{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.lead | default: site.description | strip_html | escape }}">
-  <link rel="icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/favicon-32x32.png">
+  <meta name="theme-color" content="#14345A">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/sdrm.css' | relative_url }}">
 </head>
-<body class="ocs__theme ocs__theme--sdrm">
+<body class="sdrm">
   {%- include sdrm/header.html %}
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     {%- unless page.hero == "custom" %}
-    <section class="ocs__hero ocs__hero--compact ocs__hero--{{ page.tone | default: 'orange' }}" aria-labelledby="page-title">
-      <div class="ocs__hero-inner">
-        <div class="ocs__hero-content">
-          {%- if page.kicker %}
-          <p class="ocs__kicker ocs__kicker--start">{{ page.kicker | escape }}</p>
-          {%- endif %}
-          <h1 class="ocs__hero-title" id="page-title">{{ page.title | escape }}</h1>
-          {%- if page.lead %}
-          <p class="ocs__hero-text">{{ page.lead | escape }}</p>
-          {%- endif %}
-        </div>
+    <section class="sdrm__banner sdrm__banner--{{ page.tone | default: 'orange' }}" aria-labelledby="page-title">
+      <div class="sdrm__banner-inner">
+        {%- if page.kicker %}
+        <p class="sdrm__kicker sdrm__kicker--start sdrm__kicker--light">{{ page.kicker | escape }}</p>
+        {%- endif %}
+        <h1 class="sdrm__banner-title" id="page-title">{{ page.title | escape }}</h1>
+        {%- if page.lead %}
+        <p class="sdrm__banner-text">{{ page.lead | escape }}</p>
+        {%- endif %}
       </div>
     </section>
     {%- endunless %}
@@ -50,6 +49,6 @@
 
   {%- include sdrm/footer.html %}
 
-  <script src="{{ site.baseurl }}/assets/js/sdrm/header.js" defer></script>
+  <script src="{{ '/assets/js/sdrm/header.js' | relative_url }}" defer></script>
 </body>
 </html>

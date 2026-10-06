@@ -1,0 +1,37 @@
+// SDRM mixins.
+
+// Mobile-first breakpoint: `@include bp(md) { ... }` applies at 768px and up.
+// `@include bp(md, down) { ... }` applies below 768px.
+@mixin bp($name, $direction: up) {
+  $size: map-get($sdrm-breakpoints, $name);
+  @if $size == null {
+    @error "Unknown breakpoint `#{$name}`.";
+  }
+  @if $direction == up {
+    @media (min-width: $size) { @content; }
+  } @else {
+    @media (max-width: $size - 0.02px) { @content; }
+  }
+}
+
+// Shared keyboard focus ring. Dark surfaces set --sdrm-focus to the light ring color.
+@mixin focus-ring($offset: 3px) {
+  outline: 3px solid var(--sdrm-focus, #{$sdrm-focus});
+  outline-offset: $offset;
+}
+
+// Centered content column.
+@mixin container {
+  width: 100%;
+  max-width: $sdrm-max-width;
+  margin-inline: auto;
+  padding-inline: $sdrm-gutter;
+}
+
+// Display-font heading look.
+@mixin display($weight: 700) {
+  font-family: $sdrm-font-display;
+  font-weight: $weight;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
