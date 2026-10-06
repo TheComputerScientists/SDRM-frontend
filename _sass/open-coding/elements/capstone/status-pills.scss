@@ -29,3 +29,16 @@
   background: var(--ui-bg);
   color: var(--text-muted);
 }
+
+// Tone modifiers that use the theme status tokens (text stays AA on the tinted fill).
+.ocs__status-pill--success {
+  background: color-mix(in srgb, var(--green) 12%, var(--panel));
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.ocs__status-pill--alert {
+  background: color-mix(in srgb, var(--warn) 12%, var(--panel));
+  border-color: var(--warn);
+  color: var(--warn);
+}

@@ -1,0 +1,20 @@
+---
+layout: opencs
+---
+{%- comment -%}
+  Shared layout for the SDRM student project pages (index.md + sdrm/*).
+  Renders the page's single <h1> from page.title, an optional lead
+  (page.lead), the project sub-navigation, and the required project footer.
+{%- endcomment -%}
+<div class="ocs__container">
+  {%- include sdrm/subnav.html -%}
+
+  <h1>{{ page.title | escape }}</h1>
+  {%- if page.lead %}
+  <p class="ocs__lead">{{ page.lead | escape }}</p>
+  {%- endif %}
+
+  {{ content }}
+
+  {%- include sdrm/footer.html -%}
+</div>

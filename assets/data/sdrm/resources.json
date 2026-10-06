@@ -1,0 +1,87 @@
+{
+  "_note": "TODO: verify. Placeholder data written for a student project. Program names, areas, addresses, hours, and phone numbers are NOT real and must be confirmed with sdrescue.org before any real use.",
+  "needs": [
+    { "id": "shelter", "label": "Shelter" },
+    { "id": "meals", "label": "Meals" },
+    { "id": "family", "label": "Family services" },
+    { "id": "recovery", "label": "Recovery" }
+  ],
+  "locations": [
+    { "id": "downtown", "label": "Downtown San Diego" },
+    { "id": "north", "label": "North County" },
+    { "id": "east", "label": "East County" },
+    { "id": "south", "label": "South Bay" }
+  ],
+  "resources": [
+    {
+      "id": "r1",
+      "name": "Emergency Overnight Shelter",
+      "needs": ["shelter", "meals"],
+      "location": "downtown",
+      "description": "A safe bed for the night, a shower, and a hot dinner for adults experiencing homelessness.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    },
+    {
+      "id": "r2",
+      "name": "Community Meal Hall",
+      "needs": ["meals"],
+      "location": "downtown",
+      "description": "Free walk-in meals served daily. No sign-up or ID needed.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    },
+    {
+      "id": "r3",
+      "name": "Family Housing Program",
+      "needs": ["shelter", "family"],
+      "location": "downtown",
+      "description": "Short-term housing for parents with children, plus help finding a longer-term home.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    },
+    {
+      "id": "r4",
+      "name": "Residential Recovery Program",
+      "needs": ["recovery", "shelter"],
+      "location": "downtown",
+      "description": "A structured, live-in program with counseling, life skills classes, and job readiness support.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    },
+    {
+      "id": "r5",
+      "name": "Kids and Parents Resource Day",
+      "needs": ["family", "meals"],
+      "location": "south",
+      "description": "Weekly drop-in with school supplies, a family lunch, and referrals to child care and health services.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    },
+    {
+      "id": "r6",
+      "name": "Recovery Support Group",
+      "needs": ["recovery"],
+      "location": "north",
+      "description": "Peer-led evening support meetings for people in or considering recovery.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    },
+    {
+      "id": "r7",
+      "name": "Mobile Meal Outreach",
+      "needs": ["meals"],
+      "location": "east",
+      "description": "A meal van that brings food and water to neighbors who cannot travel downtown.",
+      "address": "TODO: verify",
+      "hours": "TODO: verify",
+      "phone": "TODO: verify"
+    }
+  ]
+}
