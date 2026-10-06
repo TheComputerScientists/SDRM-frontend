@@ -1,0 +1,41 @@
+// OCS kicker: small uppercase label above a section heading, framed by decorative dots.
+//
+// Block     .ocs__kicker            centered label with dots on both sides
+// Modifier  .ocs__kicker--start     dots before the text only (for left-aligned headings)
+//
+// Tokens (optional, set by a theme or a parent block)
+//   --ocs-kicker-ink   text color (default: --pref-accent-color)
+//   --ocs-kicker-dot   dot color  (default: the text color)
+//
+// Example
+//   <p class="ocs__kicker">Our commitment</p>
+//   <h2 class="ocs__section-heading">Three ways to connect</h2>
+
+.ocs__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  color: var(--ocs-kicker-ink, var(--pref-accent-color));
+  font-family: var(--ocs-font-body, inherit);
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 32px;
+    height: 8px;
+    background-image: radial-gradient(circle, var(--ocs-kicker-dot, currentColor) 3px, transparent 3.5px);
+    background-repeat: repeat-x;
+    background-size: 11px 8px;
+  }
+}
+
+.ocs__kicker--start::after {
+  display: none;
+}

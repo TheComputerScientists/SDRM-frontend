@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-labelledby="t">
   <title id="t">Placeholder: volunteers</title>
-  <rect width="600" height="400" fill="#2a2f3a"/>
-  <rect x="24" y="24" width="552" height="352" rx="16" fill="none" stroke="#5b6475" stroke-width="4" stroke-dasharray="14 10"/>
-  <circle cx="210" cy="170" r="42" fill="#5b6475"/>
-  <circle cx="300" cy="150" r="48" fill="#6d778a"/>
-  <circle cx="390" cy="170" r="42" fill="#5b6475"/>
-  <rect x="150" y="225" width="300" height="26" rx="13" fill="#6d778a"/>
-  <text x="300" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#e6eef8">Placeholder: volunteers</text>
+  <rect width="600" height="400" fill="#FDEBD3"/>
+  <rect x="24" y="24" width="552" height="352" rx="16" fill="none" stroke="#F28C28" stroke-width="4" stroke-dasharray="14 10"/>
+  <circle cx="210" cy="170" r="42" fill="#F28C28"/>
+  <circle cx="300" cy="150" r="48" fill="#1E9BE0"/>
+  <circle cx="390" cy="170" r="42" fill="#F28C28"/>
+  <rect x="150" y="225" width="300" height="26" rx="13" fill="#1E9BE0"/>
+  <text x="300" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#14345A">Placeholder: volunteers</text>
 </svg>

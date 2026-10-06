@@ -3,39 +3,53 @@ layout: sdrm
 title: About This Project
 lead: A student web development project that practices accessible, data-driven pages for a real-world cause.
 permalink: /sdrm/about/
+tone: navy
+kicker: Behind the project
 ---
 
-<section class="ocs__card" aria-labelledby="what-heading">
-  <div class="ocs__split">
-    <div>
-      <h2 id="what-heading">What this site is</h2>
-      <p class="ocs__text">This is a class project inspired by the San Diego Rescue Mission, a nonprofit that serves people experiencing homelessness in San Diego. We are not affiliated with the organization, and nothing here is official. All names, rates, shifts, addresses, and hours are placeholders stored in JSON files and marked “TODO: verify”.</p>
+<section class="ocs__section ocs__section--cream" aria-labelledby="what-heading">
+  <div class="ocs__section-inner">
+    <div class="ocs__split">
+      <div>
+        <p class="ocs__kicker ocs__kicker--start">The basics</p>
+        <h2 class="ocs__section-heading" id="what-heading">What this site is</h2>
+        <p class="ocs__text">This is a class project inspired by the San Diego Rescue Mission, a nonprofit that serves people experiencing homelessness in San Diego. We are not affiliated with the organization, and nothing here is official. All names, rates, shifts, addresses, and hours are placeholders stored in JSON files and marked “TODO: verify”.</p>
+      </div>
+      <figure class="ocs__image-frame ocs__image-frame--cover">
+        <img src="{{ site.baseurl }}/images/sdrm/placeholder-volunteer.svg" alt="Placeholder illustration of a group of volunteers" width="600" height="400">
+      </figure>
     </div>
-    <figure class="ocs__image-frame ocs__image-frame--cover">
-      <img src="{{ site.baseurl }}/images/sdrm/placeholder-volunteer.svg" alt="Placeholder illustration of a group of volunteers" width="600" height="400">
-    </figure>
   </div>
 </section>
 
-<section class="ocs__card" aria-labelledby="built-heading">
-  <h2 id="built-heading">Who built it</h2>
-  <p class="ocs__text">Built by students in a computer science course as part of the Open Coding Society curriculum. Team member names are left out on purpose; add your team's first names or GitHub usernames here if your class requires it.</p>
-</section>
-
-<section class="ocs__card" aria-labelledby="how-heading">
-  <h2 id="how-heading">How it works</h2>
-  <div class="ocs__keypoints">
-    <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Plain HTML, SASS, and vanilla JavaScript on a Jekyll site, with no frameworks or build tools.</span></p>
-    <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Styling comes from the shared OCS SASS system, using its ocs__ component classes and theme color tokens.</span></p>
-    <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Each tool reads a JSON file in <code>assets/data/sdrm/</code>, so updating information never requires editing code.</span></p>
-    <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Pages are built to work with a keyboard, a screen reader, and a phone screen 375 pixels wide.</span></p>
+<section class="ocs__section ocs__section--white" aria-labelledby="built-heading">
+  <div class="ocs__section-inner">
+    <div class="ocs__grid ocs__grid--card">
+      <article class="ocs__grid-cell">
+        <h2 id="built-heading">Who built it</h2>
+        <p class="ocs__text">Built by students in a computer science course as part of the Open Coding Society curriculum. Team member names are left out on purpose; add your team's first names or GitHub usernames here if your class requires it.</p>
+      </article>
+      <article class="ocs__grid-cell">
+        <h2 id="how-heading">How it works</h2>
+        <div class="ocs__keypoints">
+          <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Plain HTML, SASS, and vanilla JavaScript on a Jekyll site, with no frameworks or build tools.</span></p>
+          <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Styling comes from the shared OCS SASS system, using its ocs__ component classes and theme color tokens.</span></p>
+          <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Each tool reads a JSON file in <code>assets/data/sdrm/</code>, so updating information never requires editing code.</span></p>
+          <p class="ocs__keypoint"><span class="ocs__check" aria-hidden="true">✓</span><span>Pages are built to work with a keyboard, a screen reader, and a phone screen 375 pixels wide.</span></p>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
-<section class="ocs__card" aria-labelledby="privacy-heading">
-  <h2 id="privacy-heading">Privacy</h2>
-  <p class="ocs__text">This site does not take payments or ask for personal information. The volunteer demo remembers which shifts you clicked only in your own browser's storage, and the “Reset demo spots” button clears it.</p>
-  <p class="ocs__links">
-    <a class="ocs__btn medium alert-green" href="https://www.sdrescue.org/" rel="noopener">Visit the official site</a>
-  </p>
+<section class="ocs__section ocs__section--pattern" aria-labelledby="privacy-heading">
+  <div class="ocs__section-inner">
+    <div class="ocs__card">
+      <h2 id="privacy-heading">Privacy</h2>
+      <p class="ocs__text">This site does not take payments or ask for personal information. The volunteer demo remembers which shifts you clicked only in your own browser's storage, and the “Reset demo spots” button clears it.</p>
+      <p class="ocs__links">
+        <a class="ocs__btn medium alert-green fill" href="https://www.sdrescue.org/" rel="noopener">Visit the official site</a>
+      </p>
+    </div>
+  </div>
 </section>

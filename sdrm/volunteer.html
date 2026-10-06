@@ -3,42 +3,57 @@ layout: sdrm
 title: Volunteer
 lead: Pick the days you're free and what you enjoy. Leave a group empty to include every option.
 permalink: /sdrm/volunteer/
+tone: blue
+kicker: Give your time
 ---
 
 <div data-sdrm-volunteer data-src="{{ site.baseurl }}/assets/data/sdrm/opportunities.json">
-  <section class="ocs__card" aria-labelledby="vol-filter-heading">
-    <h2 class="ocs__section-title" id="vol-filter-heading">Find a shift</h2>
-    <form id="vol-filters" aria-describedby="vol-summary">
-      <fieldset class="ocs__fieldset">
-        <legend class="ocs__fieldset-legend">Days I'm available</legend>
-        <div class="ocs__fieldset-options" id="vol-days"></div>
-      </fieldset>
-      <fieldset class="ocs__fieldset">
-        <legend class="ocs__fieldset-legend">I'm interested in</legend>
-        <div class="ocs__fieldset-options" id="vol-interests"></div>
-      </fieldset>
-      <div class="ocs__links">
-        <button class="ocs__btn medium alert-yellow" type="button" id="vol-clear">Clear choices</button>
-        <button class="ocs__btn medium" type="button" id="vol-reset">Reset demo spots</button>
+  <section class="ocs__section ocs__section--cream" aria-labelledby="vol-filter-heading">
+    <div class="ocs__section-inner">
+      <div class="ocs__card">
+        <h2 id="vol-filter-heading">Find a shift</h2>
+        <form id="vol-filters" aria-describedby="vol-summary">
+          <fieldset class="ocs__fieldset">
+            <legend class="ocs__fieldset-legend">Days I'm available</legend>
+            <div class="ocs__fieldset-options" id="vol-days"></div>
+          </fieldset>
+          <fieldset class="ocs__fieldset">
+            <legend class="ocs__fieldset-legend">I'm interested in</legend>
+            <div class="ocs__fieldset-options" id="vol-interests"></div>
+          </fieldset>
+          <div class="ocs__links">
+            <button class="ocs__btn medium alert-yellow" type="button" id="vol-clear">Clear choices</button>
+            <button class="ocs__btn medium" type="button" id="vol-reset">Reset demo spots</button>
+          </div>
+        </form>
       </div>
-    </form>
-  </section>
-
-  <section aria-labelledby="vol-results-heading">
-    <h2 id="vol-results-heading">Matching opportunities</h2>
-    <p class="ocs__text" id="vol-summary" role="status" aria-live="polite">Loading opportunities…</p>
-    <p class="ocs__visually-hidden" id="vol-announce" aria-live="assertive"></p>
-
-    <div class="ocs__grid ocs__grid--card" id="vol-results"></div>
-
-    <div class="ocs__callout" id="vol-empty" hidden>
-      <p class="ocs__text"><strong>No opportunities match those choices.</strong> Try adding another day or interest, or clear your choices to see every shift.</p>
     </div>
   </section>
 
-  <aside class="ocs__callout" aria-label="About this demo">
-    <p class="ocs__text"><strong>Demo only.</strong> Shifts and spot counts are placeholders marked “TODO: verify”. Signing up here does not collect your name or contact details and does not reserve a real shift; it is saved only in this browser. To volunteer for real, visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>.</p>
-  </aside>
+  <section class="ocs__section ocs__section--white" aria-labelledby="vol-results-heading">
+    <div class="ocs__section-inner">
+      <header class="ocs__section-header">
+        <p class="ocs__kicker">Open shifts</p>
+        <h2 class="ocs__section-heading" id="vol-results-heading">Matching opportunities</h2>
+        <p class="ocs__section-intro" id="vol-summary" role="status" aria-live="polite">Loading opportunities…</p>
+      </header>
+      <p class="ocs__visually-hidden" id="vol-announce" aria-live="assertive"></p>
+
+      <div class="ocs__grid ocs__grid--card" id="vol-results"></div>
+
+      <div class="ocs__callout" id="vol-empty" hidden>
+        <p class="ocs__text"><strong>No opportunities match those choices.</strong> Try adding another day or interest, or clear your choices to see every shift.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ocs__section ocs__section--pattern" aria-label="About this demo">
+    <div class="ocs__section-inner">
+      <aside class="ocs__callout">
+        <p class="ocs__text"><strong>Demo only.</strong> Shifts and spot counts are placeholders marked “TODO: verify”. Signing up here does not collect your name or contact details and does not reserve a real shift; it is saved only in this browser. To volunteer for real, visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>.</p>
+      </aside>
+    </div>
+  </section>
 </div>
 
 <script type="module" src="{{ site.baseurl }}/assets/js/sdrm/volunteer.js"></script>

@@ -1,0 +1,125 @@
+// OCS site footer: navy page footer with a short brand blurb, link columns, and a
+// bottom strip for the legal / disclaimer line.
+//
+// Block     .ocs__site-footer           full-width footer (white text on --ocs-tone-navy)
+// Elements  .ocs__site-footer-inner     centered grid of columns (stacks under 768px)
+//           .ocs__site-footer-name      brand name in the first column
+//           .ocs__site-footer-heading   small uppercase column heading
+//           .ocs__site-footer-text      column paragraph
+//           .ocs__site-footer-links     list of links
+//           .ocs__site-footer-link      a link in that list
+//           .ocs__site-footer-bottom    divider strip at the very bottom
+//           .ocs__site-footer-note      disclaimer paragraph inside the strip
+//
+// Example
+//   <footer class="ocs__site-footer">
+//     <div class="ocs__site-footer-inner">
+//       <div><p class="ocs__site-footer-name">Name</p><p class="ocs__site-footer-text">...</p></div>
+//       <nav aria-label="Footer"><h2 class="ocs__site-footer-heading">Quick links</h2>
+//         <ul class="ocs__site-footer-links"><li><a class="ocs__site-footer-link" href="...">Home</a></li></ul></nav>
+//     </div>
+//     <div class="ocs__site-footer-bottom"><p class="ocs__site-footer-note">Disclaimer.</p></div>
+//   </footer>
+
+.ocs__site-footer {
+  --pref-text-color: var(--ocs-on-strong, #fff);
+  --text-muted: color-mix(in srgb, var(--ocs-on-strong, #fff) 84%, var(--ocs-tone-navy, #000));
+  --pref-accent-color: var(--ocs-tone-yellow, #fff);
+  background: var(--ocs-tone-navy, var(--panel));
+  color: var(--pref-text-color);
+  font-size: 1rem;
+}
+
+.ocs__site-footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem) 2.5rem;
+}
+
+.ocs__site-footer-name {
+  margin: 0 0 0.6rem;
+  color: var(--pref-text-color);
+  font-family: var(--ocs-font-display, inherit);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ocs__site-footer-heading {
+  margin: 0 0 1rem;
+  color: var(--ocs-tone-yellow, var(--pref-text-color));
+  font-family: var(--ocs-font-body, inherit);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ocs__site-footer-text {
+  margin: 0 0 0.75rem;
+  color: var(--text-muted);
+}
+
+.ocs__site-footer-links {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+.ocs__site-footer-link:any-link,
+.ocs__site-footer-note a:any-link,
+.ocs__site-footer-text a:any-link {
+  color: var(--pref-text-color);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--pref-accent-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.ocs__site-footer-link:any-link {
+  text-decoration-color: transparent;
+}
+
+.ocs__site-footer-link:hover,
+.ocs__site-footer-note a:hover,
+.ocs__site-footer-text a:hover {
+  color: var(--pref-accent-color);
+  text-decoration-color: var(--pref-accent-color);
+}
+
+.ocs__site-footer-link:focus-visible,
+.ocs__site-footer-note a:focus-visible,
+.ocs__site-footer-text a:focus-visible {
+  border-radius: 3px;
+  outline: 3px solid var(--pref-accent-color);
+  outline-offset: 3px;
+}
+
+.ocs__site-footer-bottom {
+  border-top: 1px solid color-mix(in srgb, var(--ocs-on-strong, #fff) 20%, transparent);
+}
+
+.ocs__site-footer-note {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem clamp(1rem, 4vw, 2rem) 1.5rem;
+  color: var(--pref-text-color);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 767.98px) {
+  .ocs__site-footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}

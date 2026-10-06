@@ -1,0 +1,580 @@
+// OCS theme: SDRM student project (light, warm nonprofit look).
+//
+// Block     .ocs__theme             any page-level theme scope (put on <body>)
+// Modifier  .ocs__theme--sdrm       cream page, navy text, orange / sky blue / red-orange
+//                                   accents, rounded display headings, 18px body text
+//
+// How it works
+//   1. Overrides the shared OCS tokens (--pref-*, --panel, --ui-border, --text-muted,
+//      --red / --warn / --green) so every existing ocs__ component picks up the palette.
+//   2. Adds brand tokens that the newer components (site header, hero, section, kicker,
+//      feature card, site footer) read with fallbacks:
+//        --ocs-tone-{orange,blue,red,yellow,navy}   bright brand colors (shapes, borders, fills
+//                                                    behind navy text)
+//        --ocs-tone-{orange,blue,red}-strong        darker shades that pass WCAG AA as text on
+//                                                    white/cream and behind white text
+//        --ocs-tone-{orange,blue,red,navy}-deep     gradient partners for white-text banners
+//        --ocs-surface / --ocs-surface-alt / --ocs-surface-band   white / cream / peach bands
+//        --ocs-on-strong                            text on strong fills (white)
+//        --ocs-font-display / --ocs-font-body       fonts (loaded by the page layout)
+//        --ocs-shadow                               soft card shadow
+//   3. Re-skins the shared components inside the scope only (cards, buttons, inputs, toggles,
+//      tables, stats, callouts, pills), so the template's other pages are unchanged.
+//
+// Button tones in this theme
+//   accent / alert-green -> sky blue      alert-yellow -> orange outline, yellow fill
+//   alert-red            -> red-orange    no tone      -> navy outline
+//
+// Usage
+//   <body class="ocs__theme ocs__theme--sdrm"> ... </body>
+
+$sdrm-cream: #FBF7F0;
+
+// The template paints <html> dark; match the cream page so short pages and overscroll stay light.
+html:has(> body.ocs__theme--sdrm) {
+  background-color: $sdrm-cream;
+}
+
+.ocs__theme--sdrm {
+  // Brand tokens
+  --ocs-tone-orange: #F28C28;
+  --ocs-tone-orange-strong: #A8461A;
+  --ocs-tone-orange-deep: #9A3E14;
+  --ocs-tone-blue: #1E9BE0;
+  --ocs-tone-blue-strong: #1272B8;
+  --ocs-tone-blue-deep: #0C568E;
+  --ocs-tone-red: #E4572E;
+  --ocs-tone-red-strong: #C8481F;
+  --ocs-tone-red-deep: #A1301A;
+  --ocs-tone-yellow: #FFD966;
+  --ocs-tone-yellow-strong: #F5C542;
+  --ocs-tone-navy: #14345A;
+  --ocs-tone-navy-deep: #0E2742;
+  --ocs-surface: #FFFFFF;
+  --ocs-surface-alt: #{$sdrm-cream};
+  --ocs-surface-band: #FDF0E1;
+  --ocs-on-strong: #FFFFFF;
+  --ocs-shadow: 0 12px 32px rgba(20, 52, 90, 0.1);
+  --ocs-shadow-lift: 0 18px 40px rgba(20, 52, 90, 0.16);
+  --ocs-font-display: "Fredoka", "Nunito", "Trebuchet MS", system-ui, sans-serif;
+  --ocs-font-body: "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --ocs-kicker-ink: var(--ocs-tone-orange-strong);
+  --ocs-kicker-dot: var(--ocs-tone-orange);
+
+  // Shared OCS tokens
+  --pref-bg-color: #{$sdrm-cream};
+  --pref-text-color: #14345A;
+  --pref-accent-color: #1272B8;
+  --pref-success-color: #1A7A44;
+  --pref-font-family: var(--ocs-font-body);
+  --text-muted: #44566C;
+  --panel: #FFFFFF;
+  --panel-mid: #FFF8EE;
+  --ui-bg: #F3EDE3;
+  --ui-border: #E3D9CA;
+  --red: #B93A16;
+  --warn: #9A4A00;
+  --green: #1A7A44;
+
+  margin: 0;
+  background-color: var(--ocs-surface-alt);
+  color: var(--pref-text-color);
+  font-family: var(--ocs-font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  // ---------- Base typography (undoes the template's mono font, glow, and flex headings).
+  // :where() keeps these at one-class specificity so component classes still win.
+  :where(h1, h2, h3, h4, h5, h6) {
+    display: block;
+    position: static;
+    margin: 0 0 0.6em;
+    color: var(--pref-text-color);
+    font-family: var(--ocs-font-display);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-shadow: none;
+  }
+
+  :where(h1) {
+    font-size: clamp(2.25rem, calc(4vw + 1rem), 3.5rem);
+  }
+
+  :where(h2) {
+    font-size: clamp(1.75rem, calc(2vw + 1rem), 2.4rem);
+  }
+
+  :where(h3) {
+    font-size: 1.35rem;
+  }
+
+  :where(p, li) {
+    color: inherit;
+  }
+
+  :where(p) {
+    margin: 0 0 1rem;
+  }
+
+  a:where(:any-link) {
+    color: var(--pref-accent-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+
+  :where(a, button, select, input):focus-visible {
+    outline: 3px solid var(--pref-text-color);
+    outline-offset: 3px;
+  }
+
+  :where(code) {
+    padding: 0.05em 0.4em;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95em;
+    font-weight: 700;
+  }
+
+  :where(img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  // ---------- Layout helpers
+  .ocs__split {
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: 0;
+    align-items: center;
+  }
+
+  .ocs__links {
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .ocs__grid + .ocs__links,
+  .ocs__text + .ocs__links {
+    margin-top: 1.5rem;
+  }
+
+  // ---------- Cards
+  .ocs__card {
+    margin-bottom: 2rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 0;
+    border-radius: 20px;
+    background: var(--ocs-surface);
+    box-shadow: var(--ocs-shadow);
+    color: var(--pref-text-color);
+  }
+
+  .ocs__card > form:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  .ocs__card:last-child {
+    margin-bottom: 0;
+  }
+
+  .ocs__grid--card {
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  .ocs__grid--card .ocs__grid-cell {
+    --ocs-cell-tone: var(--ocs-tone-orange);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid var(--ui-border);
+    border-top: 6px solid var(--ocs-cell-tone);
+    border-radius: 16px;
+    background: var(--ocs-surface);
+    box-shadow: var(--ocs-shadow);
+    color: var(--pref-text-color);
+
+    &:nth-child(3n + 2) {
+      --ocs-cell-tone: var(--ocs-tone-blue);
+    }
+
+    &:nth-child(3n) {
+      --ocs-cell-tone: var(--ocs-tone-red);
+    }
+
+    &:hover {
+      border-color: var(--ui-border);
+      border-top-color: var(--ocs-cell-tone);
+      background: var(--ocs-surface);
+      box-shadow: var(--ocs-shadow-lift);
+      transform: translateY(-3px);
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    .ocs__links {
+      gap: 0.5rem;
+    }
+
+    > .ocs__links:last-child {
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+  }
+
+  .ocs__text {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .ocs__lead {
+    font-size: 1.2rem;
+  }
+
+  .ocs__image-frame {
+    padding: 0;
+    border: 0;
+    border-radius: 24px;
+    background: transparent;
+    box-shadow: var(--ocs-shadow);
+
+    img {
+      border-radius: 24px;
+    }
+  }
+
+  .ocs__callout {
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.4rem;
+    border: 0;
+    border-left: 6px solid var(--ocs-tone-orange);
+    border-radius: 14px;
+    background: var(--ocs-surface);
+    box-shadow: var(--ocs-shadow);
+    color: var(--pref-text-color);
+    font-size: 1rem;
+
+    .ocs__text {
+      color: var(--pref-text-color);
+    }
+
+    .ocs__links {
+      margin-top: 0.75rem;
+    }
+  }
+
+  .ocs__keypoints {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+
+  .ocs__keypoint {
+    margin: 0;
+    color: var(--pref-text-color);
+  }
+
+  .ocs__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--ocs-tone-orange) 22%, var(--ocs-surface));
+    color: var(--ocs-tone-orange-strong);
+    font-size: 0.95rem;
+  }
+
+  .ocs__status-pill {
+    padding: 0.2rem 0.75rem;
+    font-family: var(--ocs-font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .ocs__status-pill--neutral {
+    border-color: var(--ui-border);
+    background: var(--ui-bg);
+    color: var(--pref-text-color);
+  }
+
+  // ---------- Buttons (pill shaped, brand tones; see the tone map at the top)
+  .ocs__btn {
+    --ocs-btn-edge: var(--pref-text-color);
+    --ocs-btn-ink: var(--pref-text-color);
+    --ocs-btn-fill: var(--ocs-tone-blue-strong);
+    --ocs-btn-on-fill: var(--ocs-on-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: auto;
+    min-height: 44px;
+    padding: 0.55rem 1.35rem;
+    border: 2px solid var(--ocs-btn-edge);
+    border-radius: 999px;
+    background: var(--ocs-surface);
+    color: var(--ocs-btn-ink);
+    font-family: var(--ocs-font-body);
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: var(--ocs-btn-edge);
+      background: color-mix(in srgb, var(--ocs-btn-edge) 10%, var(--ocs-surface));
+      color: var(--ocs-btn-ink);
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    // Buttons inside text blocks (e.g. .ocs__callout) must not pick up inline-link styling.
+    &:any-link {
+      color: var(--ocs-btn-ink);
+      text-decoration: none;
+    }
+
+    &.fill:any-link {
+      color: var(--ocs-btn-on-fill);
+    }
+
+    &.large {
+      min-height: 54px;
+      padding: 0.8rem 1.9rem;
+      font-size: 1.125rem;
+    }
+
+    &.accent,
+    &.alert-green {
+      --ocs-btn-edge: var(--ocs-tone-blue-strong);
+      --ocs-btn-ink: var(--ocs-tone-blue-strong);
+      --ocs-btn-fill: var(--ocs-tone-blue-strong);
+    }
+
+    &.alert-yellow {
+      --ocs-btn-edge: var(--ocs-tone-orange);
+      --ocs-btn-ink: var(--pref-text-color);
+      --ocs-btn-fill: var(--ocs-tone-yellow);
+      --ocs-btn-on-fill: var(--ocs-tone-navy);
+    }
+
+    &.alert-red {
+      --ocs-btn-edge: var(--ocs-tone-red-strong);
+      --ocs-btn-ink: var(--ocs-tone-red-strong);
+      --ocs-btn-fill: var(--ocs-tone-red-strong);
+    }
+
+    &.fill {
+      border-color: var(--ocs-btn-fill);
+      background: var(--ocs-btn-fill);
+      color: var(--ocs-btn-on-fill);
+      box-shadow: 0 6px 16px rgba(20, 52, 90, 0.16);
+
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: var(--ocs-btn-fill);
+        background: color-mix(in srgb, var(--ocs-btn-fill) 88%, var(--ocs-tone-navy));
+        color: var(--ocs-btn-on-fill);
+      }
+    }
+
+    &.alert-yellow.fill {
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: var(--ocs-tone-yellow-strong);
+        background: var(--ocs-tone-yellow-strong);
+      }
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  // ---------- Form controls
+  .ocs__field-label,
+  .ocs__fieldset-legend {
+    color: var(--pref-text-color);
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .ocs__field-hint {
+    font-size: 0.95rem;
+  }
+
+  .ocs__field-row {
+    gap: 1rem 1.5rem;
+    align-items: flex-end;
+  }
+
+  .ocs__input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.65rem 1rem;
+    border: 2px solid var(--text-muted);
+    border-radius: 12px;
+    background-color: var(--ocs-surface);
+    color: var(--pref-text-color);
+    filter: none;
+    font-family: var(--ocs-font-body);
+    font-size: 1.05rem;
+
+    &:hover {
+      border-color: var(--pref-text-color);
+    }
+
+    &:focus {
+      border-color: var(--pref-accent-color);
+    }
+  }
+
+  .ocs__fieldset {
+    padding: 1rem 1.25rem 1.25rem;
+    border: 2px solid var(--ui-border);
+    border-radius: 16px;
+    background: var(--ocs-surface-alt);
+  }
+
+  .ocs__toggle {
+    --ocs-toggle-accent: var(--ocs-tone-blue-strong);
+    color: var(--pref-text-color);
+    font-weight: 600;
+  }
+
+  .ocs__toggle-track {
+    border: 2px solid var(--text-muted);
+    background: var(--ui-bg);
+
+    &::before {
+      top: 2px;
+      left: 2px;
+      background: var(--ocs-surface);
+      box-shadow: 0 1px 4px rgba(20, 52, 90, 0.45);
+    }
+  }
+
+  .ocs__toggle-input:checked + .ocs__toggle-track {
+    border-color: var(--ocs-toggle-accent);
+  }
+
+  .ocs__toggle-input:focus-visible + .ocs__toggle-track {
+    outline: 3px solid var(--pref-text-color);
+    outline-offset: 3px;
+  }
+
+  // ---------- Tables (navy header row, zebra striping)
+  .ocs__table-wrap {
+    border-radius: 14px;
+    box-shadow: 0 0 0 1px var(--ui-border);
+  }
+
+  .ocs__table {
+    display: table;
+    margin: 0;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 0.85rem 1.1rem;
+      font-family: inherit;
+      text-align: left;
+      border-color: var(--ui-border);
+      font-size: 1rem;
+    }
+
+    th {
+      background: var(--ocs-tone-navy);
+      color: var(--ocs-on-strong);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    td {
+      color: var(--pref-text-color);
+    }
+
+    tbody tr {
+      background: var(--ocs-surface);
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--ocs-surface-alt);
+    }
+
+    tbody tr:hover,
+    tbody tr:nth-child(even):hover {
+      background: color-mix(in srgb, var(--ocs-tone-yellow) 22%, var(--ocs-surface));
+    }
+  }
+
+  // ---------- Stats (big colorful numbers)
+  .ocs__stats {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+  }
+
+  .ocs__stat {
+    --ocs-stat-tone: var(--ocs-tone-orange);
+    --ocs-stat-ink: var(--ocs-tone-orange-strong);
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--ui-border);
+    border-top: 6px solid var(--ocs-stat-tone);
+    border-radius: 16px;
+    background: var(--ocs-surface);
+    box-shadow: var(--ocs-shadow);
+    text-align: left;
+
+    &:nth-child(3n + 2) {
+      --ocs-stat-tone: var(--ocs-tone-blue);
+      --ocs-stat-ink: var(--ocs-tone-blue-strong);
+    }
+
+    &:nth-child(3n) {
+      --ocs-stat-tone: var(--ocs-tone-red);
+      --ocs-stat-ink: var(--ocs-tone-red-strong);
+    }
+  }
+
+  .ocs__stat-value {
+    color: var(--ocs-stat-ink);
+    font-family: var(--ocs-font-display);
+    font-size: clamp(2.5rem, 5vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .ocs__stat-label {
+    color: var(--pref-text-color);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+}
