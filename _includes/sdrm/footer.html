@@ -1,3 +1,31 @@
-<footer class="ocs__callout" aria-label="Project disclaimer">
-  <p class="ocs__text">Student project, not affiliated with San Diego Rescue Mission. Visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>.</p>
+{%- comment -%} SDRM site footer: link columns and the required project disclaimer. {%- endcomment -%}
+<footer class="sdrm__footer">
+  <div class="sdrm__footer-inner">
+    <div>
+      <p class="sdrm__footer-brand">Help &amp; Hope</p>
+      <p class="sdrm__footer-text">A student-built guide to finding help, giving, and volunteering in San Diego. Every name, number, and shift on this site is placeholder data.</p>
+    </div>
+    <nav aria-labelledby="footer-explore-heading">
+      <h2 class="sdrm__footer-heading" id="footer-explore-heading">Explore</h2>
+      <ul class="sdrm__footer-links">
+        <li><a class="sdrm__footer-link" href="{{ '/' | relative_url }}">Home</a></li>
+        <li><a class="sdrm__footer-link" href="{{ '/sdrm/get-help/' | relative_url }}">Get Help Now</a></li>
+        <li><a class="sdrm__footer-link" href="{{ '/sdrm/about/' | relative_url }}">About</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="footer-involved-heading">
+      <h2 class="sdrm__footer-heading" id="footer-involved-heading">Get involved</h2>
+      <ul class="sdrm__footer-links">
+        <li><a class="sdrm__footer-link" href="{{ '/sdrm/give/' | relative_url }}">Ways to Give</a></li>
+        <li><a class="sdrm__footer-link" href="{{ '/sdrm/volunteer/' | relative_url }}">Volunteer</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2 class="sdrm__footer-heading">In an emergency</h2>
+      <p class="sdrm__footer-text">Call 911. For other community services in San Diego County, dial 211.</p>
+    </div>
+  </div>
+  <div class="sdrm__footer-bottom">
+    <p class="sdrm__footer-note">Student project, not affiliated with San Diego Rescue Mission. Visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>.</p>
+  </div>
 </footer>

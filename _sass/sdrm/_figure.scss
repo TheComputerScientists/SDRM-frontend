@@ -1,0 +1,29 @@
+// SDRM figure: rounded image with a colored offset block behind it.
+//
+//   .sdrm__figure
+//     --blue | --red          color of the offset block (orange by default)
+//   .sdrm__figure-image
+
+.sdrm__figure {
+  --sdrm-figure-accent: #{$sdrm-orange};
+  position: relative;
+  margin: 0 $sdrm-space-4 $sdrm-space-4 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: $sdrm-space-4 (-$sdrm-space-4) (-$sdrm-space-4) $sdrm-space-4;
+    border-radius: $sdrm-radius-lg;
+    background: var(--sdrm-figure-accent);
+  }
+
+  &--blue { --sdrm-figure-accent: #{$sdrm-blue}; }
+  &--red { --sdrm-figure-accent: #{$sdrm-red}; }
+}
+
+.sdrm__figure-image {
+  position: relative;
+  width: 100%;
+  border-radius: $sdrm-radius-lg;
+  box-shadow: $sdrm-shadow;
+}

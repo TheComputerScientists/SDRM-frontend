@@ -52,9 +52,9 @@ async function init(rootEl) {
   rateNight.textContent = money.format(rates.costPerNight);
 
   function stat(value, label) {
-    return el("div", { className: "ocs__stat" }, [
-      el("span", { className: "ocs__stat-value", text: count.format(value) }),
-      el("span", { className: "ocs__stat-label", text: label }),
+    return el("div", { className: "sdrm__stat" }, [
+      el("span", { className: "sdrm__stat-value", text: count.format(value) }),
+      el("span", { className: "sdrm__stat-label", text: label }),
     ]);
   }
 

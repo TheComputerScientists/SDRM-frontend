@@ -1,0 +1,87 @@
+// SDRM site footer: navy, white text, link columns and the project disclaimer.
+//
+//   .sdrm__footer
+//   .sdrm__footer-inner      brand + link columns
+//   .sdrm__footer-brand / -text / -heading
+//   .sdrm__footer-links / -link
+//   .sdrm__footer-bottom     disclaimer strip
+//   .sdrm__footer-note
+
+.sdrm__footer {
+  --sdrm-focus: #{$sdrm-focus-on-dark};
+  background: $sdrm-navy;
+  color: $sdrm-white;
+  border-top: 8px solid $sdrm-orange;
+
+  a {
+    color: $sdrm-white;
+
+    &:hover {
+      color: $sdrm-yellow;
+    }
+  }
+}
+
+.sdrm__footer-inner {
+  @include container;
+  display: grid;
+  gap: $sdrm-space-6;
+  padding-block: $sdrm-space-8 $sdrm-space-7;
+
+  @include bp(md) {
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  }
+}
+
+.sdrm__footer-brand {
+  @include display(800);
+  margin-bottom: $sdrm-space-3;
+  font-size: 1.75rem;
+}
+
+.sdrm__footer-text {
+  margin-bottom: $sdrm-space-3;
+  font-size: 1rem;
+}
+
+.sdrm__footer-heading {
+  margin-bottom: $sdrm-space-4;
+  color: $sdrm-yellow;
+  font-family: $sdrm-font-body;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sdrm__footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li + li {
+    margin-top: $sdrm-space-2;
+  }
+}
+
+.sdrm__footer-link {
+  font-size: 1rem;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.sdrm__footer-bottom {
+  border-top: 1px solid rgba($sdrm-white, 0.2);
+  background: $sdrm-navy-deep;
+}
+
+.sdrm__footer-note {
+  @include container;
+  margin-block: 0;
+  padding-block: $sdrm-space-5;
+  font-size: 0.9375rem;
+  text-align: center;
+}

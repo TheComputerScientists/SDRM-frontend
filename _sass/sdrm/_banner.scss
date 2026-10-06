@@ -1,0 +1,84 @@
+// SDRM page banner: colored title band at the top of each tool page.
+//
+//   .sdrm__banner
+//     --orange (default) | --red | --blue | --navy
+//   .sdrm__banner-inner
+//   .sdrm__banner-title    the page <h1>
+//   .sdrm__banner-text     optional lead
+
+.sdrm__banner {
+  --sdrm-focus: #{$sdrm-focus-on-dark};
+  --sdrm-banner-from: #{$sdrm-orange-deep};
+  --sdrm-banner-to: #{$sdrm-orange-mid};
+  --sdrm-banner-shape: #{$sdrm-orange};
+  position: relative;
+  overflow: hidden;
+  color: $sdrm-white;
+  background: linear-gradient(120deg, var(--sdrm-banner-from), var(--sdrm-banner-to));
+
+  // Decorative circles on the right
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    right: -4rem;
+    top: -6rem;
+    width: 18rem;
+    height: 18rem;
+    background: var(--sdrm-banner-shape);
+    opacity: 0.55;
+  }
+
+  &::after {
+    right: 9rem;
+    bottom: -5rem;
+    width: 9rem;
+    height: 9rem;
+    border: 1.25rem solid rgba($sdrm-yellow, 0.35);
+  }
+
+  &--red {
+    --sdrm-banner-from: #{$sdrm-red-deep};
+    --sdrm-banner-to: #{$sdrm-red-ink};
+    --sdrm-banner-shape: #{$sdrm-red};
+  }
+
+  &--blue {
+    --sdrm-banner-from: #{$sdrm-blue-deep};
+    --sdrm-banner-to: #{$sdrm-blue-ink};
+    --sdrm-banner-shape: #{$sdrm-blue};
+  }
+
+  &--navy {
+    --sdrm-banner-from: #{$sdrm-navy-deep};
+    --sdrm-banner-to: #{$sdrm-navy-soft};
+    --sdrm-banner-shape: #{$sdrm-blue-ink};
+  }
+}
+
+.sdrm__banner-inner {
+  @include container;
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(#{$sdrm-space-7}, calc(4vw + 1.5rem), 5.5rem);
+}
+
+.sdrm__banner-title {
+  max-width: 40rem;
+  margin-bottom: $sdrm-space-3;
+  color: $sdrm-white;
+  font-size: clamp(2.5rem, calc(3.5vw + 1.25rem), 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.sdrm__banner-text {
+  max-width: 40rem;
+  margin: 0;
+  font-size: 1.1875rem;
+}

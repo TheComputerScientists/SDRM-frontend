@@ -3,47 +3,64 @@ layout: sdrm
 title: Get Help Now
 lead: Choose what you need and where you are. The list updates as soon as you change a filter.
 permalink: /sdrm/get-help/
+tone: orange
+kicker: Find support
 ---
 
-<div data-sdrm-get-help data-src="{{ site.baseurl }}/assets/data/sdrm/resources.json">
-  <section class="ocs__card" aria-labelledby="filters-heading">
-    <h2 class="ocs__section-title" id="filters-heading">Filter resources</h2>
-    <form id="help-filters" class="ocs__field-row" aria-describedby="help-summary">
-      <div class="ocs__field">
-        <label class="ocs__field-label" for="help-need">What do you need?</label>
-        <select class="ocs__input" id="help-need" name="need">
-          <option value="all">All needs</option>
-        </select>
+<div data-sdrm-get-help data-src="{{ '/assets/data/sdrm/resources.json' | relative_url }}">
+  <section class="sdrm__section sdrm__section--cream" aria-labelledby="filters-heading">
+    <div class="sdrm__container">
+      <div class="sdrm__card">
+        <h2 class="sdrm__card-title" id="filters-heading">Filter resources</h2>
+        <form id="help-filters" class="sdrm__field-row" aria-describedby="help-summary">
+          <div class="sdrm__field sdrm__field--grow">
+            <label class="sdrm__field-label" for="help-need">What do you need?</label>
+            <select class="sdrm__input" id="help-need" name="need">
+              <option value="all">All needs</option>
+            </select>
+          </div>
+          <div class="sdrm__field sdrm__field--grow">
+            <label class="sdrm__field-label" for="help-location">Where are you?</label>
+            <select class="sdrm__input" id="help-location" name="location">
+              <option value="all">All locations</option>
+            </select>
+          </div>
+          <div class="sdrm__field">
+            <button class="sdrm__button sdrm__button--outline" type="button" data-help-reset>Reset filters</button>
+          </div>
+        </form>
       </div>
-      <div class="ocs__field">
-        <label class="ocs__field-label" for="help-location">Where are you?</label>
-        <select class="ocs__input" id="help-location" name="location">
-          <option value="all">All locations</option>
-        </select>
-      </div>
-      <div class="ocs__field">
-        <button class="ocs__btn medium alert-yellow" type="button" data-help-reset>Reset filters</button>
-      </div>
-    </form>
-  </section>
-
-  <section aria-labelledby="results-heading">
-    <h2 id="results-heading">Matching resources</h2>
-    <p class="ocs__text" id="help-summary" role="status" aria-live="polite">Loading resources…</p>
-
-    <div class="ocs__grid ocs__grid--card" id="help-results"></div>
-
-    <div class="ocs__callout" id="help-empty" hidden>
-      <p class="ocs__text"><strong>No resources match those filters yet.</strong> Try choosing “All locations” or a different need, or reset the filters to see everything.</p>
-      <p class="ocs__links">
-        <button class="ocs__btn medium alert-yellow" type="button" data-help-reset>Show all resources</button>
-      </p>
     </div>
   </section>
 
-  <aside class="ocs__callout" aria-label="About this data">
-    <p class="ocs__text"><strong>Placeholder data.</strong> Program names and areas are examples written for a class project. Details marked “TODO: verify” have not been confirmed. For real, current services, visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>. In an emergency, call 911.</p>
-  </aside>
+  <section class="sdrm__section sdrm__section--white" aria-labelledby="results-heading">
+    <div class="sdrm__container">
+      <header class="sdrm__section-header">
+        <p class="sdrm__kicker">Results</p>
+        <h2 class="sdrm__section-heading" id="results-heading">Matching resources</h2>
+        <p class="sdrm__section-intro" id="help-summary" role="status" aria-live="polite">Loading resources…</p>
+      </header>
+
+      <div class="sdrm__grid" id="help-results"></div>
+
+      <div class="sdrm__callout sdrm__callout--empty" id="help-empty" hidden>
+        <span class="sdrm__callout-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg></span>
+        <h3 class="sdrm__callout-title">Nothing here yet</h3>
+        <p class="sdrm__text">No resources match those filters. Try choosing “All locations” or a different need, or reset the filters to see everything.</p>
+        <p class="sdrm__actions">
+          <button class="sdrm__button sdrm__button--orange" type="button" data-help-reset>Show all resources</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sdrm__section sdrm__section--dots" aria-label="About this data">
+    <div class="sdrm__container">
+      <aside class="sdrm__callout">
+        <p class="sdrm__text"><strong>Placeholder data.</strong> Program names and areas are examples written for a class project. Details marked “TODO: verify” have not been confirmed. For real, current services, visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>. In an emergency, call 911.</p>
+      </aside>
+    </div>
+  </section>
 </div>
 
-<script type="module" src="{{ site.baseurl }}/assets/js/sdrm/get-help.js"></script>
+<script type="module" src="{{ '/assets/js/sdrm/get-help.js' | relative_url }}"></script>

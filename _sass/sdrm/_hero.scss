@@ -1,0 +1,96 @@
+// SDRM home hero: full-width orange gradient band.
+//
+//   .sdrm__hero
+//   .sdrm__hero-inner      two columns from 768px
+//   .sdrm__hero-content    kicker, title, text, actions
+//   .sdrm__hero-title / -text / -actions
+//   .sdrm__hero-media      soft circle behind the image
+//   .sdrm__hero-image      rounded placeholder image
+//
+// White text sits on the deeper left side of the gradient (4.6:1 or better);
+// the bright brand orange is used only behind the image.
+
+.sdrm__hero {
+  --sdrm-focus: #{$sdrm-focus-on-dark};
+  position: relative;
+  overflow: hidden;
+  color: $sdrm-white;
+  background:
+    radial-gradient(circle at 88% 30%, rgba($sdrm-orange, 0.9) 0, rgba($sdrm-orange, 0) 42%),
+    linear-gradient(120deg, $sdrm-orange-deep 0%, $sdrm-orange-mid 60%, $sdrm-orange-mid 100%);
+
+  // Large decorative ring in the corner
+  &::after {
+    content: "";
+    position: absolute;
+    left: -8rem;
+    bottom: -10rem;
+    width: 22rem;
+    height: 22rem;
+    border: 3rem solid rgba($sdrm-yellow, 0.14);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+}
+
+.sdrm__hero-inner {
+  @include container;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: $sdrm-space-7;
+  align-items: center;
+  padding-block: clamp(#{$sdrm-space-7}, calc(6vw + 1rem), 7rem);
+
+  @include bp(md) {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+
+.sdrm__hero-title {
+  margin-bottom: $sdrm-space-5;
+  color: $sdrm-white;
+  font-size: clamp(2.75rem, calc(5vw + 1.25rem), 4.75rem);
+  font-weight: 800;
+  line-height: 1.02;
+}
+
+.sdrm__hero-text {
+  max-width: 34rem;
+  margin-bottom: $sdrm-space-6;
+  font-size: clamp(1.1875rem, calc(0.6vw + 1rem), 1.375rem);
+}
+
+.sdrm__hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sdrm-space-3;
+  margin: 0;
+}
+
+.sdrm__hero-media {
+  position: relative;
+  max-width: 34rem;
+  justify-self: center;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 112%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba($sdrm-yellow, 0.35);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.sdrm__hero-image {
+  position: relative;
+  width: 100%;
+  border: 6px solid $sdrm-white;
+  border-radius: $sdrm-radius-lg;
+  box-shadow: 0 24px 50px rgba(14, 39, 66, 0.3);
+}

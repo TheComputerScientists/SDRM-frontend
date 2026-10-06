@@ -1,0 +1,26 @@
+---
+---
+// Stylesheet for the SDRM student project pages (index.md and sdrm/*).
+// Standalone: it does not use the Open Coding Society / minima styles.
+// Partials live in _sass/sdrm/ and use sdrm__block-element--modifier names.
+
+@import "sdrm/tokens";
+@import "sdrm/mixins";
+@import "sdrm/base";
+@import "sdrm/layout";
+@import "sdrm/header";
+@import "sdrm/hero";
+@import "sdrm/banner";
+@import "sdrm/kicker";
+@import "sdrm/feature-card";
+@import "sdrm/stats";
+@import "sdrm/card";
+@import "sdrm/button";
+@import "sdrm/form";
+@import "sdrm/table";
+@import "sdrm/pill";
+@import "sdrm/callout";
+@import "sdrm/checklist";
+@import "sdrm/figure";
+@import "sdrm/footer";
+@import "sdrm/utilities";

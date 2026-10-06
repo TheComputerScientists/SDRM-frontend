@@ -1,0 +1,60 @@
+// SDRM callouts and empty states.
+//
+//   .sdrm__callout           note with an orange left edge
+//     --empty                friendly "nothing found" panel, centered, with an icon
+//   .sdrm__callout-icon      round icon badge (empty state)
+//   .sdrm__callout-title
+
+.sdrm__callout {
+  margin: 0;
+  padding: $sdrm-space-5 $sdrm-space-6;
+  border-left: 6px solid $sdrm-orange;
+  border-radius: $sdrm-radius-sm;
+  background: $sdrm-white;
+  box-shadow: $sdrm-shadow;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  .sdrm__card & {
+    box-shadow: none;
+    background: $sdrm-cream;
+  }
+
+  &--empty {
+    max-width: 40rem;
+    margin-inline: auto;
+    padding: $sdrm-space-7 $sdrm-space-6;
+    border: 2px dashed $sdrm-orange;
+    border-radius: $sdrm-radius;
+    background: $sdrm-cream;
+    box-shadow: none;
+    text-align: center;
+
+    .sdrm__actions {
+      justify-content: center;
+    }
+  }
+}
+
+.sdrm__callout-icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto $sdrm-space-4;
+  border-radius: 50%;
+  background: $sdrm-tint-orange;
+  color: $sdrm-orange-ink;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.sdrm__callout-title {
+  margin-bottom: $sdrm-space-2;
+  font-size: 1.5rem;
+}

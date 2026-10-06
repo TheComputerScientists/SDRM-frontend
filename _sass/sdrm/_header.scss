@@ -1,0 +1,328 @@
+// SDRM site header.
+//
+//   .sdrm__header                    wrapper ([data-sdrm-header] for header.js)
+//     --enhanced                     added by JS: the nav collapses under 768px
+//     --open                         added by JS while the mobile menu is open
+//   .sdrm__header-skip               skip link (visible on focus)
+//   .sdrm__header-topbar             slim strip with the action buttons on the right
+//   .sdrm__header-topbar-inner
+//   .sdrm__header-cta                angled action button
+//     --orange | --blue | --red
+//   .sdrm__header-main               white bar: wordmark + nav
+//   .sdrm__header-main-inner
+//   .sdrm__header-brand              wordmark link
+//     -mark | -name | -tag
+//   .sdrm__header-toggle             hamburger button (hidden until JS runs)
+//     -bars
+//   .sdrm__header-nav                primary nav
+//   .sdrm__header-links / -link      uppercase links with thin dividers; aria-current marks the page
+
+.sdrm__header {
+  position: relative;
+  z-index: 10;
+  background: $sdrm-white;
+  box-shadow: 0 2px 0 $sdrm-line, 0 8px 24px rgba(20, 52, 90, 0.06);
+}
+
+.sdrm__header-skip {
+  position: absolute;
+  top: $sdrm-space-2;
+  left: $sdrm-space-2;
+  z-index: 20;
+  padding: $sdrm-space-2 $sdrm-space-4;
+  border-radius: $sdrm-radius-sm;
+  background: $sdrm-navy;
+  color: $sdrm-white;
+  font-weight: 700;
+  transform: translateY(-200%);
+
+  &:focus {
+    --sdrm-focus: #{$sdrm-yellow};
+    transform: none;
+    color: $sdrm-white;
+  }
+}
+
+// Top bar
+.sdrm__header-topbar {
+  background: $sdrm-cream;
+  border-bottom: 1px solid $sdrm-line;
+}
+
+.sdrm__header-topbar-inner {
+  @include container;
+  display: flex;
+  justify-content: flex-end;
+  gap: $sdrm-space-2;
+  padding-block: $sdrm-space-2;
+
+  @include bp(sm, down) {
+    justify-content: center;
+    gap: $sdrm-space-1;
+    padding-inline: $sdrm-space-2;
+  }
+}
+
+.sdrm__header-cta {
+  --sdrm-cta-fill: #{$sdrm-orange};
+  --sdrm-cta-ink: #{$sdrm-navy};
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.15rem;
+  color: var(--sdrm-cta-ink);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  // Angled shape sits behind the text so the label and focus ring stay square.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--sdrm-cta-fill);
+    transform: skewX(-14deg);
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--sdrm-cta-ink);
+  }
+
+  &:hover::before {
+    filter: brightness(0.92);
+    transform: skewX(-14deg) translateY(-1px);
+  }
+
+  &--orange {
+    --sdrm-cta-fill: #{$sdrm-orange};
+    --sdrm-cta-ink: #{$sdrm-navy};
+  }
+
+  &--blue {
+    --sdrm-cta-fill: #{$sdrm-blue-ink};
+    --sdrm-cta-ink: #{$sdrm-white};
+  }
+
+  &--red {
+    --sdrm-cta-fill: #{$sdrm-red-ink};
+    --sdrm-cta-ink: #{$sdrm-white};
+  }
+
+  @include bp(sm, down) {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+// Main bar
+.sdrm__header-main-inner {
+  @include container;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sdrm-space-3 $sdrm-space-5;
+  padding-block: $sdrm-space-4;
+
+  @include bp(md, down) {
+    gap: $sdrm-space-3;
+    padding-block: $sdrm-space-3;
+  }
+}
+
+.sdrm__header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: $sdrm-space-3;
+  color: $sdrm-navy;
+  text-decoration: none;
+
+  &:hover {
+    color: $sdrm-navy;
+  }
+}
+
+.sdrm__header-brand-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: $sdrm-orange;
+  color: $sdrm-navy;
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  @include bp(sm, down) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.sdrm__header-brand-name {
+  @include display(800);
+  display: block;
+  font-size: 1.625rem;
+  line-height: 1;
+
+  @include bp(sm, down) {
+    font-size: 1.375rem;
+  }
+}
+
+.sdrm__header-brand-tag {
+  display: block;
+  margin-top: 0.2rem;
+  color: $sdrm-muted;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sdrm__header-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $sdrm-space-2;
+  padding: $sdrm-space-2 $sdrm-space-4;
+  border: 2px solid $sdrm-navy;
+  border-radius: $sdrm-radius-pill;
+  background: $sdrm-white;
+  color: $sdrm-navy;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.875rem;
+  cursor: pointer;
+
+  @include bp(md) {
+    display: none;
+  }
+}
+
+.sdrm__header-toggle-bars {
+  position: relative;
+  width: 1.125rem;
+  height: 2px;
+  background: currentColor;
+  transition: background 0.15s ease;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.15s ease;
+  }
+
+  &::before { top: -6px; }
+  &::after { top: 6px; }
+
+  [aria-expanded="true"] > & {
+    background: transparent;
+
+    &::before { transform: translateY(6px) rotate(45deg); }
+    &::after { transform: translateY(-6px) rotate(-45deg); }
+  }
+}
+
+.sdrm__header-nav {
+  @include bp(md, down) {
+    flex-basis: 100%;
+
+    .sdrm__header--enhanced:not(.sdrm__header--open) & {
+      display: none;
+    }
+  }
+}
+
+.sdrm__header-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li + li {
+    border-left: 1px solid $sdrm-line;
+  }
+
+  @include bp(md, down) {
+    flex-direction: column;
+    align-items: stretch;
+    border-top: 1px solid $sdrm-line;
+
+    li + li {
+      border-left: 0;
+      border-top: 1px solid $sdrm-line;
+    }
+  }
+}
+
+.sdrm__header-link {
+  position: relative;
+  display: block;
+  padding: $sdrm-space-2 $sdrm-space-4;
+  color: $sdrm-navy;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: $sdrm-space-4;
+    right: $sdrm-space-4;
+    bottom: 0.15rem;
+    height: 3px;
+    border-radius: 3px;
+    background: $sdrm-orange;
+    transform: scaleX(0);
+    transition: transform 0.15s ease;
+  }
+
+  &:hover,
+  &[aria-current="page"] {
+    color: $sdrm-navy;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  @include bp(md, down) {
+    padding: $sdrm-space-3 $sdrm-space-2;
+
+    &::after {
+      left: $sdrm-space-2;
+      right: auto;
+      width: 2.5rem;
+    }
+  }
+
+  @include bp(lg, down) {
+    @include bp(md) {
+      padding-inline: $sdrm-space-3;
+      font-size: 0.8125rem;
+    }
+  }
+}
