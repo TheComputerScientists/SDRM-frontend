@@ -25,25 +25,25 @@ export function el(tag, props = {}, children = []) {
   return node;
 }
 
-/** Build a labeled ocs__toggle (checkbox switch). */
+/** Build a labeled sdrm__toggle (checkbox switch). */
 export function toggle({ id, name, value, label }) {
   const input = el("input", {
-    className: "ocs__toggle-input",
+    className: "sdrm__toggle-input",
     attrs: { type: "checkbox", id, name, value },
   });
-  const wrapper = el("label", { className: "ocs__toggle", attrs: { for: id } }, [
+  const wrapper = el("label", { className: "sdrm__toggle", attrs: { for: id } }, [
     input,
-    el("span", { className: "ocs__toggle-track", attrs: { "aria-hidden": "true" } }),
-    el("span", { className: "ocs__toggle-label", text: label }),
+    el("span", { className: "sdrm__toggle-track", attrs: { "aria-hidden": "true" } }),
+    el("span", { className: "sdrm__toggle-label", text: label }),
   ]);
   return { wrapper, input };
 }
 
-/** Show a load error inside a container using the OCS callout. */
+/** Show a load error inside a container as a field error. */
 export function showLoadError(container, error) {
   container.replaceChildren(
     el("p", {
-      className: "ocs__field-error",
+      className: "sdrm__field-error",
       attrs: { role: "alert" },
       text: `Sorry, this page's data could not be loaded. Please refresh and try again. (${error.message})`,
     })

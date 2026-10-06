@@ -1,0 +1,74 @@
+// SDRM cards: white rounded panels with a soft shadow.
+//
+//   .sdrm__card              panel
+//     --topline              colored top border; cycles orange / blue / red in a grid
+//   .sdrm__card-title        card heading
+//   .sdrm__card-detail       small "Label: value" line
+//
+// <article class="sdrm__card sdrm__card--topline">
+//   <h3 class="sdrm__card-title">Title</h3>
+//   <p class="sdrm__text">Text</p>
+// </article>
+
+.sdrm__card {
+  --sdrm-card-line: #{$sdrm-orange};
+  min-width: 0;
+  padding: clamp(#{$sdrm-space-5}, calc(2vw + 0.75rem), #{$sdrm-space-6});
+  border-radius: $sdrm-radius;
+  background: $sdrm-white;
+  box-shadow: $sdrm-shadow;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  > form + * {
+    margin-top: $sdrm-space-6;
+  }
+
+  .sdrm__section--white & {
+    box-shadow: $sdrm-shadow, 0 0 0 1px $sdrm-line;
+  }
+
+  &--topline {
+    display: flex;
+    flex-direction: column;
+    border-top: 6px solid var(--sdrm-card-line);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $sdrm-shadow-lift;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+
+    &:nth-child(3n + 2) { --sdrm-card-line: #{$sdrm-blue}; }
+    &:nth-child(3n + 3) { --sdrm-card-line: #{$sdrm-red}; }
+  }
+}
+
+.sdrm__card-title {
+  margin-bottom: $sdrm-space-3;
+  font-size: 1.5rem;
+}
+
+.sdrm__card-detail {
+  margin-bottom: $sdrm-space-1;
+  font-size: 1rem;
+
+  strong {
+    color: $sdrm-muted;
+  }
+}
+
+.sdrm__card .sdrm__actions:last-child {
+  margin-top: auto;
+  padding-top: $sdrm-space-4;
+}

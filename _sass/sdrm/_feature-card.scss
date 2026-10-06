@@ -1,0 +1,112 @@
+// SDRM feature cards: the three tool links on the home page.
+//
+//   .sdrm__feature-grid
+//   .sdrm__feature-card       white card with a colored top border
+//     --orange | --blue | --red
+//   .sdrm__feature-card-icon  round colored icon badge
+//   .sdrm__feature-card-title / -text
+//   .sdrm__feature-card-link  call to action; its ::after makes the whole card clickable
+
+.sdrm__feature-grid {
+  display: grid;
+  gap: $sdrm-space-5;
+
+  @include bp(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.sdrm__feature-card {
+  --sdrm-feature: #{$sdrm-orange};
+  --sdrm-feature-ink: #{$sdrm-orange-ink};
+  --sdrm-feature-tint: #{$sdrm-tint-orange};
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: $sdrm-space-6;
+  border-top: 8px solid var(--sdrm-feature);
+  border-radius: $sdrm-radius;
+  background: $sdrm-white;
+  box-shadow: $sdrm-shadow;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-4px);
+    box-shadow: $sdrm-shadow-lift;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover,
+    &:focus-within {
+      transform: none;
+    }
+  }
+
+  &--blue {
+    --sdrm-feature: #{$sdrm-blue};
+    --sdrm-feature-ink: #{$sdrm-blue-ink};
+    --sdrm-feature-tint: #{$sdrm-tint-blue};
+  }
+
+  &--red {
+    --sdrm-feature: #{$sdrm-red};
+    --sdrm-feature-ink: #{$sdrm-red-ink};
+    --sdrm-feature-tint: #{$sdrm-tint-orange};
+  }
+}
+
+.sdrm__feature-card-icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: $sdrm-space-5;
+  border-radius: 50%;
+  background: var(--sdrm-feature-tint);
+  color: var(--sdrm-feature-ink);
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.sdrm__feature-card-title {
+  margin-bottom: $sdrm-space-2;
+  font-size: 1.625rem;
+}
+
+.sdrm__feature-card-text {
+  flex: 1;
+  color: $sdrm-muted;
+}
+
+.sdrm__feature-card-link {
+  align-self: flex-start;
+  color: var(--sdrm-feature-ink);
+  font-weight: 700;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: $sdrm-radius;
+  }
+
+  &:hover {
+    color: var(--sdrm-feature-ink);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::after {
+      @include focus-ring(4px);
+    }
+  }
+}

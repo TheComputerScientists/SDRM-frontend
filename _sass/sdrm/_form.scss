@@ -1,0 +1,185 @@
+// SDRM form controls.
+//
+//   .sdrm__field-row         fields side by side (wraps on small screens)
+//   .sdrm__field             label + control + hint/error
+//     --grow                 takes the remaining width in a row
+//   .sdrm__field-label / -hint / -error
+//   .sdrm__input             text input or select
+//   .sdrm__fieldset          group of toggles
+//     -legend / -options
+//   .sdrm__toggle            switch built from a real checkbox
+//     -input (visually hidden checkbox) / -track / -label
+
+.sdrm__field-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: $sdrm-space-4 $sdrm-space-5;
+}
+
+.sdrm__field {
+  display: flex;
+  flex-direction: column;
+  gap: $sdrm-space-2;
+  min-width: 0;
+  margin-bottom: $sdrm-space-5;
+
+  .sdrm__field-row & {
+    margin-bottom: 0;
+  }
+
+  &--grow {
+    flex: 1 1 14rem;
+  }
+}
+
+.sdrm__field-label {
+  font-weight: 700;
+}
+
+.sdrm__field-hint {
+  margin: 0;
+  color: $sdrm-muted;
+  font-size: 0.9375rem;
+}
+
+.sdrm__field-error {
+  margin: 0;
+  color: $sdrm-red-ink;
+  font-weight: 700;
+  font-size: 0.9375rem;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.sdrm__input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.65rem 0.9rem;
+  border: 2px solid $sdrm-input-border;
+  border-radius: $sdrm-radius-sm;
+  background-color: $sdrm-white;
+  color: $sdrm-navy;
+
+  &:hover {
+    border-color: $sdrm-navy;
+  }
+
+  &:focus-visible {
+    border-color: $sdrm-blue-ink;
+    outline-offset: 2px;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: $sdrm-red-ink;
+    background-color: #FFF6F3;
+  }
+}
+
+select.sdrm__input {
+  appearance: none;
+  padding-right: 2.75rem;
+  // navy chevron
+  background-image: linear-gradient(45deg, transparent 50%, $sdrm-navy 50%), linear-gradient(135deg, $sdrm-navy 50%, transparent 50%);
+  background-position: calc(100% - 1.35rem) 55%, calc(100% - 1rem) 55%;
+  background-size: 0.375rem 0.375rem, 0.375rem 0.375rem;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.sdrm__fieldset {
+  min-width: 0;
+  margin: 0 0 $sdrm-space-5;
+  padding: 0;
+  border: 0;
+}
+
+.sdrm__fieldset-legend {
+  margin-bottom: $sdrm-space-3;
+  padding: 0;
+  font-weight: 700;
+}
+
+.sdrm__fieldset-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sdrm-space-2 $sdrm-space-3;
+}
+
+// Toggle switch
+.sdrm__toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: $sdrm-space-3;
+  padding: 0.4rem 0.9rem 0.4rem 0.5rem;
+  border-radius: 1.25rem;
+  background: $sdrm-cream;
+  cursor: pointer;
+  line-height: 1.35;
+
+  .sdrm__fieldset-options & {
+    border: 1px solid $sdrm-line;
+  }
+
+  &:hover {
+    background: $sdrm-tint-blue;
+  }
+}
+
+.sdrm__toggle-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.sdrm__toggle-track {
+  position: relative;
+  flex: none;
+  width: 2.75rem;
+  height: 1.5rem;
+  border: 2px solid $sdrm-input-border;
+  border-radius: $sdrm-radius-pill;
+  background: $sdrm-white;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: $sdrm-input-border;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .sdrm__toggle-input:checked + & {
+    border-color: $sdrm-blue-ink;
+    background: $sdrm-blue-ink;
+
+    &::after {
+      background: $sdrm-white;
+      transform: translateX(1.25rem);
+    }
+  }
+
+  .sdrm__toggle-input:focus-visible + & {
+    @include focus-ring(3px);
+  }
+}
+
+.sdrm__toggle-label {
+  font-weight: 600;
+}
+
+// Load errors can land on the navy band
+.sdrm__section--navy .sdrm__field-error {
+  color: $sdrm-yellow;
+  text-align: center;
+}

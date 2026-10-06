@@ -1,0 +1,45 @@
+// SDRM table: navy header row and zebra-striped body.
+//
+//   .sdrm__table-wrap        scrolls sideways inside itself if a table is too wide
+//   .sdrm__table
+
+.sdrm__table-wrap {
+  max-width: 100%;
+  margin-bottom: $sdrm-space-5;
+  overflow-x: auto;
+  border-radius: $sdrm-radius-sm;
+  border: 1px solid $sdrm-line;
+}
+
+.sdrm__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.0625rem;
+  text-align: left;
+
+  th,
+  td {
+    padding: 0.85rem 1.1rem;
+  }
+
+  thead th {
+    background: $sdrm-navy;
+    color: $sdrm-white;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+  }
+
+  tbody tr:nth-child(even) {
+    background: $sdrm-zebra;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: $sdrm-white;
+  }
+
+  tbody td:last-child {
+    font-weight: 700;
+  }
+}

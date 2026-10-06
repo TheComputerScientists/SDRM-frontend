@@ -1,0 +1,55 @@
+// SDRM kicker: small uppercase label with decorative dots, above a heading.
+//
+//   .sdrm__kicker            centered, dots on both sides
+//     --start                left aligned, dots after the text only
+//     --light                for dark/colored backgrounds (yellow text and dots)
+
+.sdrm__kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sdrm-space-3;
+  margin: 0 0 $sdrm-space-3;
+  color: $sdrm-orange-ink;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: none;
+    width: 2.25rem;
+    height: 0.5rem;
+    // three dots: big, medium, small
+    background:
+      radial-gradient(circle, $sdrm-orange 3.5px, transparent 4px) 0 50% / 0.5rem 0.5rem no-repeat,
+      radial-gradient(circle, $sdrm-blue 3px, transparent 3.5px) 0.875rem 50% / 0.5rem 0.5rem no-repeat,
+      radial-gradient(circle, $sdrm-red 2.5px, transparent 3px) 1.75rem 50% / 0.5rem 0.5rem no-repeat;
+  }
+
+  &::before {
+    transform: scaleX(-1);
+  }
+
+  &--start {
+    justify-content: flex-start;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &--light {
+    color: $sdrm-yellow;
+
+    &::before,
+    &::after {
+      background:
+        radial-gradient(circle, $sdrm-yellow 3.5px, transparent 4px) 0 50% / 0.5rem 0.5rem no-repeat,
+        radial-gradient(circle, $sdrm-white 3px, transparent 3.5px) 0.875rem 50% / 0.5rem 0.5rem no-repeat,
+        radial-gradient(circle, $sdrm-yellow 2.5px, transparent 3px) 1.75rem 50% / 0.5rem 0.5rem no-repeat;
+    }
+  }
+}

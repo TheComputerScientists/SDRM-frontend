@@ -1,0 +1,39 @@
+// SDRM pills: small rounded labels.
+//
+//   .sdrm__pills             row of pills
+//   .sdrm__pill              neutral (default)
+//     --success | --alert | --full
+
+.sdrm__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sdrm-space-2;
+  margin-bottom: $sdrm-space-4;
+}
+
+.sdrm__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.75rem;
+  border-radius: $sdrm-radius-pill;
+  background: $sdrm-tint-blue;
+  color: $sdrm-navy;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5;
+
+  &--success {
+    background: $sdrm-tint-green;
+    color: #145F35;
+  }
+
+  &--alert {
+    background: $sdrm-tint-yellow;
+    color: #7A3A00;
+  }
+
+  &--full {
+    background: $sdrm-tint-gray;
+    color: $sdrm-muted;
+  }
+}
