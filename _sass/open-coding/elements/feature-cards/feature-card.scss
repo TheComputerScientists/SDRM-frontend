@@ -1,0 +1,104 @@
+// OCS feature card: white card with an icon, title, short text, a link, and an
+// accent-colored top border. Lay several out with .ocs__feature-grid.
+//
+// Block     .ocs__feature-grid          responsive grid of feature cards (1-3 columns)
+// Block     .ocs__feature-card          the card
+// Elements  .ocs__feature-card-icon     round icon badge (put an aria-hidden SVG inside)
+//           .ocs__feature-card-title    card heading
+//           .ocs__feature-card-text     short description
+//           .ocs__feature-card-link     call-to-action link at the bottom
+// Modifiers .ocs__feature-card--orange | --blue | --red   accent tone
+//
+// Tokens (optional) --ocs-tone-{orange,blue,red} and their -strong shades from the theme.
+//
+// Example
+//   <article class="ocs__feature-card ocs__feature-card--blue">
+//     <span class="ocs__feature-card-icon" aria-hidden="true"><svg>...</svg></span>
+//     <h3 class="ocs__feature-card-title">Volunteer</h3>
+//     <p class="ocs__feature-card-text">Find a shift that fits your week.</p>
+//     <a class="ocs__feature-card-link" href="...">Find a shift</a>
+//   </article>
+
+.ocs__feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.ocs__feature-card {
+  --ocs-feature-tone: var(--pref-accent-color);
+  --ocs-feature-ink: var(--pref-accent-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--ui-border);
+  border-top: 6px solid var(--ocs-feature-tone);
+  border-radius: 18px;
+  background: var(--ocs-surface, var(--panel));
+  box-shadow: var(--ocs-shadow, none);
+  color: var(--pref-text-color);
+}
+
+.ocs__feature-card--orange {
+  --ocs-feature-tone: var(--ocs-tone-orange, var(--warn));
+  --ocs-feature-ink: var(--ocs-tone-orange-strong, var(--warn));
+}
+
+.ocs__feature-card--blue {
+  --ocs-feature-tone: var(--ocs-tone-blue, var(--pref-accent-color));
+  --ocs-feature-ink: var(--ocs-tone-blue-strong, var(--pref-accent-color));
+}
+
+.ocs__feature-card--red {
+  --ocs-feature-tone: var(--ocs-tone-red, var(--red));
+  --ocs-feature-ink: var(--ocs-tone-red-strong, var(--red));
+}
+
+.ocs__feature-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ocs-feature-tone) 18%, var(--ocs-surface, var(--panel)));
+  color: var(--ocs-feature-ink);
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.ocs__feature-card-title {
+  margin: 0;
+  color: var(--pref-text-color);
+  font-size: 1.5rem;
+}
+
+.ocs__feature-card-text {
+  flex: 1;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.ocs__feature-card-link:any-link {
+  color: var(--ocs-feature-ink);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
+.ocs__feature-card-link:hover {
+  color: var(--ocs-feature-ink);
+  text-decoration-thickness: 3px;
+}
+
+.ocs__feature-card-link:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid var(--pref-text-color);
+  outline-offset: 3px;
+}

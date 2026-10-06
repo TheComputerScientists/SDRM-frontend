@@ -14,3 +14,13 @@
 @import "fields/main.scss";
 @import "utilities/main.scss";
 
+
+// Theme scopes come after the components they re-skin and before the page-chrome
+// components below, whose own rules should win over the theme's base element styles.
+@import "themes/main.scss";
+@import "site-header/main.scss";
+@import "hero/main.scss";
+@import "sections/main.scss";
+@import "kicker/main.scss";
+@import "feature-cards/main.scss";
+@import "site-footer/main.scss";

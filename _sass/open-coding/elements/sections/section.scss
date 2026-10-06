@@ -1,0 +1,75 @@
+// OCS section: full-width page band with a centered, max-width inner column.
+// Alternate the background modifiers down a page to give it rhythm.
+//
+// Block     .ocs__section            full-width band with vertical padding
+// Elements  .ocs__section-inner      centered column, max 1200px, side gutters
+//           .ocs__section-header     centered intro block (kicker + heading + intro)
+//           .ocs__section-heading    large display heading (use on the band's <h2>)
+//           .ocs__section-intro      supporting paragraph under the heading
+// Modifiers .ocs__section--cream     page background (--ocs-surface-alt)
+//           .ocs__section--white     white band (--ocs-surface)
+//           .ocs__section--pattern   soft tinted band with a subtle dot pattern
+//
+// Example
+//   <section class="ocs__section ocs__section--white" aria-labelledby="h">
+//     <div class="ocs__section-inner">
+//       <header class="ocs__section-header">
+//         <p class="ocs__kicker">Our commitment</p>
+//         <h2 class="ocs__section-heading" id="h">Heading</h2>
+//         <p class="ocs__section-intro">Intro text.</p>
+//       </header>
+//       ...
+//     </div>
+//   </section>
+
+.ocs__section {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+  background-color: var(--ocs-section-bg, transparent);
+}
+
+.ocs__section--cream {
+  --ocs-section-bg: var(--ocs-surface-alt, var(--pref-bg-color));
+}
+
+.ocs__section--white {
+  --ocs-section-bg: var(--ocs-surface, var(--panel));
+}
+
+.ocs__section--pattern {
+  --ocs-section-bg: var(--ocs-surface-band, var(--panel));
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--ocs-tone-orange, var(--pref-accent-color)) 24%, transparent) 2px,
+    transparent 2.5px
+  );
+  background-size: 26px 26px;
+}
+
+.ocs__section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.ocs__section-header {
+  max-width: 46rem;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.ocs__section-heading {
+  margin: 0 0 1rem;
+  color: var(--pref-text-color);
+  font-family: var(--ocs-font-display, inherit);
+  font-size: clamp(2rem, calc(3vw + 1rem), 3rem);
+  line-height: 1.1;
+}
+
+.ocs__section-intro {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+}

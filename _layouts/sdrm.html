@@ -1,20 +1,55 @@
----
-layout: opencs
----
 {%- comment -%}
-  Shared layout for the SDRM student project pages (index.md + sdrm/*).
-  Renders the page's single <h1> from page.title, an optional lead
-  (page.lead), the project sub-navigation, and the required project footer.
+  Standalone layout for the SDRM student project pages (index.md + sdrm/*).
+  It does not extend the template's opencs/minima chrome: it loads the shared
+  stylesheet (for the OCS ocs__ components) and scopes everything to the light
+  .ocs__theme--sdrm theme on <body>.
+
+  Front matter
+    title    page <h1> (and <title>)
+    lead     optional subheading under the title
+    hero     "custom" when the page renders its own .ocs__hero with the <h1> (home);
+             otherwise a compact title banner is rendered here
+    tone     compact banner gradient: orange (default), red, blue, navy
 {%- endcomment -%}
-<div class="ocs__container">
-  {%- include sdrm/subnav.html -%}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.url == "/" %}{{ site.title | escape }}{% else %}{{ page.title | escape }} | {{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.lead | default: site.description | strip_html | escape }}">
+  <link rel="icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+</head>
+<body class="ocs__theme ocs__theme--sdrm">
+  {%- include sdrm/header.html %}
 
-  <h1>{{ page.title | escape }}</h1>
-  {%- if page.lead %}
-  <p class="ocs__lead">{{ page.lead | escape }}</p>
-  {%- endif %}
+  <main id="main">
+    {%- unless page.hero == "custom" %}
+    <section class="ocs__hero ocs__hero--compact ocs__hero--{{ page.tone | default: 'orange' }}" aria-labelledby="page-title">
+      <div class="ocs__hero-inner">
+        <div class="ocs__hero-content">
+          {%- if page.kicker %}
+          <p class="ocs__kicker ocs__kicker--start">{{ page.kicker | escape }}</p>
+          {%- endif %}
+          <h1 class="ocs__hero-title" id="page-title">{{ page.title | escape }}</h1>
+          {%- if page.lead %}
+          <p class="ocs__hero-text">{{ page.lead | escape }}</p>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+    {%- endunless %}
 
-  {{ content }}
+    {{ content }}
+  </main>
 
-  {%- include sdrm/footer.html -%}
-</div>
+  {%- include sdrm/footer.html %}
+
+  <script src="{{ site.baseurl }}/assets/js/sdrm/header.js" defer></script>
+</body>
+</html>

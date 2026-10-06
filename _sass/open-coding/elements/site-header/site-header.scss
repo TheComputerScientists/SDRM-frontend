@@ -1,0 +1,399 @@
+// OCS site header: white page header with a text logo, uppercase nav links split by thin
+// dividers, and a slim top bar of angled call-to-action buttons. Under 768px the nav
+// collapses behind a menu button (the CTA bar stays visible).
+//
+// Block     .ocs__site-header               the <header>
+// Elements  .ocs__site-header-skip          "skip to content" link, shown on focus
+//           .ocs__site-header-inner         centered grid, max 1200px
+//           .ocs__site-header-logo          home link holding the mark + text
+//           .ocs__site-header-logo-mark     round badge (put an aria-hidden SVG inside)
+//           .ocs__site-header-logo-name     brand name
+//           .ocs__site-header-logo-tag      small tagline under the name
+//           .ocs__site-header-topbar        <nav> of CTA buttons (top right)
+//           .ocs__site-header-cta           angled CTA link
+//           .ocs__site-header-toggle        menu button (small screens only)
+//           .ocs__site-header-toggle-bars   hamburger icon inside the button
+//           .ocs__site-header-nav           main <nav>
+//           .ocs__site-header-links         <ul> of nav items
+//           .ocs__site-header-link          nav link; aria-current="page" underlines it
+// Modifiers .ocs__site-header-cta--orange | --blue | --red   CTA tone
+//           .ocs__site-header--enhanced     set by JS: enables the collapsible menu
+//           .ocs__site-header--open         set by JS: menu is expanded
+//
+// Without JavaScript the toggle stays [hidden] and the nav is always shown.
+// Script: assets/js/sdrm/header.js
+//
+// Example
+//   <header class="ocs__site-header" data-sdrm-header>
+//     <a class="ocs__site-header-skip" href="#main">Skip to main content</a>
+//     <div class="ocs__site-header-inner">
+//       <a class="ocs__site-header-logo" href="/">...</a>
+//       <nav class="ocs__site-header-topbar" aria-label="Quick actions">
+//         <a class="ocs__site-header-cta ocs__site-header-cta--orange" href="...">Get help now</a>
+//       </nav>
+//       <button class="ocs__site-header-toggle" type="button" aria-expanded="false"
+//               aria-controls="site-nav" hidden>...</button>
+//       <nav class="ocs__site-header-nav" id="site-nav" aria-label="Main">
+//         <ul class="ocs__site-header-links"><li><a class="ocs__site-header-link" href="/">Home</a></li></ul>
+//       </nav>
+//     </div>
+//   </header>
+
+$ocs-site-header-collapse: 767.98px;
+
+.ocs__site-header {
+  --ocs-header-divider: color-mix(in srgb, var(--pref-text-color) 22%, transparent);
+  position: relative;
+  z-index: 10;
+  background: var(--ocs-surface, var(--panel));
+  box-shadow: 0 1px 0 var(--ui-border), 0 6px 18px rgba(20, 52, 90, 0.06);
+  color: var(--pref-text-color);
+}
+
+.ocs__site-header-skip:any-link {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  z-index: 20;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 12px 12px;
+  background: var(--pref-text-color);
+  color: var(--ocs-surface, var(--panel));
+  font-weight: 800;
+  transform: translateY(-110%);
+}
+
+.ocs__site-header-skip:focus {
+  transform: translateY(0);
+}
+
+.ocs__site-header-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "logo topbar"
+    "logo nav";
+  column-gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+// ---------- Logo
+.ocs__site-header-logo:any-link {
+  grid-area: logo;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  color: var(--pref-text-color);
+  text-decoration: none;
+}
+
+.ocs__site-header-logo:hover {
+  color: var(--pref-text-color);
+}
+
+.ocs__site-header-logo:focus-visible {
+  border-radius: 8px;
+  outline: 3px solid var(--pref-text-color);
+  outline-offset: 2px;
+}
+
+.ocs__site-header-logo-mark {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--ocs-tone-yellow, var(--pref-accent-color)) 0%,
+    var(--ocs-tone-orange, var(--pref-accent-color)) 100%
+  );
+  color: var(--pref-text-color);
+
+  svg {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+}
+
+.ocs__site-header-logo-name,
+.ocs__site-header-logo-tag {
+  display: block;
+}
+
+.ocs__site-header-logo-name {
+  font-family: var(--ocs-font-display, inherit);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ocs__site-header-logo-tag {
+  margin-top: 0.3rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+// ---------- Angled CTA top bar
+.ocs__site-header-topbar {
+  grid-area: topbar;
+  justify-self: end;
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.85rem;
+}
+
+.ocs__site-header-cta:any-link {
+  --ocs-cta-fill: var(--ocs-tone-blue-strong, var(--pref-accent-color));
+  --ocs-cta-ink: var(--ocs-on-strong, #fff);
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.4rem 1.15rem;
+  color: var(--ocs-cta-ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  // The angled shape is a skewed layer behind the text, so the text and focus ring stay square.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 4px;
+    background: var(--ocs-cta-fill);
+    transform: skewX(-14deg);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+}
+
+.ocs__site-header-cta:hover {
+  color: var(--ocs-cta-ink);
+
+  &::before {
+    box-shadow: 0 6px 14px rgba(20, 52, 90, 0.25);
+    transform: skewX(-14deg) translateY(-2px);
+  }
+}
+
+.ocs__site-header-cta:focus-visible {
+  outline: 3px solid var(--pref-text-color);
+  outline-offset: 4px;
+}
+
+.ocs__site-header-cta--orange:any-link {
+  --ocs-cta-fill: var(--ocs-tone-orange, var(--warn));
+  --ocs-cta-ink: var(--ocs-tone-navy, var(--pref-text-color));
+}
+
+.ocs__site-header-cta--blue:any-link {
+  --ocs-cta-fill: var(--ocs-tone-blue-strong, var(--pref-accent-color));
+}
+
+.ocs__site-header-cta--red:any-link {
+  --ocs-cta-fill: var(--ocs-tone-red-strong, var(--red));
+}
+
+// ---------- Main nav
+.ocs__site-header-nav {
+  grid-area: nav;
+  justify-self: end;
+}
+
+.ocs__site-header-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0.35rem 0 0.6rem;
+  list-style: none;
+
+  > li {
+    margin: 0;
+  }
+
+  > li + li {
+    border-left: 1px solid var(--ocs-header-divider);
+  }
+}
+
+.ocs__site-header-link:any-link {
+  position: relative;
+  display: block;
+  padding: 0.55rem 1.1rem;
+  color: var(--pref-text-color);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1.1rem;
+    bottom: 0.2rem;
+    left: 1.1rem;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--ocs-tone-orange, var(--pref-accent-color));
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+}
+
+.ocs__site-header-link:hover {
+  color: var(--pref-text-color);
+}
+
+.ocs__site-header-link:hover::after,
+.ocs__site-header-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.ocs__site-header-link:focus-visible {
+  border-radius: 6px;
+  outline: 3px solid var(--pref-text-color);
+  outline-offset: 0;
+}
+
+// ---------- Menu button (small screens)
+.ocs__site-header-toggle {
+  grid-area: toggle;
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--pref-text-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pref-text-color);
+  font-family: var(--ocs-font-body, inherit);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ocs__site-header-toggle:hover,
+.ocs__site-header-toggle:active {
+  background: color-mix(in srgb, var(--pref-text-color) 8%, transparent);
+  color: var(--pref-text-color);
+}
+
+.ocs__site-header-toggle-bars {
+  position: relative;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+}
+
+.ocs__site-header-toggle[aria-expanded="true"] .ocs__site-header-toggle-bars {
+  box-shadow: none;
+  transform: rotate(45deg);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 2px;
+    background: currentColor;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: $ocs-site-header-collapse) {
+  .ocs__site-header-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "topbar topbar"
+      "logo toggle"
+      "nav nav";
+    column-gap: 1rem;
+  }
+
+  .ocs__site-header-topbar {
+    justify-self: stretch;
+    gap: 0.6rem;
+    padding-top: 0.75rem;
+  }
+
+  .ocs__site-header-cta:any-link {
+    flex: 1 1 auto;
+    min-height: 38px;
+    padding: 0.4rem 0.45rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .ocs__site-header-logo:any-link {
+    padding: 0.85rem 0;
+  }
+
+  .ocs__site-header-logo-mark {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .ocs__site-header-logo-name {
+    font-size: 1.35rem;
+  }
+
+  .ocs__site-header-toggle {
+    display: inline-flex;
+  }
+
+  .ocs__site-header-nav {
+    justify-self: stretch;
+  }
+
+  .ocs__site-header-links {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 0 1rem;
+
+    > li + li {
+      border-top: 1px solid var(--ocs-header-divider);
+      border-left: 0;
+    }
+  }
+
+  .ocs__site-header-link:any-link {
+    padding: 0.85rem 0.25rem;
+
+    &::after {
+      right: auto;
+      bottom: 0.55rem;
+      left: 0.25rem;
+      width: 2.5rem;
+    }
+  }
+
+  .ocs__site-header--enhanced:not(.ocs__site-header--open) .ocs__site-header-nav {
+    display: none;
+  }
+}

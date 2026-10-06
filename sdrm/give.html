@@ -3,55 +3,74 @@ layout: sdrm
 title: Ways to Give
 lead: Enter an amount to see what it could provide. This is a learning tool only; no payment is collected here.
 permalink: /sdrm/give/
+tone: red
+kicker: Make an impact
 ---
 
 <div data-sdrm-give data-src="{{ site.baseurl }}/assets/data/sdrm/rates.json">
-  <section class="ocs__card" aria-labelledby="calc-heading">
-    <h2 id="calc-heading">Gift impact calculator</h2>
-    <form id="give-form" novalidate>
-      <div class="ocs__field">
-        <label class="ocs__field-label" for="give-amount">Gift amount in US dollars</label>
-        <input class="ocs__input" id="give-amount" name="amount" type="text" inputmode="decimal" autocomplete="off" aria-describedby="give-hint give-error">
-        <p class="ocs__field-hint" id="give-hint">Numbers only, for example 25 or 25.50.</p>
-        <p class="ocs__field-error" id="give-error" role="alert"></p>
-      </div>
-      <div class="ocs__field">
-        <label class="ocs__toggle" for="give-monthly">
-          <input class="ocs__toggle-input" id="give-monthly" name="monthly" type="checkbox">
-          <span class="ocs__toggle-track" aria-hidden="true"></span>
-          <span class="ocs__toggle-label">Make it a monthly gift (shows yearly totals too)</span>
-        </label>
-      </div>
-      <button class="ocs__btn medium alert-green fill" type="submit">Calculate impact</button>
-    </form>
+  <section class="ocs__section ocs__section--cream" aria-labelledby="calc-heading">
+    <div class="ocs__section-inner ocs__split">
+      <div class="ocs__card">
+        <h2 id="calc-heading">Gift impact calculator</h2>
+        <form id="give-form" novalidate>
+          <div class="ocs__field">
+            <label class="ocs__field-label" for="give-amount">Gift amount in US dollars</label>
+            <input class="ocs__input" id="give-amount" name="amount" type="text" inputmode="decimal" autocomplete="off" aria-describedby="give-hint give-error">
+            <p class="ocs__field-hint" id="give-hint">Numbers only, for example 25 or 25.50.</p>
+            <p class="ocs__field-error" id="give-error" role="alert"></p>
+          </div>
+          <div class="ocs__field">
+            <label class="ocs__toggle" for="give-monthly">
+              <input class="ocs__toggle-input" id="give-monthly" name="monthly" type="checkbox">
+              <span class="ocs__toggle-track" aria-hidden="true"></span>
+              <span class="ocs__toggle-label">Make it a monthly gift (shows yearly totals too)</span>
+            </label>
+          </div>
+          <button class="ocs__btn medium alert-red fill" type="submit">Calculate impact</button>
+        </form>
 
-    <div id="give-results" hidden>
-      <h3>Your impact</h3>
-      <p class="ocs__text" id="give-summary" aria-live="polite"></p>
-      <div class="ocs__stats" id="give-stats"></div>
+        <div id="give-results" hidden>
+          <h3>Your impact</h3>
+          <p class="ocs__text" id="give-summary" aria-live="polite"></p>
+          <div class="ocs__stats" id="give-stats"></div>
+        </div>
+      </div>
+      <figure class="ocs__image-frame ocs__image-frame--cover">
+        <img src="{{ site.baseurl }}/images/sdrm/placeholder-give.svg" alt="Placeholder illustration of a shared meal" width="600" height="400">
+      </figure>
     </div>
   </section>
 
-  <section class="ocs__card" aria-labelledby="rates-heading">
-    <h2 id="rates-heading">How the numbers are calculated</h2>
-    <div class="ocs__table-wrap">
-      <table class="ocs__table">
-        <caption class="ocs__visually-hidden">Placeholder conversion rates</caption>
-        <thead>
-          <tr><th scope="col">Item</th><th scope="col">Placeholder cost</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>One meal</td><td id="rate-meal">Loading…</td></tr>
-          <tr><td>One night of shelter</td><td id="rate-night">Loading…</td></tr>
-        </tbody>
-      </table>
+  <section class="ocs__section ocs__section--white" aria-labelledby="rates-heading">
+    <div class="ocs__section-inner">
+      <header class="ocs__section-header">
+        <p class="ocs__kicker">The math</p>
+        <h2 class="ocs__section-heading" id="rates-heading">How the numbers are calculated</h2>
+      </header>
+      <div class="ocs__card">
+        <div class="ocs__table-wrap">
+          <table class="ocs__table">
+            <caption class="ocs__visually-hidden">Placeholder conversion rates</caption>
+            <thead>
+              <tr><th scope="col">Item</th><th scope="col">Placeholder cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>One meal</td><td id="rate-meal">Loading…</td></tr>
+              <tr><td>One night of shelter</td><td id="rate-night">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ocs__callout">These rates are placeholders marked “TODO: verify” in <code>rates.json</code>. They are not official figures. Results are rounded down and show meals <em>or</em> nights, not both.</p>
+      </div>
     </div>
-    <p class="ocs__callout">These rates are placeholders marked “TODO: verify” in <code>rates.json</code>. They are not official figures. Results are rounded down and show meals <em>or</em> nights, not both.</p>
   </section>
 
-  <section aria-labelledby="other-heading">
-    <h2 id="other-heading">Other ways to help</h2>
-    <div class="ocs__split">
+  <section class="ocs__section ocs__section--pattern" aria-labelledby="other-heading">
+    <div class="ocs__section-inner">
+      <header class="ocs__section-header">
+        <p class="ocs__kicker">More than money</p>
+        <h2 class="ocs__section-heading" id="other-heading">Other ways to help</h2>
+      </header>
       <div class="ocs__grid ocs__grid--card">
         <article class="ocs__grid-cell">
           <h3>Donate items</h3>
@@ -66,13 +85,10 @@ permalink: /sdrm/give/
           <p class="ocs__text">Share where people can find help. A single conversation can connect someone to a meal or a bed.</p>
         </article>
       </div>
-      <figure class="ocs__image-frame ocs__image-frame--cover">
-        <img src="{{ site.baseurl }}/images/sdrm/placeholder-give.svg" alt="Placeholder illustration of a shared meal" width="600" height="400">
-      </figure>
+      <p class="ocs__links">
+        <a class="ocs__btn medium alert-red" href="https://www.sdrescue.org/" rel="noopener">Give on the official site</a>
+      </p>
     </div>
-    <p class="ocs__links">
-      <a class="ocs__btn medium alert-green" href="https://www.sdrescue.org/" rel="noopener">Give on the official site</a>
-    </p>
   </section>
 </div>
 
