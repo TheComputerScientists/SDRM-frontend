@@ -1,0 +1,24 @@
+// Inline links inside OCS text blocks (.ocs__text, .ocs__lead, .ocs__callout, .ocs__field-hint).
+// They use the theme text color plus an underline, so they keep AA contrast on any panel
+// tint and are not identified by color alone (WCAG 1.4.1). :any-link raises specificity
+// above older block-level link colors such as `.ocs__callout a`.
+
+.ocs__text a:any-link,
+.ocs__lead a:any-link,
+.ocs__callout a:any-link,
+.ocs__field-hint a:any-link {
+  color: var(--pref-text-color);
+  text-decoration: underline;
+  text-decoration-color: var(--pref-accent-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+
+  &:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--pref-accent-color);
+    outline-offset: 2px;
+  }
+}

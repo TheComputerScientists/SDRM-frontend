@@ -1,0 +1,20 @@
+// select.ocs__input: extends the ocs__input grammar to native <select> menus.
+// .ocs__input:focus-visible: keyboard focus ring for every ocs__input (inputs, textareas, selects).
+// Additive only; existing input/textarea sizing in sizes.scss is unchanged.
+
+select.ocs__input {
+  max-width: 100%;
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid var(--ui-border);
+  border-radius: $border-size;
+  background-color: var(--panel);
+  color: var(--pref-text-color);
+  font-family: inherit;
+  font-size: $text-lg;
+  cursor: pointer;
+}
+
+.ocs__input:focus-visible {
+  outline: 3px solid var(--pref-accent-color);
+  outline-offset: 2px;
+}

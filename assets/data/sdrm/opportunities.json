@@ -1,0 +1,20 @@
+{
+  "_note": "TODO: verify. Placeholder volunteer shifts for a student demo. Shift times and spot counts are invented and are NOT real openings; see sdrescue.org for real volunteer opportunities.",
+  "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "interests": [
+    { "id": "meals", "label": "Meal service" },
+    { "id": "donations", "label": "Sorting donations" },
+    { "id": "tutoring", "label": "Tutoring and kids" },
+    { "id": "events", "label": "Events" }
+  ],
+  "opportunities": [
+    { "id": "o1", "title": "Breakfast serving crew", "day": "Monday", "interest": "meals", "time": "TODO: verify", "spots": 4, "description": "Plate and serve breakfast, then help reset the dining room." },
+    { "id": "o2", "title": "Donation sorting team", "day": "Tuesday", "interest": "donations", "time": "TODO: verify", "spots": 6, "description": "Sort clothing and household donations so they are ready to share." },
+    { "id": "o3", "title": "Homework help", "day": "Wednesday", "interest": "tutoring", "time": "TODO: verify", "spots": 2, "description": "Help school-age kids with reading and math homework." },
+    { "id": "o4", "title": "Dinner serving crew", "day": "Wednesday", "interest": "meals", "time": "TODO: verify", "spots": 0, "description": "Serve dinner and greet guests at the door." },
+    { "id": "o5", "title": "Weekend lunch line", "day": "Saturday", "interest": "meals", "time": "TODO: verify", "spots": 1, "description": "Serve a weekend lunch alongside a small team." },
+    { "id": "o6", "title": "Community event helper", "day": "Saturday", "interest": "events", "time": "TODO: verify", "spots": 8, "description": "Set up tables, welcome guests, and help run activities." },
+    { "id": "o7", "title": "Hygiene kit assembly", "day": "Friday", "interest": "donations", "time": "TODO: verify", "spots": 0, "description": "Pack toothbrushes, soap, and socks into kits for guests." },
+    { "id": "o8", "title": "Story time for kids", "day": "Sunday", "interest": "tutoring", "time": "TODO: verify", "spots": 3, "description": "Read aloud and lead a short craft with young children." }
+  ]
+}

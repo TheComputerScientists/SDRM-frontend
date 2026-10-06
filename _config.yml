@@ -14,12 +14,12 @@
 #   in _config.yml. It will appear in your document head meta (for Google search
 #   results) and in your feed.xml site description.
 
-title: Open Coding 
-description: "Class of 2026"
+title: SDRM Student Project
+description: "A student-built site inspired by the San Diego Rescue Mission. Not affiliated."
 owner_name: John Mortensen
 github_username: jm1021 
-github_repo: "portfolio" 
-baseurl: "/portfolio" 
+github_repo: "SDRM-frontend"
+baseurl: "/SDRM-frontend"
 future: true
 
 # Build settings
@@ -110,5 +110,9 @@ minima:
     - { platform: x, user_url: "https://x.com/Open_Coding" }
     - { platform: youtube, user_url: "https://www.youtube.com/@OpenCodingSociety" } 
   nav_pages:
+    - sdrm/get-help.html
+    - sdrm/give.html
+    - sdrm/volunteer.html
+    - sdrm/about.html
     - navigation/search.md
     - navigation/about.md

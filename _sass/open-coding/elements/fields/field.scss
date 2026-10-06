@@ -1,0 +1,99 @@
+// OCS field grammar: labeled form controls, option groups, and inline feedback.
+//
+// Block     .ocs__field             one label + control (+ hint / error)
+// Elements  .ocs__field-label       visible <label for="..."> text
+//           .ocs__field-hint        helper text; link it with aria-describedby
+//           .ocs__field-error       validation message (role="alert"); collapses when empty
+//           .ocs__field-row         row of fields that wraps on narrow screens
+// Modifier  .ocs__field--grow       field takes the remaining width of an .ocs__field-row
+//
+// Block     .ocs__fieldset          <fieldset> grouping related options
+// Elements  .ocs__fieldset-legend   visible <legend>
+//           .ocs__fieldset-options  wrapping list of options (e.g. label.ocs__toggle)
+//
+// Example
+//   <div class="ocs__field">
+//     <label class="ocs__field-label" for="amount">Amount</label>
+//     <input class="ocs__input" id="amount" aria-describedby="amount-hint amount-error">
+//     <p class="ocs__field-hint" id="amount-hint">Whole dollars or cents.</p>
+//     <p class="ocs__field-error" id="amount-error" role="alert"></p>
+//   </div>
+
+.ocs__field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xxxs;
+  min-width: 0;
+  margin-bottom: $spacing-md;
+
+  .ocs__input {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    border-color: color-mix(in srgb, var(--pref-text-color) 45%, var(--panel));
+  }
+
+  &--grow {
+    flex: 1 1 14rem;
+  }
+}
+
+.ocs__field-label,
+.ocs__fieldset-legend {
+  color: var(--pref-text-color);
+  font-size: $text-lg;
+  font-weight: 600;
+}
+
+.ocs__field-hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: $text-md;
+}
+
+.ocs__field-error {
+  margin: 0;
+  padding: $spacing-xxs $spacing-sm;
+  border-left: 4px solid var(--red);
+  border-radius: $radius-xxs;
+  background: color-mix(in srgb, var(--red) 14%, var(--panel));
+  color: var(--pref-text-color);
+  font-size: $text-md;
+  font-weight: 600;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.ocs__field-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0 $spacing-lg;
+
+  > .ocs__field {
+    flex: 1 1 12rem;
+  }
+}
+
+.ocs__fieldset {
+  min-width: 0;
+  margin: 0 0 $spacing-md;
+  padding: $spacing-sm $spacing-md $spacing-md;
+  border: 1px solid var(--ui-border);
+  border-radius: $radius-md;
+}
+
+.ocs__fieldset-legend {
+  padding: 0 $spacing-xxxs;
+}
+
+.ocs__fieldset-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-lg;
+  margin: $spacing-xxs 0 0;
+  padding: 0;
+  list-style: none;
+}
