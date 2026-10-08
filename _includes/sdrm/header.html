@@ -35,6 +35,14 @@
           <li><a class="sdrm__header-link" href="{{ parts[0] | relative_url }}"{% if page.url == parts[0] or page.url == "/index.html" and parts[0] == "/" %} aria-current="page"{% endif %}>{{ parts[1] }}</a></li>
           {%- endfor %}
         </ul>
+
+        {%- comment -%} Logged-out markup by default; assets/js/sdrm/account.js swaps in the greeting and Log out button. {%- endcomment %}
+        <div class="sdrm__header-account" data-sdrm-account>
+          <a class="sdrm__button sdrm__button--blue sdrm__header-account-button" href="{{ '/sdrm/login/' | relative_url }}" data-sdrm-account-login{% if page.url == "/sdrm/login/" %} aria-current="page"{% endif %}>Log in</a>
+          <p class="sdrm__header-account-greeting" data-sdrm-account-greeting hidden></p>
+          <button class="sdrm__button sdrm__button--outline sdrm__header-account-button" type="button" data-sdrm-account-logout hidden>Log out</button>
+          <p class="sdrm__header-account-status" role="status" data-sdrm-account-status></p>
+        </div>
       </nav>
     </div>
   </div>
