@@ -113,6 +113,10 @@ export async function signup({ name, uid, email, password }) {
   }
 
   const message = (await serverMessage(response)).toLowerCase();
+  // Our backend accepts any username, but older Flask servers still require a GitHub one.
+  if (response.status === 404 && message.includes("github")) {
+    throw new AuthError("validation", "This login server only accepts GitHub usernames as User IDs. Try your GitHub username.", "uid");
+  }
   if (message.includes("duplicate")) {
     throw new AuthError("taken", "That User ID is already taken. Try logging in, or pick a different one.", "uid");
   }
