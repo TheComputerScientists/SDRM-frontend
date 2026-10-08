@@ -9,6 +9,7 @@ const serverAlert = document.querySelector("[data-sdrm-server-alert]");
 const signupSuccess = document.getElementById("signup-success");
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const UID_PATTERN = /^[A-Za-z0-9._-]{2,40}$/; // same rule as the backend
 
 /* ---------- small helpers ---------- */
 
@@ -154,7 +155,11 @@ signupForm.addEventListener("submit", async (event) => {
   };
 
   if (values.name.length < 2) setFieldError(name, "Enter your name (at least 2 characters).");
-  if (values.uid.length < 2) setFieldError(uid, "Enter a User ID (at least 2 characters).");
+  if (values.uid.length < 2) {
+    setFieldError(uid, "Enter a User ID (at least 2 characters).");
+  } else if (!UID_PATTERN.test(values.uid)) {
+    setFieldError(uid, "Use only letters, numbers, dots, dashes and underscores (2 to 40 characters).");
+  }
   if (!EMAIL_PATTERN.test(values.email)) setFieldError(email, "Enter an email address like name@example.com.");
   if (values.password.length < 8) setFieldError(password, "Use at least 8 characters for your password.");
   if (!confirm.value) {

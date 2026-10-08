@@ -11,7 +11,7 @@ const TIMEOUT_MS = 8000;
 /** Error with a kind the page can react to (field to mark, banner to show). */
 export class AuthError extends Error {
   /**
-   * @param {"network"|"credentials"|"taken"|"github"|"validation"|"session"|"server"} kind
+   * @param {"network"|"credentials"|"taken"|"validation"|"session"|"server"} kind
    * @param {string} message friendly text, safe to show
    * @param {string} [field] which form field it belongs to (name, uid, email, password)
    */
@@ -98,7 +98,6 @@ export async function login(uid, password) {
 
 /**
  * Create an account. Resolves with the new user's public data; rejects with an AuthError.
- * The backend also requires the User ID to be a real GitHub username.
  */
 export async function signup({ name, uid, email, password }) {
   const response = await request("/api/user", { method: "POST", body: { name, uid, email, password } });
@@ -114,9 +113,6 @@ export async function signup({ name, uid, email, password }) {
   }
 
   const message = (await serverMessage(response)).toLowerCase();
-  if (response.status === 404 && message.includes("github")) {
-    throw new AuthError("github", "We couldn't find that GitHub username. Your User ID must be your GitHub username.", "uid");
-  }
   if (message.includes("duplicate")) {
     throw new AuthError("taken", "That User ID is already taken. Try logging in, or pick a different one.", "uid");
   }
@@ -125,6 +121,9 @@ export async function signup({ name, uid, email, password }) {
   }
   if (message.startsWith("name")) {
     throw new AuthError("validation", "Enter a name with at least 2 characters.", "name");
+  }
+  if (message.startsWith("user id can only")) {
+    throw new AuthError("validation", "Use only letters, numbers, dots, dashes and underscores (2 to 40 characters).", "uid");
   }
   if (message.startsWith("user id")) {
     throw new AuthError("validation", "Enter a User ID with at least 2 characters.", "uid");
