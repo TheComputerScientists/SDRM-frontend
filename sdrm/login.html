@@ -1,0 +1,109 @@
+---
+layout: sdrm
+title: Log In or Create an Account
+lead: Log in to your account, or make a new one in about a minute.
+permalink: /sdrm/login/
+tone: blue
+kicker: Your account
+---
+
+<section class="sdrm__section sdrm__section--cream" aria-label="Log in and sign up">
+  <div class="sdrm__container">
+    <div class="sdrm__auth-alert" role="alert" data-sdrm-server-alert hidden>
+      <span class="sdrm__auth-alert-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M12 2 1 21h22L12 2Zm0 4.2L19.5 19h-15L12 6.2ZM11 10v5h2v-5h-2Zm0 6v2h2v-2h-2Z"/></svg>
+      </span>
+      <div>
+        <p class="sdrm__auth-alert-title">Login needs our Flask server running on localhost:8587</p>
+        <p class="sdrm__auth-alert-text">We couldn't reach it just now. Start it with <code>python main.py</code> in the SDRM-backend folder, then try again.</p>
+      </div>
+    </div>
+
+    <div class="sdrm__grid sdrm__grid--two sdrm__auth">
+      <article class="sdrm__card sdrm__auth-card sdrm__auth-card--login" aria-labelledby="login-heading">
+        <h2 class="sdrm__card-title" id="login-heading">Log in</h2>
+        <p class="sdrm__text">Welcome back. Enter your User ID and password.</p>
+
+        <form class="sdrm__auth-form" id="login-form" novalidate>
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="login-uid">User ID</label>
+            <input class="sdrm__input" id="login-uid" name="uid" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required aria-describedby="login-uid-error">
+            <p class="sdrm__field-error" id="login-uid-error"></p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="login-password">Password</label>
+            <div class="sdrm__auth-password">
+              <input class="sdrm__input sdrm__auth-password-input" id="login-password" name="password" type="password" autocomplete="current-password" required aria-describedby="login-password-error">
+              <button class="sdrm__auth-reveal" type="button" aria-controls="login-password" data-sdrm-reveal hidden>Show<span class="sdrm__visually-hidden"> password</span></button>
+            </div>
+            <p class="sdrm__field-error" id="login-password-error"></p>
+          </div>
+
+          <p class="sdrm__field-error sdrm__auth-form-error" id="login-form-error" role="alert"></p>
+
+          <div class="sdrm__actions">
+            <button class="sdrm__button sdrm__button--orange sdrm__button--large sdrm__auth-submit" type="submit" data-busy-label="Logging in…">Log in</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="sdrm__card sdrm__auth-card sdrm__auth-card--signup" aria-labelledby="signup-heading">
+        <h2 class="sdrm__card-title" id="signup-heading">Create an account</h2>
+        <p class="sdrm__text">New here? All fields are required.</p>
+
+        <p class="sdrm__auth-success" id="signup-success" role="status"></p>
+
+        <form class="sdrm__auth-form" id="signup-form" novalidate>
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="signup-name">Name</label>
+            <input class="sdrm__input" id="signup-name" name="name" type="text" autocomplete="name" required aria-describedby="signup-name-error">
+            <p class="sdrm__field-error" id="signup-name-error"></p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="signup-uid">User ID</label>
+            <input class="sdrm__input" id="signup-uid" name="uid" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required aria-describedby="signup-uid-hint signup-uid-error">
+            <p class="sdrm__field-hint" id="signup-uid-hint">Use your GitHub username. Our server checks that it exists.</p>
+            <p class="sdrm__field-error" id="signup-uid-error"></p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="signup-email">Email</label>
+            <input class="sdrm__input" id="signup-email" name="email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false" required aria-describedby="signup-email-error">
+            <p class="sdrm__field-error" id="signup-email-error"></p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="signup-password">Password</label>
+            <div class="sdrm__auth-password">
+              <input class="sdrm__input sdrm__auth-password-input" id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="signup-password-hint signup-password-error">
+              <button class="sdrm__auth-reveal" type="button" aria-controls="signup-password" data-sdrm-reveal hidden>Show<span class="sdrm__visually-hidden"> password</span></button>
+            </div>
+            <p class="sdrm__field-hint" id="signup-password-hint">At least 8 characters.</p>
+            <p class="sdrm__field-error" id="signup-password-error"></p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="signup-confirm">Confirm password</label>
+            <div class="sdrm__auth-password">
+              <input class="sdrm__input sdrm__auth-password-input" id="signup-confirm" name="confirm" type="password" autocomplete="new-password" required aria-describedby="signup-confirm-error">
+              <button class="sdrm__auth-reveal" type="button" aria-controls="signup-confirm" data-sdrm-reveal hidden>Show<span class="sdrm__visually-hidden"> password</span></button>
+            </div>
+            <p class="sdrm__field-error" id="signup-confirm-error"></p>
+          </div>
+
+          <p class="sdrm__field-error sdrm__auth-form-error" id="signup-form-error" role="alert"></p>
+
+          <div class="sdrm__actions">
+            <button class="sdrm__button sdrm__button--blue sdrm__button--large sdrm__auth-submit" type="submit" data-busy-label="Creating account…">Create account</button>
+          </div>
+        </form>
+      </article>
+    </div>
+
+    <p class="sdrm__auth-note">This is a student project. Don't reuse a password you use anywhere else.</p>
+  </div>
+</section>
+
+<script type="module" src="{{ '/assets/js/sdrm/login.js' | relative_url }}"></script>
