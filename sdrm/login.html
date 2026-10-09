@@ -22,13 +22,13 @@ kicker: Your account
     <div class="sdrm__grid sdrm__grid--two sdrm__auth">
       <article class="sdrm__card sdrm__auth-card sdrm__auth-card--login" aria-labelledby="login-heading">
         <h2 class="sdrm__card-title" id="login-heading">Log in</h2>
-        <p class="sdrm__text">Welcome back. Enter your User ID and password.</p>
+        <p class="sdrm__text">Welcome back. Enter your email and password.</p>
 
         <form class="sdrm__auth-form" id="login-form" novalidate>
           <div class="sdrm__field">
-            <label class="sdrm__field-label" for="login-uid">User ID</label>
-            <input class="sdrm__input" id="login-uid" name="uid" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required aria-describedby="login-uid-error">
-            <p class="sdrm__field-error" id="login-uid-error"></p>
+            <label class="sdrm__field-label" for="login-email">Email</label>
+            <input class="sdrm__input" id="login-email" name="email" type="email" autocomplete="username" autocapitalize="none" spellcheck="false" required aria-describedby="login-email-error">
+            <p class="sdrm__field-error" id="login-email-error"></p>
           </div>
 
           <div class="sdrm__field">
@@ -59,13 +59,6 @@ kicker: Your account
             <label class="sdrm__field-label" for="signup-name">Name</label>
             <input class="sdrm__input" id="signup-name" name="name" type="text" autocomplete="name" required aria-describedby="signup-name-error">
             <p class="sdrm__field-error" id="signup-name-error"></p>
-          </div>
-
-          <div class="sdrm__field">
-            <label class="sdrm__field-label" for="signup-uid">User ID</label>
-            <input class="sdrm__input" id="signup-uid" name="uid" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required aria-describedby="signup-uid-hint signup-uid-error">
-            <p class="sdrm__field-hint" id="signup-uid-hint">Use your GitHub username. Our server checks that it exists.</p>
-            <p class="sdrm__field-error" id="signup-uid-error"></p>
           </div>
 
           <div class="sdrm__field">

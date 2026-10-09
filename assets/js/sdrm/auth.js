@@ -11,9 +11,9 @@ const TIMEOUT_MS = 8000;
 /** Error with a kind the page can react to (field to mark, banner to show). */
 export class AuthError extends Error {
   /**
-   * @param {"network"|"credentials"|"taken"|"github"|"validation"|"session"|"server"} kind
+   * @param {"network"|"credentials"|"taken"|"validation"|"session"|"server"} kind
    * @param {string} message friendly text, safe to show
-   * @param {string} [field] which form field it belongs to (name, uid, email, password)
+   * @param {string} [field] which form field it belongs to (name, email, password)
    */
   constructor(kind, message, field) {
     super(message);
@@ -76,14 +76,14 @@ export async function isServerReachable() {
 }
 
 /**
- * Log in with a User ID and password, then confirm the session cookie with /api/id.
+ * Log in with an email and password, then confirm the session cookie with /api/id.
  * Resolves with the user; rejects with an AuthError.
  */
-export async function login(uid, password) {
-  const response = await request("/api/authenticate", { method: "POST", body: { uid, password } });
+export async function login(email, password) {
+  const response = await request("/api/authenticate", { method: "POST", body: { email, password } });
 
   if (response.status === 401) {
-    throw new AuthError("credentials", "That User ID and password don't match. Check both and try again.", "password");
+    throw new AuthError("credentials", "That email and password don't match. Check both and try again.", "password");
   }
   if (!response.ok) {
     throw new AuthError("server", "Something went wrong on the server. Please try again in a minute.");
@@ -97,28 +97,24 @@ export async function login(uid, password) {
 }
 
 /**
- * Create an account. Resolves with the new user's public data; rejects with an AuthError.
- * The backend also requires the User ID to be a real GitHub username.
+ * Create an account from a name, email and password. The backend makes up the
+ * internal User ID itself. Resolves with the new user's public data; rejects
+ * with an AuthError.
  */
-export async function signup({ name, uid, email, password }) {
-  const response = await request("/api/user", { method: "POST", body: { name, uid, email, password } });
+export async function signup({ name, email, password }) {
+  const response = await request("/api/user", { method: "POST", body: { name, email, password } });
 
   if (response.ok) {
     const user = await response.json().catch(() => null);
-    // For a duplicate User ID this backend answers 200 with the *existing* account,
-    // so a different name or email means the ID was already taken.
-    if (!user || user.uid !== uid || user.name !== name || (user.email || "") !== email) {
-      throw new AuthError("taken", "That User ID is already taken. Try logging in, or pick a different one.", "uid");
+    if (!user || typeof user.uid !== "string") {
+      throw new AuthError("server", "Something went wrong on the server. Please try again in a minute.");
     }
     return { uid: user.uid, name: user.name };
   }
 
   const message = (await serverMessage(response)).toLowerCase();
-  if (response.status === 404 && message.includes("github")) {
-    throw new AuthError("github", "We couldn't find that GitHub username. Your User ID must be your GitHub username.", "uid");
-  }
-  if (message.includes("duplicate")) {
-    throw new AuthError("taken", "That User ID is already taken. Try logging in, or pick a different one.", "uid");
+  if (response.status === 409 || message.includes("already registered")) {
+    throw new AuthError("taken", "An account with that email already exists. Try logging in instead.", "email");
   }
   if (message.includes("password")) {
     throw new AuthError("validation", "Use at least 8 characters for your password.", "password");
@@ -126,8 +122,12 @@ export async function signup({ name, uid, email, password }) {
   if (message.startsWith("name")) {
     throw new AuthError("validation", "Enter a name with at least 2 characters.", "name");
   }
+  if (message.startsWith("email")) {
+    throw new AuthError("validation", "Enter an email address like name@example.com.", "email");
+  }
   if (message.startsWith("user id")) {
-    throw new AuthError("validation", "Enter a User ID with at least 2 characters.", "uid");
+    // A server that hasn't been updated yet still insists on a User ID.
+    throw new AuthError("server", "The login server is out of date and still asks for a User ID. Update SDRM-backend and restart it.");
   }
   throw new AuthError("server", "Something went wrong on the server. Please try again in a minute.");
 }

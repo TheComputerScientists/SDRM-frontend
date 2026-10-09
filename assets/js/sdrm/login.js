@@ -114,19 +114,20 @@ loginForm.addEventListener("submit", async (event) => {
   if (isBusy(loginForm)) return;
   clearErrors(loginForm);
 
-  const { uid, password } = loginForm.elements;
-  const uidValue = uid.value.trim();
+  const { email, password } = loginForm.elements;
+  const emailValue = email.value.trim();
+  const emailOk = EMAIL_PATTERN.test(emailValue);
 
-  if (!uidValue) setFieldError(uid, "Enter your User ID.");
+  if (!emailOk) setFieldError(email, "Enter your email address, like name@example.com.");
   if (!password.value) setFieldError(password, "Enter your password.");
-  if (!uidValue || !password.value) {
+  if (!emailOk || !password.value) {
     focusFirstInvalid(loginForm);
     return;
   }
 
   setBusy(loginForm, true);
   try {
-    await login(uidValue, password.value);
+    await login(emailValue, password.value);
     showServerAlert(false);
     password.value = "";
     hidePasswords(loginForm);
@@ -145,16 +146,14 @@ signupForm.addEventListener("submit", async (event) => {
   clearErrors(signupForm);
   signupSuccess.textContent = "";
 
-  const { name, uid, email, password, confirm } = signupForm.elements;
+  const { name, email, password, confirm } = signupForm.elements;
   const values = {
     name: name.value.trim(),
-    uid: uid.value.trim(),
     email: email.value.trim(),
     password: password.value,
   };
 
   if (values.name.length < 2) setFieldError(name, "Enter your name (at least 2 characters).");
-  if (values.uid.length < 2) setFieldError(uid, "Enter a User ID (at least 2 characters).");
   if (!EMAIL_PATTERN.test(values.email)) setFieldError(email, "Enter an email address like name@example.com.");
   if (values.password.length < 8) setFieldError(password, "Use at least 8 characters for your password.");
   if (!confirm.value) {
@@ -169,13 +168,13 @@ signupForm.addEventListener("submit", async (event) => {
 
   setBusy(signupForm, true);
   try {
-    const user = await signup(values);
+    await signup(values);
     showServerAlert(false);
     signupForm.reset();
     hidePasswords(signupForm);
     signupSuccess.textContent = "Account created, you can log in now.";
     clearErrors(loginForm);
-    loginForm.elements.uid.value = user.uid;
+    loginForm.elements.email.value = values.email;
     loginForm.elements.password.focus();
   } catch (error) {
     showAuthError(signupForm, error);
