@@ -1,7 +1,8 @@
-// Volunteer: filter opportunities.json by day and interest; sign up decrements spots.
-import { loadJSON, el, toggle, showLoadError, storage } from "./common.js";
+// Volunteer: filter the shifts from GET /api/sdrm/opportunities by day and interest.
+// Signing up takes a spot on the server (POST/DELETE .../<id>/signup), so it needs an
+// account; logged-out visitors get a "Log in to sign up" link instead of the button.
+import { apiFetch, loadData, el, toggle, showLoadError, NetworkError } from "./common.js";
 
-const STORAGE_KEY = "sdrm-volunteer-signups";
 const root = document.querySelector("[data-sdrm-volunteer]");
 
 if (root) {
@@ -16,19 +17,19 @@ async function init(rootEl) {
   const announce = rootEl.querySelector("#vol-announce");
   const empty = rootEl.querySelector("#vol-empty");
   const clearButton = rootEl.querySelector("#vol-clear");
-  const resetButton = rootEl.querySelector("#vol-reset");
+  const loginUrl = rootEl.dataset.loginUrl;
 
   let data;
   try {
-    data = await loadJSON(rootEl.dataset.src);
+    data = await loadData("/api/sdrm/opportunities");
   } catch (error) {
     showLoadError(results, error);
+    summary.textContent = "";
     return;
   }
 
   const interestLabels = Object.fromEntries(data.interests.map((i) => [i.id, i.label]));
-  // signups: { [opportunityId]: true } for this browser only (no personal data is stored).
-  let signups = storage.get(STORAGE_KEY, {});
+  let loggedIn = data.loggedIn;
 
   const dayInputs = data.days.map((day) => {
     const { wrapper, input } = toggle({ id: `vol-day-${day.toLowerCase()}`, name: "day", value: day, label: day });
@@ -46,7 +47,49 @@ async function init(rootEl) {
     return input;
   });
 
-  const remaining = (opp) => Math.max(0, opp.spots - (signups[opp.id] ? 1 : 0));
+  /** Take or give back a spot on the server; updates the card from the server's answer. */
+  async function change(opp, method) {
+    const card = cards.get(opp.id);
+    if (card.busy) return;
+    card.busy = true;
+    card.signUp.setAttribute("aria-disabled", "true");
+    card.cancel.setAttribute("aria-disabled", "true");
+    try {
+      const response = await apiFetch(`/api/sdrm/opportunities/${encodeURIComponent(opp.id)}/signup`, { method });
+      if (response.status === 401) {
+        loggedIn = false;
+        data.opportunities.forEach((o) => (o.signedUp = false));
+        data.opportunities.forEach(update);
+        announce.textContent = "Your session ended. Log in to sign up for shifts.";
+        return;
+      }
+      if (response.status === 409) {
+        opp.spots = 0;
+        update(opp);
+        announce.textContent = `Sorry, ${opp.title} just filled up.`;
+        return;
+      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      Object.assign(opp, await response.json());
+      update(opp);
+      if (opp.signedUp) {
+        announce.textContent = `You're signed up for ${opp.title} on ${opp.day}. ${spotsText(opp.spots)}.`;
+        card.cancel.focus();
+      } else {
+        announce.textContent = `Sign-up for ${opp.title} cancelled. ${spotsText(opp.spots)}.`;
+        card.signUp.focus();
+      }
+    } catch (error) {
+      announce.textContent = error instanceof NetworkError
+        ? "We couldn't reach the server, so nothing changed. Please try again."
+        : "Something went wrong on the server, so nothing changed. Please try again in a minute.";
+    } finally {
+      card.busy = false;
+      card.signUp.removeAttribute("aria-disabled");
+      card.cancel.removeAttribute("aria-disabled");
+    }
+  }
 
   // Build every card once; filtering only toggles `hidden` so focus is never lost.
   const cards = new Map();
@@ -61,6 +104,11 @@ async function init(rootEl) {
       text: "Cancel sign-up",
       attrs: { type: "button", "aria-describedby": `vol-${opp.id}-title` },
     });
+    const login = el("a", {
+      className: "sdrm__button sdrm__button--blue",
+      text: "Log in to sign up",
+      attrs: { href: loginUrl, "aria-describedby": `vol-${opp.id}-title vol-${opp.id}-spots` },
+    });
     pill.id = `vol-${opp.id}-spots`;
 
     const article = el("article", { className: "sdrm__card sdrm__card--topline" }, [
@@ -72,42 +120,34 @@ async function init(rootEl) {
       ]),
       el("p", { className: "sdrm__text", text: opp.description }),
       el("p", { className: "sdrm__card-detail" }, [el("strong", { text: "Time: " }), opp.time]),
-      el("p", { className: "sdrm__actions" }, [signUp, cancel]),
+      el("p", { className: "sdrm__actions" }, [signUp, login, cancel]),
     ]);
 
     signUp.addEventListener("click", () => {
-      if (signups[opp.id] || remaining(opp) === 0) return;
-      signups = { ...signups, [opp.id]: true };
-      storage.set(STORAGE_KEY, signups);
-      update(opp);
-      announce.textContent = `You're signed up for ${opp.title} on ${opp.day}. ${spotsText(remaining(opp))}.`;
-      cancel.focus();
+      if (!opp.signedUp && opp.spots > 0) change(opp, "POST");
     });
     cancel.addEventListener("click", () => {
-      const { [opp.id]: _removed, ...rest } = signups;
-      signups = rest;
-      storage.set(STORAGE_KEY, signups);
-      update(opp);
-      announce.textContent = `Sign-up for ${opp.title} cancelled. ${spotsText(remaining(opp))}.`;
-      signUp.focus();
+      if (opp.signedUp) change(opp, "DELETE");
     });
 
-    cards.set(opp.id, { article, pill, signUp, cancel });
+    cards.set(opp.id, { article, pill, signUp, cancel, login, busy: false });
     results.append(article);
     update(opp);
   });
 
   function update(opp) {
-    const { pill, signUp, cancel } = cards.get(opp.id);
-    const left = remaining(opp);
-    const signed = Boolean(signups[opp.id]);
+    const { pill, signUp, cancel, login } = cards.get(opp.id);
+    const left = opp.spots;
 
     pill.textContent = spotsText(left);
     pill.className = "sdrm__pill " + (left === 0 ? "sdrm__pill--full" : left <= 2 ? "sdrm__pill--alert" : "sdrm__pill--success");
 
-    signUp.disabled = signed || left === 0;
-    signUp.textContent = signed ? "Signed up" : left === 0 ? "Full" : "Sign up";
-    cancel.hidden = !signed;
+    // Logged out: a login link while there's room, otherwise the disabled "Full" button
+    login.hidden = loggedIn || left === 0;
+    signUp.hidden = !login.hidden;
+    signUp.disabled = opp.signedUp || left === 0;
+    signUp.textContent = opp.signedUp ? "Signed up" : left === 0 ? "Full" : "Sign up";
+    cancel.hidden = !opp.signedUp;
   }
 
   function filter() {
@@ -134,12 +174,6 @@ async function init(rootEl) {
     [...dayInputs, ...interestInputs].forEach((i) => (i.checked = false));
     filter();
     dayInputs[0].focus();
-  });
-  resetButton.addEventListener("click", () => {
-    signups = {};
-    storage.remove(STORAGE_KEY);
-    data.opportunities.forEach(update);
-    announce.textContent = "Demo reset. All spot counts are back to their starting numbers.";
   });
 
   filter();

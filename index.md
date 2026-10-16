@@ -59,7 +59,7 @@ permalink: /
   </div>
 </section>
 
-<section class="sdrm__section sdrm__section--navy" aria-labelledby="stats-heading" data-sdrm-home-stats data-src="{{ '/assets/data/sdrm/stats.json' | relative_url }}">
+<section class="sdrm__section sdrm__section--navy" aria-labelledby="stats-heading" data-sdrm-home-stats>
   <div class="sdrm__container">
     <header class="sdrm__section-header">
       <p class="sdrm__kicker sdrm__kicker--light">By the numbers</p>
@@ -68,7 +68,7 @@ permalink: /
     <div class="sdrm__stats sdrm__stats--band" id="home-stats" aria-busy="true">
       <p class="sdrm__stats-note">Loading numbers…</p>
     </div>
-    <p class="sdrm__stats-note">Placeholder numbers marked “TODO: verify” in <code>stats.json</code>. They are not real figures.</p>
+    <p class="sdrm__stats-note">Placeholder numbers marked “TODO: verify” in our database. They are not real figures.</p>
   </div>
 </section>
 
@@ -83,8 +83,8 @@ permalink: /
       <p class="sdrm__text">This class project practices accessible, data-driven web pages for a real-world cause. It is not affiliated with the San Diego Rescue Mission, and every name, rate, and shift is a placeholder.</p>
       <ul class="sdrm__checklist">
         <li class="sdrm__checklist-item">Works with a keyboard, a screen reader, and a phone.</li>
-        <li class="sdrm__checklist-item">No payments and no personal information collected.</li>
-        <li class="sdrm__checklist-item">All data lives in JSON files marked “TODO: verify”.</li>
+        <li class="sdrm__checklist-item">No payments, and an account only keeps what you choose to share.</li>
+        <li class="sdrm__checklist-item">All data comes from our Flask server and is marked “TODO: verify”.</li>
       </ul>
       <p class="sdrm__actions">
         <a class="sdrm__button sdrm__button--outline" href="{{ '/sdrm/about/' | relative_url }}">About this project</a>

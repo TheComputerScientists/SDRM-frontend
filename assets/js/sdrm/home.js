@@ -1,5 +1,5 @@
-// Home: render the stat band from stats.json (placeholder numbers marked "TODO: verify").
-import { loadJSON, el, showLoadError } from "./common.js";
+// Home: render the stat band from GET /api/sdrm/stats (placeholder numbers marked "TODO: verify").
+import { loadData, el, showLoadError } from "./common.js";
 
 const root = document.querySelector("[data-sdrm-home-stats]");
 
@@ -13,7 +13,7 @@ async function init(rootEl) {
 
   let data;
   try {
-    data = await loadJSON(rootEl.dataset.src);
+    data = await loadData("/api/sdrm/stats");
   } catch (error) {
     showLoadError(list, error);
     return;

@@ -1,5 +1,5 @@
-// Ways to Give: convert a dollar amount into meals and nights of shelter using rates.json.
-import { loadJSON, el, showLoadError } from "./common.js";
+// Ways to Give: convert a dollar amount into meals and nights of shelter using GET /api/sdrm/rates.
+import { loadData, el, showLoadError } from "./common.js";
 
 const root = document.querySelector("[data-sdrm-give]");
 
@@ -41,7 +41,7 @@ async function init(rootEl) {
 
   let rates;
   try {
-    rates = await loadJSON(rootEl.dataset.src);
+    rates = await loadData("/api/sdrm/rates");
   } catch (err) {
     showLoadError(results, err);
     results.hidden = false;

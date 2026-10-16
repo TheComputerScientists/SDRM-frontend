@@ -9,9 +9,7 @@
 // Roles: every page asks isCoordinator(user) / hasRole(user, ...) from here instead
 // of reading user.role itself. Hiding links is only for looks; the backend still
 // answers 401/403 on coordinator routes.
-import { pythonURI, fetchOptions } from "../api/config.js";
-
-const TIMEOUT_MS = 8000;
+import { apiFetch } from "./common.js";
 
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 /** Same limits as the backend (model/user.py). */
@@ -33,23 +31,12 @@ export class AuthError extends Error {
   }
 }
 
-/** fetch() against the Flask API with cookies, JSON headers and a timeout. */
-async function request(path, { method = "GET", body } = {}) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+/** apiFetch(), with a network failure reported as an AuthError. */
+async function request(path, options) {
   try {
-    return await fetch(`${pythonURI}${path}`, {
-      ...fetchOptions,
-      method,
-      cache: "no-store",
-      signal: controller.signal,
-      body: body === undefined ? undefined : JSON.stringify(body),
-    });
+    return await apiFetch(path, options);
   } catch {
-    // Server down, CORS refused, or timed out. The original error is not passed on.
     throw new AuthError("network", "We couldn't reach the login server.");
-  } finally {
-    clearTimeout(timer);
   }
 }
 

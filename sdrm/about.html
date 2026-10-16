@@ -12,7 +12,7 @@ kicker: Behind the project
     <div>
       <p class="sdrm__kicker sdrm__kicker--start">The basics</p>
       <h2 class="sdrm__section-heading" id="what-heading">What this site is</h2>
-      <p class="sdrm__text">This is a class project inspired by the San Diego Rescue Mission, a nonprofit that serves people experiencing homelessness in San Diego. We are not affiliated with the organization, and nothing here is official. All names, rates, shifts, addresses, and hours are placeholders stored in JSON files and marked “TODO: verify”.</p>
+      <p class="sdrm__text">This is a class project inspired by the San Diego Rescue Mission, a nonprofit that serves people experiencing homelessness in San Diego. We are not affiliated with the organization, and nothing here is official. All names, rates, shifts, addresses, and hours are placeholders stored in our database and marked “TODO: verify”.</p>
     </div>
     <figure class="sdrm__figure">
       <img class="sdrm__figure-image" src="{{ '/images/sdrm/placeholder-volunteer.svg' | relative_url }}" alt="Placeholder illustration of a group of volunteers" width="600" height="400">
@@ -29,9 +29,9 @@ kicker: Behind the project
     <article class="sdrm__card sdrm__card--topline">
       <h2 class="sdrm__card-title" id="how-heading">How it works</h2>
       <ul class="sdrm__checklist">
-        <li class="sdrm__checklist-item">Plain HTML, SASS, and vanilla JavaScript on a Jekyll site, with no frameworks.</li>
+        <li class="sdrm__checklist-item">Plain HTML, SASS, and vanilla JavaScript on a Jekyll site, with no frameworks, backed by a Python Flask server and database.</li>
         <li class="sdrm__checklist-item">Its own small SASS system in <code>_sass/sdrm/</code> with color, font, and spacing tokens and one partial per component.</li>
-        <li class="sdrm__checklist-item">Each tool reads a JSON file in <code>assets/data/sdrm/</code>, so updating information never requires editing code.</li>
+        <li class="sdrm__checklist-item">Each tool loads its data from our Flask server (<code>/api/sdrm/</code>), so updating information never requires editing the site.</li>
         <li class="sdrm__checklist-item">Pages are built to work with a keyboard, a screen reader, and a phone screen 375 pixels wide.</li>
       </ul>
     </article>
@@ -42,7 +42,7 @@ kicker: Behind the project
   <div class="sdrm__container">
     <div class="sdrm__card">
       <h2 class="sdrm__card-title" id="privacy-heading">Privacy</h2>
-      <p class="sdrm__text">This site does not take payments or ask for personal information. The volunteer demo remembers which shifts you clicked only in your own browser's storage, and the “Reset demo spots” button clears it.</p>
+      <p class="sdrm__text">This site does not take payments. If you create an account, your name, email, and any guardian contact you add are stored on our server, along with the volunteer shifts you sign up for. You can cancel a shift or remove guardian info at any time.</p>
       <p class="sdrm__actions">
         <a class="sdrm__button sdrm__button--blue" href="https://www.sdrescue.org/" rel="noopener">Visit the official site</a>
       </p>
