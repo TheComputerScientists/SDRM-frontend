@@ -50,7 +50,7 @@ kicker: Your account
 
       <article class="sdrm__card sdrm__auth-card sdrm__auth-card--signup" aria-labelledby="signup-heading">
         <h2 class="sdrm__card-title" id="signup-heading">Create an account</h2>
-        <p class="sdrm__text">New here? All fields are required.</p>
+        <p class="sdrm__text">New here? Fill in every field. If you're under 18, we'll also ask for a parent or guardian's contact.</p>
 
         <p class="sdrm__auth-success" id="signup-success" role="status"></p>
 
@@ -85,6 +85,31 @@ kicker: Your account
             </div>
             <p class="sdrm__field-error" id="signup-confirm-error"></p>
           </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__toggle sdrm__auth-under18">
+              <input class="sdrm__toggle-input" id="signup-under18" name="under18" type="checkbox" aria-controls="signup-guardian" aria-describedby="signup-under18-hint">
+              <span class="sdrm__toggle-track" aria-hidden="true"></span>
+              <span class="sdrm__toggle-label">I'm under 18</span>
+            </label>
+            <p class="sdrm__field-hint" id="signup-under18-hint">Student volunteers under 18 need a parent or guardian's name and email.</p>
+          </div>
+
+          <fieldset class="sdrm__fieldset sdrm__auth-guardian" id="signup-guardian" hidden>
+            <legend class="sdrm__fieldset-legend">Parent or guardian</legend>
+
+            <div class="sdrm__field">
+              <label class="sdrm__field-label" for="signup-guardian-name">Guardian name</label>
+              <input class="sdrm__input" id="signup-guardian-name" name="guardianName" type="text" maxlength="100" autocomplete="off" aria-describedby="signup-guardian-name-error">
+              <p class="sdrm__field-error" id="signup-guardian-name-error"></p>
+            </div>
+
+            <div class="sdrm__field">
+              <label class="sdrm__field-label" for="signup-guardian-email">Guardian email</label>
+              <input class="sdrm__input" id="signup-guardian-email" name="guardianEmail" type="email" maxlength="254" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="signup-guardian-email-error">
+              <p class="sdrm__field-error" id="signup-guardian-email-error"></p>
+            </div>
+          </fieldset>
 
           <p class="sdrm__field-error sdrm__auth-form-error" id="signup-form-error" role="alert"></p>
 

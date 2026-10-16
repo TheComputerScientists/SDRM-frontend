@@ -1,14 +1,13 @@
 // Log in and Create account forms on /sdrm/login/ (markup in sdrm/login.html).
 // Talks to the Flask backend through auth.js; passwords are never stored or logged.
 import { baseurl } from "../api/config.js";
-import { login, signup, isServerReachable } from "./auth.js";
+import { login, signup, isServerReachable, checkGuardian, EMAIL_PATTERN } from "./auth.js";
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const serverAlert = document.querySelector("[data-sdrm-server-alert]");
 const signupSuccess = document.getElementById("signup-success");
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const guardianGroup = document.getElementById("signup-guardian");
 
 /* ---------- small helpers ---------- */
 
@@ -138,6 +137,29 @@ loginForm.addEventListener("submit", async (event) => {
   }
 });
 
+/* ---------- Under 18: guardian fields ---------- */
+
+const { under18, guardianName, guardianEmail } = signupForm.elements;
+
+/** Show the guardian fields only while "I'm under 18" is on; clear them when it goes off. */
+function syncGuardian() {
+  const show = under18.checked;
+  guardianGroup.hidden = !show;
+  [guardianName, guardianEmail].forEach((input) => {
+    input.required = show;
+    if (!show) {
+      input.value = "";
+      clearFieldError(input);
+    }
+  });
+}
+
+under18.addEventListener("change", () => {
+  syncGuardian();
+  if (under18.checked) guardianName.focus();
+});
+syncGuardian(); // the browser may restore the checkbox on Back
+
 /* ---------- Create account ---------- */
 
 signupForm.addEventListener("submit", async (event) => {
@@ -161,6 +183,14 @@ signupForm.addEventListener("submit", async (event) => {
   } else if (confirm.value !== values.password) {
     setFieldError(confirm, "The passwords don't match. Type the same password in both boxes.");
   }
+  // Guardian info is sent only when the person says they're under 18
+  if (under18.checked) {
+    values.guardianName = guardianName.value.trim();
+    values.guardianEmail = guardianEmail.value.trim();
+    const errors = checkGuardian(values);
+    if (errors.guardianName) setFieldError(guardianName, errors.guardianName);
+    if (errors.guardianEmail) setFieldError(guardianEmail, errors.guardianEmail);
+  }
   if (signupForm.querySelector('[aria-invalid="true"]')) {
     focusFirstInvalid(signupForm);
     return;
@@ -171,6 +201,7 @@ signupForm.addEventListener("submit", async (event) => {
     await signup(values);
     showServerAlert(false);
     signupForm.reset();
+    syncGuardian();
     hidePasswords(signupForm);
     signupSuccess.textContent = "Account created, you can log in now.";
     clearErrors(loginForm);

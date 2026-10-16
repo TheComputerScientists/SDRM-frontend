@@ -1,9 +1,11 @@
 // Header account area on every SDRM page: "Log in" when logged out,
-// "Hi, <name>" and a Log out button when logged in. If the Flask server is down
-// the logged-out markup simply stays as it is.
-import { getCurrentUser, logout } from "./auth.js";
+// "Hi, <name>" (a link to the profile page) and a Log out button when logged in.
+// Coordinators and admins also get the Coordinator nav link. If the Flask server
+// is down the logged-out markup simply stays as it is.
+import { getCurrentUser, isCoordinator, logout } from "./auth.js";
 
 const area = document.querySelector("[data-sdrm-account]");
+const coordinatorLink = document.querySelector("[data-sdrm-coordinator-link]");
 
 if (area) {
   const loginLink = area.querySelector("[data-sdrm-account-login]");
@@ -14,8 +16,15 @@ if (area) {
   const show = (user) => {
     const name = user ? String(user.name || user.uid) : "";
     greeting.textContent = user ? `Hi, ${name}` : "";
-    greeting.title = user ? name : "";
+    if (user) {
+      const hint = document.createElement("span");
+      hint.className = "sdrm__visually-hidden";
+      hint.textContent = ", view your profile";
+      greeting.append(hint);
+    }
+    greeting.title = user ? `${name}: your profile` : "";
     greeting.hidden = !user;
+    if (coordinatorLink) coordinatorLink.hidden = !isCoordinator(user);
     logoutButton.hidden = !user;
     loginLink.hidden = Boolean(user);
     area.classList.toggle("sdrm__header-account--signed-in", Boolean(user));

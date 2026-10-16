@@ -1,4 +1,5 @@
-// SDRM accounts: the header account area and the /sdrm/login/ page.
+// SDRM accounts: the header account area and the /sdrm/login/, /sdrm/profile/ and
+// /sdrm/coordinator/ pages.
 // Builds on the shared card, button and form styles; only adds what they lack.
 //
 //   .sdrm__header-account           Log in link, or "Hi, name" + Log out (in the main nav)
@@ -14,6 +15,10 @@
 //     -icon / -title / -text
 //   .sdrm__auth-success             "Account created" message
 //   .sdrm__auth-note                small print under the cards
+//   .sdrm__auth-guardian            guardian fields revealed by "I'm under 18"
+//   .sdrm__account-loading          "Loading…" line before the profile / access check
+//   .sdrm__account-details          read-only "Label  value" list on the profile
+//     .sdrm__account-detail
 //   .sdrm__button--loading          spinner on a busy submit button
 
 /* ---------- header account area ---------- */
@@ -51,13 +56,23 @@
   }
 }
 
+// Links to the profile page
 .sdrm__header-account-greeting {
+  display: block;
   max-width: 14rem;
   margin: 0;
   overflow: hidden;
+  color: $sdrm-navy;
   font-weight: 700;
+  text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &:hover,
+  &[aria-current="page"] {
+    color: $sdrm-blue-ink;
+    text-decoration: underline;
+  }
 
   @include bp(md, down) {
     max-width: 100%;
@@ -215,6 +230,62 @@
   color: $sdrm-muted;
   font-size: 0.9375rem;
   text-align: center;
+}
+
+// Guardian fields on the sign-up form, shown when "I'm under 18" is on
+.sdrm__auth-guardian {
+  padding: $sdrm-space-4 $sdrm-space-4 0;
+  border-left: 4px solid $sdrm-blue;
+  border-radius: $sdrm-radius-sm;
+  background: $sdrm-tint-blue;
+
+  // A floated legend sits inside the panel instead of on its top edge
+  .sdrm__fieldset-legend {
+    float: left;
+    width: 100%;
+
+    + * {
+      clear: both;
+    }
+  }
+
+  .sdrm__input {
+    background-color: $sdrm-white;
+  }
+}
+
+/* ---------- profile and coordinator pages ---------- */
+
+.sdrm__account-loading {
+  text-align: center;
+}
+
+.sdrm__account-details {
+  margin: 0 0 $sdrm-space-4;
+}
+
+.sdrm__account-detail {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: $sdrm-space-3;
+  align-items: baseline;
+  padding: $sdrm-space-3 0;
+  border-bottom: 1px solid $sdrm-line;
+
+  dt {
+    color: $sdrm-muted;
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  @include bp(sm, down) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
 }
 
 /* ---------- busy buttons ---------- */
