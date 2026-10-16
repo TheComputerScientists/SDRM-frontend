@@ -1,7 +1,7 @@
 // Log in and Create account forms on /sdrm/login/ (markup in sdrm/login.html).
 // Talks to the Flask backend through auth.js; passwords are never stored or logged.
 import { baseurl } from "../api/config.js";
-import { login, signup, isServerReachable, checkGuardian, EMAIL_PATTERN } from "./auth.js";
+import { login, signup, isServerReachable, checkGuardian, EMAIL_PATTERN, limits, nameMessage, passwordMessage } from "./auth.js";
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
@@ -175,9 +175,9 @@ signupForm.addEventListener("submit", async (event) => {
     password: password.value,
   };
 
-  if (values.name.length < 2) setFieldError(name, "Enter your name (at least 2 characters).");
+  if (values.name.length < (limits.nameMin ?? 1)) setFieldError(name, nameMessage("your name"));
   if (!EMAIL_PATTERN.test(values.email)) setFieldError(email, "Enter an email address like name@example.com.");
-  if (values.password.length < 8) setFieldError(password, "Use at least 8 characters for your password.");
+  if (values.password.length < (limits.passwordMin ?? 1)) setFieldError(password, passwordMessage());
   if (!confirm.value) {
     setFieldError(confirm, "Type your password again.");
   } else if (confirm.value !== values.password) {

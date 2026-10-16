@@ -1,17 +1,15 @@
 ---
 layout: sdrm
-title: Volunteer
-lead: Pick the days you're free and what you enjoy. Leave a group empty to include every option.
+sdrm_page: volunteer
 permalink: /sdrm/volunteer/
 tone: blue
-kicker: Give your time
 ---
 
 <div data-sdrm-volunteer data-login-url="{{ '/sdrm/login/' | relative_url }}">
   <section class="sdrm__section sdrm__section--cream" aria-labelledby="vol-filter-heading">
     <div class="sdrm__container">
       <div class="sdrm__card">
-        <h2 class="sdrm__card-title" id="vol-filter-heading">Find a shift</h2>
+        <h2 class="sdrm__card-title" id="vol-filter-heading" data-sdrm-text="volunteer.filters.heading"></h2>
         <form id="vol-filters" aria-describedby="vol-summary">
           <fieldset class="sdrm__fieldset">
             <legend class="sdrm__fieldset-legend">Days I'm available</legend>
@@ -32,8 +30,8 @@ kicker: Give your time
   <section class="sdrm__section sdrm__section--white" aria-labelledby="vol-results-heading">
     <div class="sdrm__container">
       <header class="sdrm__section-header">
-        <p class="sdrm__kicker">Open shifts</p>
-        <h2 class="sdrm__section-heading" id="vol-results-heading">Matching opportunities</h2>
+        <p class="sdrm__kicker" data-sdrm-text="volunteer.results.kicker"></p>
+        <h2 class="sdrm__section-heading" id="vol-results-heading" data-sdrm-text="volunteer.results.heading"></h2>
         <p class="sdrm__section-intro" id="vol-summary" role="status" aria-live="polite">Loading opportunities…</p>
       </header>
       <p class="sdrm__visually-hidden" id="vol-announce" aria-live="assertive"></p>
@@ -51,7 +49,7 @@ kicker: Give your time
   <section class="sdrm__section sdrm__section--dots" aria-label="About this demo">
     <div class="sdrm__container">
       <aside class="sdrm__callout">
-        <p class="sdrm__text"><strong>Demo only.</strong> Shifts and spot counts are placeholders marked “TODO: verify”. Signing up saves the shift to your account on our server so you can cancel it any time, but it does not reserve a real shift. To volunteer for real, visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>.</p>
+        <p class="sdrm__text" data-sdrm-text="volunteer.note"></p>
       </aside>
     </div>
   </section>

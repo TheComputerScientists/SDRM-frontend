@@ -1,13 +1,12 @@
-{%- comment -%} SDRM site header: slim action bar, then the white bar with our wordmark and main nav. {%- endcomment -%}
-{%- assign sdrm_links = "/|Home;/sdrm/get-help/|Get Help Now;/sdrm/give/|Ways to Give;/sdrm/volunteer/|Volunteer;/sdrm/about/|About" | split: ";" -%}
+{%- comment -%} SDRM site header: slim action bar, then the white bar with our wordmark and main nav. Text and links come from /api/sdrm/content (site.*). {%- endcomment -%}
 <header class="sdrm__header" data-sdrm-header>
   <a class="sdrm__header-skip" href="#main">Skip to main content</a>
 
   <div class="sdrm__header-topbar">
     <nav class="sdrm__header-topbar-inner" aria-label="Quick actions">
-      <a class="sdrm__header-cta sdrm__header-cta--orange" href="{{ '/sdrm/get-help/' | relative_url }}">Get help now</a>
-      <a class="sdrm__header-cta sdrm__header-cta--blue" href="{{ '/sdrm/volunteer/' | relative_url }}">Volunteer</a>
-      <a class="sdrm__header-cta sdrm__header-cta--red" href="{{ '/sdrm/give/' | relative_url }}">Donate</a>
+      <template data-sdrm-list="site.topbar">
+        <a class="sdrm__header-cta" data-sdrm-modifier="sdrm__header-cta:.tone" data-sdrm-text=".label" data-sdrm-attr="href:.href"></a>
+      </template>
     </nav>
   </div>
 
@@ -18,8 +17,8 @@
           <svg viewBox="0 0 32 32" focusable="false"><path fill="currentColor" d="M16 3 2.5 14.2l1.9 2.3L6 15.2V28h20V15.2l1.6 1.3 1.9-2.3L16 3Zm0 21.2-.7-.6C11.2 20 8.8 17.9 8.8 15.3c0-2 1.6-3.6 3.6-3.6 1.5 0 2.8.8 3.6 2 .8-1.2 2.1-2 3.6-2 2 0 3.6 1.6 3.6 3.6 0 2.6-2.4 4.7-6.5 8.3l-.7.6Z"/></svg>
         </span>
         <span>
-          <span class="sdrm__header-brand-name">Help &amp; Hope</span>
-          <span class="sdrm__header-brand-tag">A student project</span>
+          <span class="sdrm__header-brand-name" data-sdrm-text="site.name"></span>
+          <span class="sdrm__header-brand-tag" data-sdrm-text="site.tagline"></span>
         </span>
       </a>
 
@@ -30,10 +29,9 @@
 
       <nav class="sdrm__header-nav" id="sdrm-site-nav" aria-label="Main">
         <ul class="sdrm__header-links">
-          {%- for item in sdrm_links -%}
-          {%- assign parts = item | split: "|" %}
-          <li><a class="sdrm__header-link" href="{{ parts[0] | relative_url }}"{% if page.url == parts[0] or page.url == "/index.html" and parts[0] == "/" %} aria-current="page"{% endif %}>{{ parts[1] }}</a></li>
-          {%- endfor %}
+          <template data-sdrm-list="site.nav">
+            <li><a class="sdrm__header-link" data-sdrm-text=".label" data-sdrm-attr="href:.href" data-sdrm-current></a></li>
+          </template>
           {%- comment -%} Shown by assets/js/sdrm/account.js for coordinators and admins only; the backend still guards the page. {%- endcomment %}
           <li data-sdrm-coordinator-link hidden><a class="sdrm__header-link" href="{{ '/sdrm/coordinator/' | relative_url }}"{% if page.url == "/sdrm/coordinator/" %} aria-current="page"{% endif %}>Coordinator</a></li>
         </ul>

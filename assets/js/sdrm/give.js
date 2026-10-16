@@ -1,5 +1,6 @@
 // Ways to Give: convert a dollar amount into meals and nights of shelter using GET /api/sdrm/rates.
 import { loadData, el, showLoadError } from "./common.js";
+import { siteData } from "./content.js";
 
 const root = document.querySelector("[data-sdrm-give]");
 
@@ -9,13 +10,12 @@ if (root) {
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 const count = new Intl.NumberFormat("en-US");
-const MAX_AMOUNT = 1000000;
 
 /**
- * Validate the raw text. Returns { amount } or { error }.
- * Accepts "25", "25.50", "$1,000". Rejects negatives and non-numbers.
+ * Validate the raw text against the backend's largest gift (`max`, Infinity if unknown).
+ * Returns { amount } or { error }. Accepts "25", "25.50", "$1,000". Rejects negatives and non-numbers.
  */
-export function parseAmount(raw) {
+export function parseAmount(raw, max = Infinity) {
   const text = raw.trim().replace(/^\$/, "").replace(/,/g, "").trim();
   if (text === "") return { error: "Please enter a dollar amount, for example 25." };
   if (/^-/.test(text)) return { error: "Please enter a positive amount. Negative numbers can't be converted." };
@@ -24,7 +24,7 @@ export function parseAmount(raw) {
   }
   const amount = Number(text);
   if (!Number.isFinite(amount)) return { error: "Please use numbers only, for example 25 or 25.50." };
-  if (amount > MAX_AMOUNT) return { error: `Please enter an amount up to ${money.format(MAX_AMOUNT)}.` };
+  if (amount > max) return { error: `Please enter an amount up to ${money.format(max)}.` };
   return { amount };
 }
 
@@ -40,8 +40,9 @@ async function init(rootEl) {
   const rateNight = rootEl.querySelector("#rate-night");
 
   let rates;
+  let giftMax = Infinity;
   try {
-    rates = await loadData("/api/sdrm/rates");
+    [rates, { limits: { giftMax } }] = await Promise.all([loadData("/api/sdrm/rates"), siteData]);
   } catch (err) {
     showLoadError(results, err);
     results.hidden = false;
@@ -72,7 +73,7 @@ async function init(rootEl) {
       results.hidden = true;
       return;
     }
-    const parsed = parseAmount(raw);
+    const parsed = parseAmount(raw, giftMax);
     if (parsed.error) {
       setError(parsed.error);
       return;

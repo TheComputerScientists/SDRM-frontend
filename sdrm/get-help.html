@@ -1,17 +1,15 @@
 ---
 layout: sdrm
-title: Get Help Now
-lead: Choose what you need and where you are. The list updates as soon as you change a filter.
+sdrm_page: getHelp
 permalink: /sdrm/get-help/
 tone: orange
-kicker: Find support
 ---
 
 <div data-sdrm-get-help>
   <section class="sdrm__section sdrm__section--cream" aria-labelledby="filters-heading">
     <div class="sdrm__container">
       <div class="sdrm__card">
-        <h2 class="sdrm__card-title" id="filters-heading">Filter resources</h2>
+        <h2 class="sdrm__card-title" id="filters-heading" data-sdrm-text="getHelp.filters.heading"></h2>
         <form id="help-filters" class="sdrm__field-row" aria-describedby="help-summary">
           <div class="sdrm__field sdrm__field--grow">
             <label class="sdrm__field-label" for="help-need">What do you need?</label>
@@ -36,8 +34,8 @@ kicker: Find support
   <section class="sdrm__section sdrm__section--white" aria-labelledby="results-heading">
     <div class="sdrm__container">
       <header class="sdrm__section-header">
-        <p class="sdrm__kicker">Results</p>
-        <h2 class="sdrm__section-heading" id="results-heading">Matching resources</h2>
+        <p class="sdrm__kicker" data-sdrm-text="getHelp.results.kicker"></p>
+        <h2 class="sdrm__section-heading" id="results-heading" data-sdrm-text="getHelp.results.heading"></h2>
         <p class="sdrm__section-intro" id="help-summary" role="status" aria-live="polite">Loading resources…</p>
       </header>
 
@@ -57,7 +55,7 @@ kicker: Find support
   <section class="sdrm__section sdrm__section--dots" aria-label="About this data">
     <div class="sdrm__container">
       <aside class="sdrm__callout">
-        <p class="sdrm__text"><strong>Placeholder data.</strong> Program names and areas are examples written for a class project. Details marked “TODO: verify” have not been confirmed. For real, current services, visit <a href="https://www.sdrescue.org/" rel="noopener">sdrescue.org</a>. In an emergency, call 911.</p>
+        <p class="sdrm__text" data-sdrm-text="getHelp.note"></p>
       </aside>
     </div>
   </section>

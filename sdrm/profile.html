@@ -1,10 +1,8 @@
 ---
 layout: sdrm
-title: Your Profile
-lead: Your account details, and a parent or guardian's contact if you're under 18.
+sdrm_page: profile
 permalink: /sdrm/profile/
 tone: blue
-kicker: Your account
 ---
 
 <section class="sdrm__section sdrm__section--cream" aria-label="Profile">
@@ -34,7 +32,7 @@ kicker: Your account
 
     <div class="sdrm__grid sdrm__grid--two sdrm__auth" data-sdrm-profile hidden>
       <article class="sdrm__card sdrm__auth-card" aria-labelledby="account-heading">
-        <h2 class="sdrm__card-title" id="account-heading">Your account</h2>
+        <h2 class="sdrm__card-title" id="account-heading" data-sdrm-text="profile.account.heading"></h2>
         <dl class="sdrm__account-details">
           <div class="sdrm__account-detail">
             <dt>Name</dt>
@@ -53,25 +51,25 @@ kicker: Your account
             <dd><span class="sdrm__pill" data-sdrm-profile-role></span></dd>
           </div>
         </dl>
-        <p class="sdrm__field-hint">Only an admin can change your role. Ask a volunteer coordinator if it looks wrong.</p>
+        <p class="sdrm__field-hint" data-sdrm-text="profile.account.note"></p>
       </article>
 
       <article class="sdrm__card sdrm__auth-card sdrm__auth-card--signup" aria-labelledby="guardian-heading">
-        <h2 class="sdrm__card-title" id="guardian-heading">Parent or guardian</h2>
-        <p class="sdrm__text">Student volunteers under 18 add a parent or guardian we can contact. Leave both fields empty if you're 18 or older.</p>
+        <h2 class="sdrm__card-title" id="guardian-heading" data-sdrm-text="profile.guardian.heading"></h2>
+        <p class="sdrm__text" data-sdrm-text="profile.guardian.text"></p>
 
         <p class="sdrm__auth-success" id="guardian-success" role="status"></p>
 
         <form class="sdrm__auth-form" id="guardian-form" novalidate>
           <div class="sdrm__field">
             <label class="sdrm__field-label" for="guardian-name">Guardian name</label>
-            <input class="sdrm__input" id="guardian-name" name="guardianName" type="text" maxlength="100" autocomplete="off" aria-describedby="guardian-name-error">
+            <input class="sdrm__input" id="guardian-name" name="guardianName" type="text" data-sdrm-attr="maxlength:limits.guardianNameMax" autocomplete="off" aria-describedby="guardian-name-error">
             <p class="sdrm__field-error" id="guardian-name-error"></p>
           </div>
 
           <div class="sdrm__field">
             <label class="sdrm__field-label" for="guardian-email">Guardian email</label>
-            <input class="sdrm__input" id="guardian-email" name="guardianEmail" type="email" maxlength="254" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="guardian-email-error">
+            <input class="sdrm__input" id="guardian-email" name="guardianEmail" type="email" data-sdrm-attr="maxlength:limits.guardianEmailMax" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="guardian-email-error">
             <p class="sdrm__field-error" id="guardian-email-error"></p>
           </div>
 
