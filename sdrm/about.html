@@ -1,21 +1,21 @@
 ---
 layout: sdrm
-sdrm_page: about
+title: About This Project
+lead: A student web development project that practices accessible, data-driven pages for a real-world cause.
 permalink: /sdrm/about/
 tone: navy
+kicker: Behind the project
 ---
-
-{%- comment -%} Every word, link and image here comes from /api/sdrm/content (about.*). {%- endcomment %}
 
 <section class="sdrm__section sdrm__section--cream" aria-labelledby="what-heading">
   <div class="sdrm__container sdrm__split sdrm__split--center">
     <div>
-      <p class="sdrm__kicker sdrm__kicker--start" data-sdrm-text="about.what.kicker"></p>
-      <h2 class="sdrm__section-heading" id="what-heading" data-sdrm-text="about.what.heading"></h2>
-      <p class="sdrm__text" data-sdrm-text="about.what.text"></p>
+      <p class="sdrm__kicker sdrm__kicker--start">The basics</p>
+      <h2 class="sdrm__section-heading" id="what-heading">What this site is</h2>
+      <p class="sdrm__text">This is a class project inspired by the San Diego Rescue Mission, a nonprofit that serves people experiencing homelessness in San Diego. We are not affiliated with the organization, and nothing here is official. All names, rates, shifts, addresses, and hours are placeholders stored in JSON files and marked “TODO: verify”.</p>
     </div>
     <figure class="sdrm__figure">
-      <img class="sdrm__figure-image" alt="" data-sdrm-attr="src:about.what.image,alt:about.what.imageAlt" width="600" height="400">
+      <img class="sdrm__figure-image" src="{{ '/images/sdrm/placeholder-volunteer.svg' | relative_url }}" alt="Placeholder illustration of a group of volunteers" width="600" height="400">
     </figure>
   </div>
 </section>
@@ -23,15 +23,16 @@ tone: navy
 <section class="sdrm__section sdrm__section--white" aria-labelledby="built-heading">
   <div class="sdrm__container sdrm__grid sdrm__grid--two">
     <article class="sdrm__card sdrm__card--topline">
-      <h2 class="sdrm__card-title" id="built-heading" data-sdrm-text="about.built.heading"></h2>
-      <p class="sdrm__text" data-sdrm-text="about.built.text"></p>
+      <h2 class="sdrm__card-title" id="built-heading">Who built it</h2>
+      <p class="sdrm__text">Built by students in a computer science course as part of the Open Coding Society curriculum. Team member names are left out on purpose; add your team's first names or GitHub usernames here if your class requires it.</p>
     </article>
     <article class="sdrm__card sdrm__card--topline">
-      <h2 class="sdrm__card-title" id="how-heading" data-sdrm-text="about.how.heading"></h2>
+      <h2 class="sdrm__card-title" id="how-heading">How it works</h2>
       <ul class="sdrm__checklist">
-        <template data-sdrm-list="about.how.items">
-          <li class="sdrm__checklist-item" data-sdrm-text=".text"></li>
-        </template>
+        <li class="sdrm__checklist-item">Plain HTML, SASS, and vanilla JavaScript on a Jekyll site, with no frameworks. A small Python Flask server handles accounts and volunteer sign-ups.</li>
+        <li class="sdrm__checklist-item">Its own small SASS system in <code>_sass/sdrm/</code> with color, font, and spacing tokens and one partial per component.</li>
+        <li class="sdrm__checklist-item">Each tool reads a JSON file in <code>assets/data/sdrm/</code>, so updating information never requires editing code.</li>
+        <li class="sdrm__checklist-item">Pages are built to work with a keyboard, a screen reader, and a phone screen 375 pixels wide.</li>
       </ul>
     </article>
   </div>
@@ -40,10 +41,10 @@ tone: navy
 <section class="sdrm__section sdrm__section--dots" aria-labelledby="privacy-heading">
   <div class="sdrm__container">
     <div class="sdrm__card">
-      <h2 class="sdrm__card-title" id="privacy-heading" data-sdrm-text="about.privacy.heading"></h2>
-      <p class="sdrm__text" data-sdrm-text="about.privacy.text"></p>
+      <h2 class="sdrm__card-title" id="privacy-heading">Privacy</h2>
+      <p class="sdrm__text">This site does not take payments. If you create an account, your name, email, and any guardian contact you add are stored on our server, along with the volunteer shifts you sign up for. You can cancel a shift or remove guardian info at any time.</p>
       <p class="sdrm__actions">
-        <a class="sdrm__button sdrm__button--blue" rel="noopener" data-sdrm-text="about.privacy.cta" data-sdrm-attr="href:about.privacy.ctaHref"></a>
+        <a class="sdrm__button sdrm__button--blue" href="https://www.sdrescue.org/" rel="noopener">Visit the official site</a>
       </p>
     </div>
   </div>

@@ -1,15 +1,17 @@
 ---
 layout: sdrm
-sdrm_page: give
+title: Ways to Give
+lead: Enter an amount to see what it could provide. This is a learning tool only; no payment is collected here.
 permalink: /sdrm/give/
 tone: red
+kicker: Make an impact
 ---
 
-<div data-sdrm-give>
+<div data-sdrm-give data-src="{{ '/assets/data/sdrm/rates.json' | relative_url }}">
   <section class="sdrm__section sdrm__section--cream" aria-labelledby="calc-heading">
     <div class="sdrm__container sdrm__split">
       <div class="sdrm__card">
-        <h2 class="sdrm__card-title" id="calc-heading" data-sdrm-text="give.calc.heading"></h2>
+        <h2 class="sdrm__card-title" id="calc-heading">Gift impact calculator</h2>
         <form id="give-form" novalidate>
           <div class="sdrm__field">
             <label class="sdrm__field-label" for="give-amount">Gift amount in US dollars</label>
@@ -34,7 +36,7 @@ tone: red
         </div>
       </div>
       <figure class="sdrm__figure sdrm__figure--red">
-        <img class="sdrm__figure-image" alt="" data-sdrm-attr="src:give.calc.image,alt:give.calc.imageAlt" width="600" height="400">
+        <img class="sdrm__figure-image" src="{{ '/images/sdrm/placeholder-give.svg' | relative_url }}" alt="Placeholder illustration of a shared meal" width="600" height="400">
       </figure>
     </div>
   </section>
@@ -42,23 +44,23 @@ tone: red
   <section class="sdrm__section sdrm__section--white" aria-labelledby="rates-heading">
     <div class="sdrm__container">
       <header class="sdrm__section-header">
-        <p class="sdrm__kicker" data-sdrm-text="give.rates.kicker"></p>
-        <h2 class="sdrm__section-heading" id="rates-heading" data-sdrm-text="give.rates.heading"></h2>
+        <p class="sdrm__kicker">The math</p>
+        <h2 class="sdrm__section-heading" id="rates-heading">How the numbers are calculated</h2>
       </header>
       <div class="sdrm__card">
         <div class="sdrm__table-wrap">
           <table class="sdrm__table">
-            <caption class="sdrm__visually-hidden" data-sdrm-text="give.rates.caption"></caption>
+            <caption class="sdrm__visually-hidden">Placeholder conversion rates</caption>
             <thead>
-              <tr><th scope="col" data-sdrm-text="give.rates.itemHeading"></th><th scope="col" data-sdrm-text="give.rates.costHeading"></th></tr>
+              <tr><th scope="col">Item</th><th scope="col">Placeholder cost</th></tr>
             </thead>
             <tbody>
-              <tr><td data-sdrm-text="give.rates.meal"></td><td id="rate-meal">Loading…</td></tr>
-              <tr><td data-sdrm-text="give.rates.night"></td><td id="rate-night">Loading…</td></tr>
+              <tr><td>One meal</td><td id="rate-meal">Loading…</td></tr>
+              <tr><td>One night of shelter</td><td id="rate-night">Loading…</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="sdrm__callout" data-sdrm-text="give.rates.note"></p>
+        <p class="sdrm__callout">These rates are placeholders marked “TODO: verify” in <code>rates.json</code>. They are not official figures. Results are rounded down and show meals <em>or</em> nights, not both.</p>
       </div>
     </div>
   </section>
@@ -66,19 +68,25 @@ tone: red
   <section class="sdrm__section sdrm__section--dots" aria-labelledby="other-heading">
     <div class="sdrm__container">
       <header class="sdrm__section-header">
-        <p class="sdrm__kicker" data-sdrm-text="give.other.kicker"></p>
-        <h2 class="sdrm__section-heading" id="other-heading" data-sdrm-text="give.other.heading"></h2>
+        <p class="sdrm__kicker">More than money</p>
+        <h2 class="sdrm__section-heading" id="other-heading">Other ways to help</h2>
       </header>
       <div class="sdrm__grid">
-        <template data-sdrm-list="give.other.cards">
-          <article class="sdrm__card sdrm__card--topline">
-            <h3 class="sdrm__card-title" data-sdrm-text=".title"></h3>
-            <p class="sdrm__text" data-sdrm-text=".text"></p>
-          </article>
-        </template>
+        <article class="sdrm__card sdrm__card--topline">
+          <h3 class="sdrm__card-title">Donate items</h3>
+          <p class="sdrm__text">Many shelters accept new socks, hygiene items, and gently used clothing. Check the official site for the current wish list.</p>
+        </article>
+        <article class="sdrm__card sdrm__card--topline">
+          <h3 class="sdrm__card-title">Host a drive</h3>
+          <p class="sdrm__text">Organize a food or supply drive at school, work, or with friends.</p>
+        </article>
+        <article class="sdrm__card sdrm__card--topline">
+          <h3 class="sdrm__card-title">Spread the word</h3>
+          <p class="sdrm__text">Share where people can find help. A single conversation can connect someone to a meal or a bed.</p>
+        </article>
       </div>
       <p class="sdrm__actions">
-        <a class="sdrm__button sdrm__button--red" rel="noopener" data-sdrm-text="give.other.cta" data-sdrm-attr="href:give.other.ctaHref"></a>
+        <a class="sdrm__button sdrm__button--red" href="https://www.sdrescue.org/" rel="noopener">Give on the official site</a>
       </p>
     </div>
   </section>

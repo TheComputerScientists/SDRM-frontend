@@ -1,45 +1,15 @@
 // Shared helpers for the SDRM student project pages (vanilla ES modules, no build step).
-// The pages keep no data of their own: everything comes from the Flask backend.
+// Page text and most data are static (HTML and assets/data/sdrm/*.json); only accounts
+// and volunteer sign-ups go through the Flask backend (apiFetch below).
 import { pythonURI, fetchOptions } from "../api/config.js";
 
 const TIMEOUT_MS = 8000;
 
-/** Thrown when the Flask server can't be reached (down, CORS refused, or timed out). */
-export class NetworkError extends Error {
-  constructor() {
-    super("We couldn't reach the server.");
-    this.name = "NetworkError";
-  }
-}
-
-/**
- * fetch() against the Flask API with cookies, JSON headers and a timeout.
- * Resolves with the Response whatever its status; rejects with a NetworkError.
- */
-export async function apiFetch(path, { method = "GET", body } = {}) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-  try {
-    return await fetch(`${pythonURI}${path}`, {
-      ...fetchOptions,
-      method,
-      cache: "no-store",
-      signal: controller.signal,
-      body: body === undefined ? undefined : JSON.stringify(body),
-    });
-  } catch {
-    // The original error is not passed on.
-    throw new NetworkError();
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-/** GET a backend endpoint (e.g. "/api/sdrm/stats") and parse its JSON; throws a readable error on failure. */
-export async function loadData(path) {
-  const response = await apiFetch(path);
+/** Fetch and parse a JSON file; throws a readable error on failure. */
+export async function loadJSON(url) {
+  const response = await fetch(url, { cache: "no-cache" });
   if (!response.ok) {
-    throw new Error(`The server answered with an error (HTTP ${response.status}).`);
+    throw new Error(`Could not load ${url} (HTTP ${response.status})`);
   }
   return response.json();
 }
@@ -76,8 +46,42 @@ export function toggle({ id, name, value, label }) {
 
 /** Show a load error inside a container as a field error. */
 export function showLoadError(container, error) {
-  const text = error instanceof NetworkError
-    ? "Sorry, this page's data could not be loaded: we couldn't reach our Flask server. Start it with python main.py in the SDRM-backend folder, then refresh."
-    : `Sorry, this page's data could not be loaded. Please refresh and try again. (${error.message})`;
-  container.replaceChildren(el("p", { className: "sdrm__field-error", attrs: { role: "alert" }, text }));
+  container.replaceChildren(
+    el("p", {
+      className: "sdrm__field-error",
+      attrs: { role: "alert" },
+      text: `Sorry, this page's data could not be loaded. Please refresh and try again. (${error.message})`,
+    })
+  );
+}
+
+/** Thrown when the Flask server can't be reached (down, CORS refused, or timed out). */
+export class NetworkError extends Error {
+  constructor() {
+    super("We couldn't reach the server.");
+    this.name = "NetworkError";
+  }
+}
+
+/**
+ * fetch() against the Flask API with cookies, JSON headers and a timeout.
+ * Resolves with the Response whatever its status; rejects with a NetworkError.
+ */
+export async function apiFetch(path, { method = "GET", body } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  try {
+    return await fetch(`${pythonURI}${path}`, {
+      ...fetchOptions,
+      method,
+      cache: "no-store",
+      signal: controller.signal,
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
+  } catch {
+    // The original error is not passed on.
+    throw new NetworkError();
+  } finally {
+    clearTimeout(timer);
+  }
 }

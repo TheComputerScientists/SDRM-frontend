@@ -1,5 +1,5 @@
-// Get Help Now: filter the resources from GET /api/sdrm/resources by need and location.
-import { loadData, el, showLoadError } from "./common.js";
+// Get Help Now: filter resources.json by need and location.
+import { loadJSON, el, showLoadError } from "./common.js";
 
 const root = document.querySelector("[data-sdrm-get-help]");
 
@@ -18,7 +18,7 @@ async function init(rootEl) {
 
   let data;
   try {
-    data = await loadData("/api/sdrm/resources");
+    data = await loadJSON(rootEl.dataset.src);
   } catch (error) {
     showLoadError(results, error);
     summary.textContent = "";

@@ -1,7 +1,9 @@
 // Volunteer: filter the shifts from GET /api/sdrm/opportunities by day and interest.
 // Signing up takes a spot on the server (POST/DELETE .../<id>/signup), so it needs an
 // account; logged-out visitors get a "Log in to sign up" link instead of the button.
-import { apiFetch, loadData, el, toggle, showLoadError, NetworkError } from "./common.js";
+// When the server can't be reached (e.g. on GitHub Pages) the shifts come from
+// opportunities.json instead, with every Sign up button disabled.
+import { apiFetch, loadJSON, el, toggle, showLoadError, NetworkError } from "./common.js";
 
 const root = document.querySelector("[data-sdrm-volunteer]");
 
@@ -17,15 +19,25 @@ async function init(rootEl) {
   const announce = rootEl.querySelector("#vol-announce");
   const empty = rootEl.querySelector("#vol-empty");
   const clearButton = rootEl.querySelector("#vol-clear");
+  const offlineNote = rootEl.querySelector("#vol-offline");
   const loginUrl = rootEl.dataset.loginUrl;
 
   let data;
+  let offline = false;
   try {
-    data = await loadData("/api/sdrm/opportunities");
-  } catch (error) {
-    showLoadError(results, error);
-    summary.textContent = "";
-    return;
+    data = await loadLive();
+  } catch {
+    // No server: show the static shift list so the page still works, but sign-ups can't happen
+    offline = true;
+    try {
+      data = await loadJSON(rootEl.dataset.src);
+    } catch (error) {
+      showLoadError(results, error);
+      summary.textContent = "";
+      return;
+    }
+    data.loggedIn = false;
+    offlineNote.hidden = false;
   }
 
   const interestLabels = Object.fromEntries(data.interests.map((i) => [i.id, i.label]));
@@ -97,7 +109,10 @@ async function init(rootEl) {
     const pill = el("span", { className: "sdrm__pill" });
     const signUp = el("button", {
       className: "sdrm__button sdrm__button--blue",
-      attrs: { type: "button", "aria-describedby": `vol-${opp.id}-title vol-${opp.id}-spots` },
+      attrs: {
+        type: "button",
+        "aria-describedby": `vol-${opp.id}-title vol-${opp.id}-spots${offline ? " vol-offline" : ""}`,
+      },
     });
     const cancel = el("button", {
       className: "sdrm__button sdrm__button--outline",
@@ -142,6 +157,15 @@ async function init(rootEl) {
     pill.textContent = spotsText(left);
     pill.className = "sdrm__pill " + (left === 0 ? "sdrm__pill--full" : left <= 2 ? "sdrm__pill--alert" : "sdrm__pill--success");
 
+    if (offline) {
+      login.hidden = true;
+      cancel.hidden = true;
+      signUp.hidden = false;
+      signUp.disabled = true;
+      signUp.textContent = left === 0 ? "Full" : "Sign up";
+      return;
+    }
+
     // Logged out: a login link while there's room, otherwise the disabled "Full" button
     login.hidden = loggedIn || left === 0;
     signUp.hidden = !login.hidden;
@@ -182,4 +206,11 @@ async function init(rootEl) {
 function spotsText(left) {
   if (left === 0) return "Full";
   return `${left} ${left === 1 ? "spot" : "spots"} left`;
+}
+
+/** Shifts with live spot counts from the server; throws if it's down or answers with an error. */
+async function loadLive() {
+  const response = await apiFetch("/api/sdrm/opportunities");
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
 }

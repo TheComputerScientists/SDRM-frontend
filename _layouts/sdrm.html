@@ -4,22 +4,21 @@
   stylesheet (assets/css/sdrm.scss -> sdrm.css) and our own scripts. No template
   includes, no Open Coding Society / minima CSS.
 
-  All of the site's text comes from the Flask backend (GET /api/sdrm/content, filled in
-  by assets/js/sdrm/content.js); the pages only hold empty, marked placeholders.
-
   Front matter
-    sdrm_page  content key prefix, e.g. "give" -> give.title, give.lead, give.kicker
-    hero       "custom" when the page renders its own hero with the <h1> (home);
-               otherwise a colored page banner is rendered here
-    tone       banner color: orange (default), red, blue, navy
+    title    page <h1> (and <title>)
+    lead     optional subheading under the title
+    kicker   optional small label above the title
+    hero     "custom" when the page renders its own hero with the <h1> (home);
+             otherwise a colored page banner is rendered here
+    tone     banner color: orange (default), red, blue, navy
 {%- endcomment -%}
 <!doctype html>
-<html lang="en" data-sdrm-title="{% unless page.hero == 'custom' %}{{ page.sdrm_page }}.title{% endunless %}">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Loading…</title>
-  <meta name="description" content="" data-sdrm-attr="content:{{ page.sdrm_page }}.lead">
+  <title>{% if page.url == "/" %}{{ site.title | escape }}{% else %}{{ page.title | escape }} | {{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.lead | default: site.description | strip_html | escape }}">
   <meta name="theme-color" content="#14345A">
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,28 +26,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
   <link rel="stylesheet" href="{{ '/assets/css/sdrm.css' | relative_url }}">
 </head>
-<body class="sdrm sdrm--loading">
+<body class="sdrm">
   {%- include sdrm/header.html %}
 
   <main id="main" tabindex="-1">
-    <div class="sdrm__container sdrm__content-alert" data-sdrm-content-error hidden>
-      <div class="sdrm__auth-alert" role="alert">
-        <span class="sdrm__auth-alert-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M12 2 1 21h22L12 2Zm0 4.2L19.5 19h-15L12 6.2ZM11 10v5h2v-5h-2Zm0 6v2h2v-2h-2Z"/></svg>
-        </span>
-        <div>
-          <p class="sdrm__auth-alert-title">This page's text couldn't load</p>
-          <p class="sdrm__auth-alert-text" data-sdrm-content-error-text>Everything on this site comes from our Flask server on localhost:8587, and we couldn't reach it. Start it with <code>python main.py</code> in the SDRM-backend folder, then refresh.</p>
-        </div>
-      </div>
-    </div>
-
     {%- unless page.hero == "custom" %}
     <section class="sdrm__banner sdrm__banner--{{ page.tone | default: 'orange' }}" aria-labelledby="page-title">
       <div class="sdrm__banner-inner">
-        <p class="sdrm__kicker sdrm__kicker--start sdrm__kicker--light" data-sdrm-text="{{ page.sdrm_page }}.kicker"></p>
-        <h1 class="sdrm__banner-title" id="page-title" data-sdrm-text="{{ page.sdrm_page }}.title"></h1>
-        <p class="sdrm__banner-text" data-sdrm-text="{{ page.sdrm_page }}.lead"></p>
+        {%- if page.kicker %}
+        <p class="sdrm__kicker sdrm__kicker--start sdrm__kicker--light">{{ page.kicker | escape }}</p>
+        {%- endif %}
+        <h1 class="sdrm__banner-title" id="page-title">{{ page.title | escape }}</h1>
+        {%- if page.lead %}
+        <p class="sdrm__banner-text">{{ page.lead | escape }}</p>
+        {%- endif %}
       </div>
     </section>
     {%- endunless %}
@@ -59,7 +50,6 @@
   {%- include sdrm/footer.html %}
 
   <script src="{{ '/assets/js/sdrm/header.js' | relative_url }}" defer></script>
-  <script type="module" src="{{ '/assets/js/sdrm/content.js' | relative_url }}"></script>
   <script type="module" src="{{ '/assets/js/sdrm/account.js' | relative_url }}"></script>
 </body>
 </html>

@@ -9,23 +9,14 @@
 // Roles: every page asks isCoordinator(user) / hasRole(user, ...) from here instead
 // of reading user.role itself. Hiding links is only for looks; the backend still
 // answers 401/403 on coordinator routes.
-import { apiFetch } from "./common.js";
-import { siteData } from "./content.js";
+import { pythonURI, fetchOptions } from "../api/config.js";
+
+const TIMEOUT_MS = 8000;
 
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-/**
- * The backend's own form limits (nameMin, passwordMin, guardianNameMax, guardianEmailMax, giftMax),
- * filled in from /api/sdrm/content. Until they arrive the checks below are skipped; the
- * backend still enforces them.
- */
-export const limits = {};
-siteData.then((data) => Object.assign(limits, data.limits), () => {});
-
-/** Friendly messages that quote a limit when we know it. */
-export const nameMessage = (who) =>
-  limits.nameMin ? `Enter ${who} (at least ${limits.nameMin} characters).` : `Enter ${who}.`;
-export const passwordMessage = () =>
-  limits.passwordMin ? `Use at least ${limits.passwordMin} characters for your password.` : "Enter a password.";
+/** Same limits as the backend (model/user.py). */
+export const GUARDIAN_NAME_MAX = 100;
+export const GUARDIAN_EMAIL_MAX = 254;
 
 /** Error with a kind the page can react to (field to mark, banner to show). */
 export class AuthError extends Error {
@@ -42,12 +33,23 @@ export class AuthError extends Error {
   }
 }
 
-/** apiFetch(), with a network failure reported as an AuthError. */
-async function request(path, options) {
+/** fetch() against the Flask API with cookies, JSON headers and a timeout. */
+async function request(path, { method = "GET", body } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
-    return await apiFetch(path, options);
+    return await fetch(`${pythonURI}${path}`, {
+      ...fetchOptions,
+      method,
+      cache: "no-store",
+      signal: controller.signal,
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
   } catch {
+    // Server down, CORS refused, or timed out. The original error is not passed on.
     throw new AuthError("network", "We couldn't reach the login server.");
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -115,12 +117,12 @@ export const roleLabel = (user) => {
  */
 export function checkGuardian({ guardianName, guardianEmail }) {
   const errors = {};
-  if (guardianName.length < (limits.nameMin ?? 1)) {
-    errors.guardianName = nameMessage("your parent or guardian's name");
-  } else if (guardianName.length > (limits.guardianNameMax ?? Infinity)) {
-    errors.guardianName = `Keep the guardian's name under ${limits.guardianNameMax + 1} characters.`;
+  if (guardianName.length < 2) {
+    errors.guardianName = "Enter your parent or guardian's name (at least 2 characters).";
+  } else if (guardianName.length > GUARDIAN_NAME_MAX) {
+    errors.guardianName = `Keep the guardian's name under ${GUARDIAN_NAME_MAX + 1} characters.`;
   }
-  if (!EMAIL_PATTERN.test(guardianEmail) || guardianEmail.length > (limits.guardianEmailMax ?? Infinity)) {
+  if (!EMAIL_PATTERN.test(guardianEmail) || guardianEmail.length > GUARDIAN_EMAIL_MAX) {
     errors.guardianEmail = "Enter your guardian's email address, like name@example.com.";
   }
   return errors;
@@ -129,8 +131,7 @@ export function checkGuardian({ guardianName, guardianEmail }) {
 /** Turn a backend "Guardian ..." message into an AuthError on the right field, or null. */
 function guardianError(message) {
   if (message.startsWith("guardian name")) {
-    const range = limits.nameMin ? ` (${limits.nameMin} to ${limits.guardianNameMax} characters)` : "";
-    return new AuthError("validation", `Check your guardian's name${range}.`, "guardianName");
+    return new AuthError("validation", "Check your guardian's name (2 to 100 characters).", "guardianName");
   }
   if (message.startsWith("guardian email")) {
     return new AuthError("validation", "Enter your guardian's email address, like name@example.com.", "guardianEmail");
@@ -198,10 +199,10 @@ export async function signup({ name, email, password, guardianName, guardianEmai
     throw new AuthError("taken", "An account with that email already exists. Try logging in instead.", "email");
   }
   if (message.includes("password")) {
-    throw new AuthError("validation", passwordMessage(), "password");
+    throw new AuthError("validation", "Use at least 8 characters for your password.", "password");
   }
   if (message.startsWith("name")) {
-    throw new AuthError("validation", nameMessage("your name"), "name");
+    throw new AuthError("validation", "Enter a name with at least 2 characters.", "name");
   }
   if (message.startsWith("email")) {
     throw new AuthError("validation", "Enter an email address like name@example.com.", "email");
