@@ -1,8 +1,8 @@
 // SDRM layout: page sections, content column, splits and grids.
 //
 //   .sdrm__section                full-width band with vertical padding
-//     --cream | --white | --dots  background (alternate down the page)
-//     --navy                      dark band (white text, yellow focus)
+//     --cream | --white | --dots  page, raised, or dotted background (alternate down the page)
+//     --navy                      deep band (white text)
 //   .sdrm__container              centered column, max 1200px
 //   .sdrm__section-header         centered heading block (kicker, heading, intro)
 //     .sdrm__section-heading / .sdrm__section-intro
@@ -17,27 +17,26 @@
 .sdrm__section {
   padding-block: clamp(#{$sdrm-space-7}, calc(5vw + 1rem), #{$sdrm-space-9});
 
-  &--cream { background-color: $sdrm-cream; }
-  &--white { background-color: $sdrm-white; }
+  &--cream { background-color: $sdrm-page-bg; }
+  &--white { background-color: $sdrm-surface; }
 
   &--dots {
-    background-color: $sdrm-tint-yellow;
-    background-image: radial-gradient(rgba(242, 140, 40, 0.28) 1.5px, transparent 1.6px);
+    background-color: $sdrm-page-bg;
+    background-image: radial-gradient(rgba($sdrm-orange, 0.28) 1.5px, transparent 1.6px);
     background-size: 24px 24px;
   }
 
   &--navy {
-    --sdrm-focus: #{$sdrm-focus-on-dark};
-    background-color: $sdrm-navy;
-    color: $sdrm-white;
+    background-color: $sdrm-band;
+    color: $sdrm-text-strong;
 
     h2,
     h3 {
-      color: $sdrm-white;
+      color: $sdrm-text-strong;
     }
 
     code {
-      background: rgba($sdrm-white, 0.16);
+      background: rgba($sdrm-text-strong, 0.16);
     }
   }
 }
@@ -63,7 +62,7 @@
   font-size: 1.1875rem;
 
   .sdrm__section--navy & {
-    color: $sdrm-white;
+    color: $sdrm-text-strong;
   }
 }
 

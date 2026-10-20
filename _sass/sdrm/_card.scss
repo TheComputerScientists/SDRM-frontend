@@ -1,4 +1,4 @@
-// SDRM cards: white rounded panels with a soft shadow.
+// SDRM cards: raised rounded panels with a soft shadow and a hairline edge.
 //
 //   .sdrm__card              panel
 //     --topline              colored top border; cycles orange / blue / red in a grid
@@ -15,7 +15,7 @@
   min-width: 0;
   padding: clamp(#{$sdrm-space-5}, calc(2vw + 0.75rem), #{$sdrm-space-6});
   border-radius: $sdrm-radius;
-  background: $sdrm-white;
+  background: $sdrm-surface;
   box-shadow: $sdrm-shadow;
 
   > :last-child {

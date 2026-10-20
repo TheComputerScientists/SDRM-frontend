@@ -1,7 +1,7 @@
 // SDRM feature cards: the three tool links on the home page.
 //
 //   .sdrm__feature-grid
-//   .sdrm__feature-card       white card with a colored top border
+//   .sdrm__feature-card       raised card with a colored top border
 //     --orange | --blue | --red
 //   .sdrm__feature-card-icon  round colored icon badge
 //   .sdrm__feature-card-title / -text
@@ -18,7 +18,7 @@
 
 .sdrm__feature-card {
   --sdrm-feature: #{$sdrm-orange};
-  --sdrm-feature-ink: #{$sdrm-orange-ink};
+  --sdrm-feature-ink: #{$sdrm-orange};
   --sdrm-feature-tint: #{$sdrm-tint-orange};
   position: relative;
   display: flex;
@@ -26,7 +26,7 @@
   padding: $sdrm-space-6;
   border-top: 8px solid var(--sdrm-feature);
   border-radius: $sdrm-radius;
-  background: $sdrm-white;
+  background: $sdrm-surface;
   box-shadow: $sdrm-shadow;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
@@ -47,14 +47,14 @@
 
   &--blue {
     --sdrm-feature: #{$sdrm-blue};
-    --sdrm-feature-ink: #{$sdrm-blue-ink};
+    --sdrm-feature-ink: #{$sdrm-blue};
     --sdrm-feature-tint: #{$sdrm-tint-blue};
   }
 
   &--red {
     --sdrm-feature: #{$sdrm-red};
     --sdrm-feature-ink: #{$sdrm-red-ink};
-    --sdrm-feature-tint: #{$sdrm-tint-orange};
+    --sdrm-feature-tint: #{$sdrm-tint-red};
   }
 }
 

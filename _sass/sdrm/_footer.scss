@@ -1,4 +1,4 @@
-// SDRM site footer: navy, white text, link columns and the project disclaimer.
+// SDRM site footer: deep band, white text, link columns and the project disclaimer.
 //
 //   .sdrm__footer
 //   .sdrm__footer-inner      brand + link columns
@@ -8,13 +8,12 @@
 //   .sdrm__footer-note
 
 .sdrm__footer {
-  --sdrm-focus: #{$sdrm-focus-on-dark};
-  background: $sdrm-navy;
-  color: $sdrm-white;
+  background: $sdrm-band;
+  color: $sdrm-text-strong;
   border-top: 8px solid $sdrm-orange;
 
   a {
-    color: $sdrm-white;
+    color: $sdrm-text-strong;
 
     &:hover {
       color: $sdrm-yellow;
@@ -74,8 +73,8 @@
 }
 
 .sdrm__footer-bottom {
-  border-top: 1px solid rgba($sdrm-white, 0.2);
-  background: $sdrm-navy-deep;
+  border-top: 1px solid $sdrm-line;
+  background: $sdrm-surface;
 }
 
 .sdrm__footer-note {

@@ -8,7 +8,7 @@
 //   .sdrm__header-topbar-inner
 //   .sdrm__header-cta                angled action button
 //     --orange | --blue | --red
-//   .sdrm__header-main               white bar: wordmark + nav
+//   .sdrm__header-main               raised bar: wordmark + nav
 //   .sdrm__header-main-inner
 //   .sdrm__header-brand              wordmark link
 //     -mark | -name | -tag
@@ -20,8 +20,8 @@
 .sdrm__header {
   position: relative;
   z-index: 10;
-  background: $sdrm-white;
-  box-shadow: 0 2px 0 $sdrm-line, 0 8px 24px rgba(20, 52, 90, 0.06);
+  background: $sdrm-surface;
+  box-shadow: 0 2px 0 $sdrm-line, 0 8px 24px rgba($sdrm-shade, 0.4);
 }
 
 .sdrm__header-skip {
@@ -31,21 +31,21 @@
   z-index: 20;
   padding: $sdrm-space-2 $sdrm-space-4;
   border-radius: $sdrm-radius-sm;
-  background: $sdrm-navy;
-  color: $sdrm-white;
+  background: $sdrm-band;
+  color: $sdrm-text-strong;
   font-weight: 700;
   transform: translateY(-200%);
 
   &:focus {
     --sdrm-focus: #{$sdrm-yellow};
     transform: none;
-    color: $sdrm-white;
+    color: $sdrm-text-strong;
   }
 }
 
 // Top bar
 .sdrm__header-topbar {
-  background: $sdrm-cream;
+  background: $sdrm-page-bg;
   border-bottom: 1px solid $sdrm-line;
 }
 
@@ -65,7 +65,7 @@
 
 .sdrm__header-cta {
   --sdrm-cta-fill: #{$sdrm-orange};
-  --sdrm-cta-ink: #{$sdrm-navy};
+  --sdrm-cta-ink: #{$sdrm-on-color};
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -97,23 +97,23 @@
   }
 
   &:hover::before {
-    filter: brightness(0.92);
+    filter: brightness(1.08);   // lighten: the fills carry black text
     transform: skewX(-14deg) translateY(-1px);
   }
 
   &--orange {
     --sdrm-cta-fill: #{$sdrm-orange};
-    --sdrm-cta-ink: #{$sdrm-navy};
+    --sdrm-cta-ink: #{$sdrm-on-color};
   }
 
   &--blue {
-    --sdrm-cta-fill: #{$sdrm-blue-ink};
-    --sdrm-cta-ink: #{$sdrm-white};
+    --sdrm-cta-fill: #{$sdrm-blue};
+    --sdrm-cta-ink: #{$sdrm-on-color};
   }
 
   &--red {
-    --sdrm-cta-fill: #{$sdrm-red-ink};
-    --sdrm-cta-ink: #{$sdrm-white};
+    --sdrm-cta-fill: #{$sdrm-red};
+    --sdrm-cta-ink: #{$sdrm-on-color};
   }
 
   @include bp(sm, down) {
@@ -143,11 +143,11 @@
   display: inline-flex;
   align-items: center;
   gap: $sdrm-space-3;
-  color: $sdrm-navy;
+  color: $sdrm-text-strong;
   text-decoration: none;
 
   &:hover {
-    color: $sdrm-navy;
+    color: $sdrm-text-strong;
   }
 }
 
@@ -159,7 +159,7 @@
   height: 3rem;
   border-radius: 50%;
   background: $sdrm-orange;
-  color: $sdrm-navy;
+  color: $sdrm-on-color;
 
   svg {
     width: 1.75rem;
@@ -198,10 +198,10 @@
   align-items: center;
   gap: $sdrm-space-2;
   padding: $sdrm-space-2 $sdrm-space-4;
-  border: 2px solid $sdrm-navy;
+  border: 2px solid $sdrm-text;
   border-radius: $sdrm-radius-pill;
-  background: $sdrm-white;
-  color: $sdrm-navy;
+  background: $sdrm-surface;
+  color: $sdrm-text;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -280,7 +280,7 @@
   position: relative;
   display: block;
   padding: $sdrm-space-2 $sdrm-space-4;
-  color: $sdrm-navy;
+  color: $sdrm-text;
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -302,7 +302,7 @@
 
   &:hover,
   &[aria-current="page"] {
-    color: $sdrm-navy;
+    color: $sdrm-text-strong;
 
     &::after {
       transform: scaleX(1);

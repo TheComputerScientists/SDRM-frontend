@@ -62,7 +62,7 @@
   max-width: 14rem;
   margin: 0;
   overflow: hidden;
-  color: $sdrm-navy;
+  color: $sdrm-text-strong;
   font-weight: 700;
   text-decoration: none;
   text-overflow: ellipsis;
@@ -70,7 +70,7 @@
 
   &:hover,
   &[aria-current="page"] {
-    color: $sdrm-blue-ink;
+    color: $sdrm-blue;
     text-decoration: underline;
   }
 
@@ -120,8 +120,8 @@
   padding: $sdrm-space-3 $sdrm-space-4;
   border-left: 4px solid $sdrm-red-ink;
   border-radius: $sdrm-radius-sm;
-  background: $sdrm-tint-orange;
-  color: $sdrm-red-deep;
+  background: $sdrm-tint-red;
+  color: $sdrm-text-strong;   // red text fails on a red tint; the edge and tint carry the color
 }
 
 // Password input with the Show / Hide button sitting inside its right edge
@@ -143,7 +143,7 @@
   border: 0;
   border-radius: $sdrm-radius-pill;
   background: $sdrm-tint-blue;
-  color: $sdrm-blue-deep;
+  color: $sdrm-blue;
   font-family: $sdrm-font-body;
   font-size: 0.875rem;
   font-weight: 700;
@@ -151,7 +151,8 @@
   transform: translateY(-50%);
 
   &:hover {
-    background: darken($sdrm-tint-blue, 6%);
+    background: $sdrm-blue;
+    color: $sdrm-on-color;
   }
 }
 
@@ -174,7 +175,7 @@
   code {
     padding: 0.05em 0.35em;
     border-radius: 6px;
-    background: $sdrm-white;
+    background: $sdrm-surface;
     font-family: inherit;
     font-weight: 700;
   }
@@ -188,7 +189,7 @@
   height: 3rem;
   border-radius: 50%;
   background: $sdrm-orange;
-  color: $sdrm-navy;
+  color: $sdrm-on-color;
 
   svg {
     width: 1.5rem;
@@ -237,7 +238,7 @@
   padding: $sdrm-space-4 $sdrm-space-4 0;
   border-left: 4px solid $sdrm-blue;
   border-radius: $sdrm-radius-sm;
-  background: $sdrm-tint-blue;
+  background: $sdrm-page-bg;  // darker than a tint so field errors in here stay readable
 
   // A floated legend sits inside the panel instead of on its top edge
   .sdrm__fieldset-legend {
@@ -250,7 +251,7 @@
   }
 
   .sdrm__input {
-    background-color: $sdrm-white;
+    background-color: $sdrm-surface;
   }
 }
 

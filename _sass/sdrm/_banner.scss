@@ -5,15 +5,21 @@
 //   .sdrm__banner-inner
 //   .sdrm__banner-title    the page <h1>
 //   .sdrm__banner-text     optional lead
+//
+// The palette's orange, red and blue are too bright for white text, so those tones use
+// black ink (5.1:1 or better); navy is the deep band with white text.
 
 .sdrm__banner {
-  --sdrm-focus: #{$sdrm-focus-on-dark};
-  --sdrm-banner-from: #{$sdrm-orange-deep};
-  --sdrm-banner-to: #{$sdrm-orange-mid};
-  --sdrm-banner-shape: #{$sdrm-orange};
+  --sdrm-focus: #{$sdrm-on-color};
+  --sdrm-banner-ink: #{$sdrm-on-color};
+  --sdrm-kicker-light-ink: #{$sdrm-on-color};
+  --sdrm-kicker-light-dot: #{$sdrm-on-color};
+  --sdrm-banner-from: #{$sdrm-orange};
+  --sdrm-banner-to: #{$sdrm-yellow};
+  --sdrm-banner-shape: #{$sdrm-yellow};
   position: relative;
   overflow: hidden;
-  color: $sdrm-white;
+  color: var(--sdrm-banner-ink);
   background: linear-gradient(120deg, var(--sdrm-banner-from), var(--sdrm-banner-to));
 
   // Decorative circles on the right
@@ -43,21 +49,25 @@
   }
 
   &--red {
-    --sdrm-banner-from: #{$sdrm-red-deep};
+    --sdrm-banner-from: #{$sdrm-red};
     --sdrm-banner-to: #{$sdrm-red-ink};
-    --sdrm-banner-shape: #{$sdrm-red};
+    --sdrm-banner-shape: #{$sdrm-orange};
   }
 
   &--blue {
-    --sdrm-banner-from: #{$sdrm-blue-deep};
-    --sdrm-banner-to: #{$sdrm-blue-ink};
-    --sdrm-banner-shape: #{$sdrm-blue};
+    --sdrm-banner-from: #{$sdrm-blue};
+    --sdrm-banner-to: #{$sdrm-blue-light};
+    --sdrm-banner-shape: #{$sdrm-blue-light};
   }
 
   &--navy {
-    --sdrm-banner-from: #{$sdrm-navy-deep};
-    --sdrm-banner-to: #{$sdrm-navy-soft};
-    --sdrm-banner-shape: #{$sdrm-blue-ink};
+    --sdrm-focus: #{$sdrm-focus};
+    --sdrm-banner-ink: #{$sdrm-text-strong};
+    --sdrm-kicker-light-ink: #{$sdrm-yellow};
+    --sdrm-kicker-light-dot: #{$sdrm-text-strong};
+    --sdrm-banner-from: #{$sdrm-band};
+    --sdrm-banner-to: #{$sdrm-surface-raised};
+    --sdrm-banner-shape: #{$sdrm-blue};
   }
 }
 
@@ -71,7 +81,7 @@
 .sdrm__banner-title {
   max-width: 40rem;
   margin-bottom: $sdrm-space-3;
-  color: $sdrm-white;
+  color: var(--sdrm-banner-ink);
   font-size: clamp(2.5rem, calc(3.5vw + 1.25rem), 4rem);
   font-weight: 800;
   line-height: 1.05;

@@ -1,9 +1,12 @@
 ---
 ---
 // Stylesheet for the SDRM student project pages (index.md and sdrm/*).
-// Standalone: it does not use the Open Coding Society / minima styles.
+// Standalone: it does not use the Open Coding Society / minima styles, only the class
+// color palette, which sdrm/tokens maps onto our own token names.
 // Partials live in _sass/sdrm/ and use sdrm__block-element--modifier names.
 
+@import "user-colors";
+@import "root-color-map";
 @import "sdrm/tokens";
 @import "sdrm/mixins";
 @import "sdrm/base";

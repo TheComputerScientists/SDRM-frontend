@@ -1,20 +1,21 @@
 // SDRM buttons (links or <button>).
 //
-//   .sdrm__button            pill button (navy outline by default)
-//     --orange               orange fill, navy text (5.1:1)
-//     --yellow               yellow fill, navy text (9.2:1), hero CTA
-//     --blue                 blue fill, white text (5.1:1)
-//     --red                  red-orange fill, white text (4.8:1)
-//     --outline              white with navy outline
+//   .sdrm__button            pill button (light outline on a dark fill by default)
+//     --orange               orange fill, black text (8.2:1)
+//     --yellow               yellow fill, black text (12.6:1), hero CTA
+//     --blue                 blue fill, black text (8.7:1)
+//     --red                  red fill, black text (5.1:1)
+//     --outline              dark fill with a light outline (13.1:1)
 //     --large                bigger padding and text
 //   .sdrm__actions           row of buttons
 //
-// Disabled buttons turn gray and keep readable text (7:1+).
+// Colored fills carry black text, so hover lightens them instead of darkening.
+// Disabled buttons turn gray and keep readable text (4.9:1).
 
 .sdrm__button {
-  --sdrm-btn-fill: #{$sdrm-white};
-  --sdrm-btn-ink: #{$sdrm-navy};
-  --sdrm-btn-edge: #{$sdrm-navy};
+  --sdrm-btn-fill: #{$sdrm-surface};
+  --sdrm-btn-ink: #{$sdrm-text};
+  --sdrm-btn-edge: #{$sdrm-text};
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,9 +37,9 @@
 
   &:hover {
     color: var(--sdrm-btn-ink);
-    filter: brightness(0.94);
+    filter: brightness(1.06);
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(20, 52, 90, 0.18);
+    box-shadow: 0 8px 18px rgba($sdrm-shade, 0.45);
   }
 
   &:active {
@@ -67,32 +68,32 @@
 
   &--orange {
     --sdrm-btn-fill: #{$sdrm-orange};
-    --sdrm-btn-ink: #{$sdrm-navy};
+    --sdrm-btn-ink: #{$sdrm-on-color};
     --sdrm-btn-edge: #{$sdrm-orange};
   }
 
   &--yellow {
     --sdrm-btn-fill: #{$sdrm-yellow};
-    --sdrm-btn-ink: #{$sdrm-navy};
+    --sdrm-btn-ink: #{$sdrm-on-color};
     --sdrm-btn-edge: #{$sdrm-yellow};
   }
 
   &--blue {
-    --sdrm-btn-fill: #{$sdrm-blue-ink};
-    --sdrm-btn-ink: #{$sdrm-white};
-    --sdrm-btn-edge: #{$sdrm-blue-ink};
+    --sdrm-btn-fill: #{$sdrm-blue};
+    --sdrm-btn-ink: #{$sdrm-on-color};
+    --sdrm-btn-edge: #{$sdrm-blue};
   }
 
   &--red {
-    --sdrm-btn-fill: #{$sdrm-red-ink};
-    --sdrm-btn-ink: #{$sdrm-white};
-    --sdrm-btn-edge: #{$sdrm-red-ink};
+    --sdrm-btn-fill: #{$sdrm-red};
+    --sdrm-btn-ink: #{$sdrm-on-color};
+    --sdrm-btn-edge: #{$sdrm-red};
   }
 
   &--outline {
-    --sdrm-btn-fill: #{$sdrm-white};
-    --sdrm-btn-ink: #{$sdrm-navy};
-    --sdrm-btn-edge: #{$sdrm-navy};
+    --sdrm-btn-fill: #{$sdrm-surface};
+    --sdrm-btn-ink: #{$sdrm-text};
+    --sdrm-btn-edge: #{$sdrm-text};
   }
 
   &--large {

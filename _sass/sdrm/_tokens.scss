@@ -1,38 +1,38 @@
 // SDRM design tokens: the only place colors, fonts, spacing, radii and shadows are defined.
+// Every color comes from the class palette (user-colors + root-color-map, imported first in
+// assets/css/sdrm.scss). Transparent versions are rgba(<palette color>, <alpha>) only.
 // Text/background pairs used by the components were checked for WCAG AA (ratios noted).
 
-// Brand palette (as given)
-$sdrm-cream: #FBF7F0;
-$sdrm-white: #FFFFFF;
-$sdrm-navy: #14345A;          // body text: 11.8:1 on cream
-$sdrm-orange: #F28C28;        // fills with navy text (5.1:1), borders, shapes
-$sdrm-blue: #1E9BE0;          // borders, shapes, accents only (not for white text)
-$sdrm-red: #E4572E;           // borders, shapes, accents only (not for white text)
-$sdrm-yellow: #FFD966;        // hero CTA fill with navy text (9.2:1)
+// Surfaces, darkest to lightest
+$sdrm-band: $bg-0;                  // footer, stats band, table head (deepest)
+$sdrm-page-bg: $background;         // page and plain sections
+$sdrm-surface: $gray6;              // header bar, cards, inputs, light sections
+$sdrm-surface-raised: $gray5;       // zebra rows, navy banner gradient end
+$sdrm-line: $gray4;                 // hairlines, dividers, card edges
+$sdrm-tint-gray: $gray4;            // code, disabled buttons, "full" pill
 
-// Deeper tints for text and white-on-color fills
-$sdrm-orange-ink: #A8461A;    // orange text on cream/white (5.5:1)
-$sdrm-orange-deep: #B54A17;   // white text on it (5.3:1)
-$sdrm-orange-mid: #C2531A;    // white text on it (4.6:1)
-$sdrm-blue-ink: #1272B8;      // blue text, white text on it (5.1:1)
-$sdrm-blue-deep: #0D5A93;
-$sdrm-blue-light: #5BC0F5;    // on navy (6.2:1)
-$sdrm-red-ink: #C8481F;       // red text, white text on it (4.8:1)
-$sdrm-red-deep: #9E3415;
-$sdrm-navy-deep: #0E2742;
-$sdrm-navy-soft: #1F4A7A;
-$sdrm-green-ink: #1A7A44;     // success text on white (5.4:1)
+// Text
+$sdrm-text: $white3;                // body text: 14.4:1 on page, 13.1:1 on surface
+$sdrm-text-strong: $white1;         // headings and text on the deep band (17:1+)
+$sdrm-muted: $text-muted;           // secondary text: 8.1:1 on page, 7.3:1 on surface
+$sdrm-on-color: $black1;            // text and icons on bright fills (white fails on all of them)
 
-// Neutrals
-$sdrm-muted: #4A5B70;         // secondary text (6.5:1 on cream)
-$sdrm-line: #E6DED1;          // hairlines and dividers
-$sdrm-input-border: #6B7A8C;  // form control borders (3:1+ non-text contrast)
-$sdrm-tint-orange: #FFE9D6;
-$sdrm-tint-blue: #E1F1FB;
-$sdrm-tint-yellow: #FFF4CC;
-$sdrm-tint-green: #DDF3E5;
-$sdrm-tint-gray: #EEF1F5;
-$sdrm-zebra: #F6F1E8;
+// Brand accents (fills, borders, shapes; also text on dark surfaces)
+$sdrm-orange: $orange;              // black text on it 8.2:1; as text 6.7:1 on surface
+$sdrm-blue: $accent;                // black text on it 8.7:1; as text 7.0:1 on surface
+$sdrm-blue-light: $lightBlue1;      // stats band, link hover, blue banner end
+$sdrm-red: $red;                    // black text on it 5.1:1
+$sdrm-red-ink: $dt-leaderboard;     // red text: 4.7:1 on surface, 5.1:1 on page
+$sdrm-yellow: $warn;                // black text on it 12.6:1; as text 12.6:1 on band
+$sdrm-green-ink: $green;            // success text: 4.6:1 on its tint
+$sdrm-input-border: $gray1;         // form control borders: 5.2:1 on surface
+
+// Tints (light washes behind icons and panels; never behind red text)
+$sdrm-tint-orange: rgba($orange, 0.16);
+$sdrm-tint-blue: rgba($accent, 0.16);
+$sdrm-tint-red: rgba($red, 0.14);
+$sdrm-tint-yellow: $warn-bg;        // alert panel and pill: yellow text on it 5.9:1
+$sdrm-tint-green: $green-bg;        // success panel and pill
 
 // Typography
 $sdrm-font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
@@ -56,12 +56,14 @@ $sdrm-max-width: 1200px;
 $sdrm-gutter: 1.25rem;
 
 // Shape and depth
+// Shadows barely show on a dark page, so raised panels also get a 1px edge.
+$sdrm-shade: $black1;
 $sdrm-radius-sm: 10px;
 $sdrm-radius: 20px;
 $sdrm-radius-lg: 32px;
 $sdrm-radius-pill: 999px;
-$sdrm-shadow: 0 10px 30px rgba(20, 52, 90, 0.08), 0 2px 6px rgba(20, 52, 90, 0.06);
-$sdrm-shadow-lift: 0 18px 40px rgba(20, 52, 90, 0.14), 0 4px 10px rgba(20, 52, 90, 0.08);
+$sdrm-shadow: 0 0 0 1px $sdrm-line, 0 10px 30px rgba($sdrm-shade, 0.35);
+$sdrm-shadow-lift: 0 0 0 1px $sdrm-line, 0 18px 40px rgba($sdrm-shade, 0.55);
 
 // Breakpoints (used through the `bp` mixin)
 $sdrm-breakpoints: (
@@ -70,6 +72,5 @@ $sdrm-breakpoints: (
   lg: 1024px
 );
 
-// Focus ring
-$sdrm-focus: $sdrm-blue-ink;
-$sdrm-focus-on-dark: $sdrm-yellow;
+// Focus ring (bright fills set --sdrm-focus to $sdrm-on-color)
+$sdrm-focus: $sdrm-blue;    // 7.0:1+ on every dark surface

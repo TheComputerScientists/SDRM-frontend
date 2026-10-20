@@ -10,7 +10,7 @@
   padding: $sdrm-space-5 $sdrm-space-6;
   border-left: 6px solid $sdrm-orange;
   border-radius: $sdrm-radius-sm;
-  background: $sdrm-white;
+  background: $sdrm-surface;
   box-shadow: $sdrm-shadow;
 
   > :last-child {
@@ -19,7 +19,7 @@
 
   .sdrm__card & {
     box-shadow: none;
-    background: $sdrm-cream;
+    background: $sdrm-page-bg;
   }
 
   &--empty {
@@ -28,7 +28,7 @@
     padding: $sdrm-space-7 $sdrm-space-6;
     border: 2px dashed $sdrm-orange;
     border-radius: $sdrm-radius;
-    background: $sdrm-cream;
+    background: $sdrm-page-bg;
     box-shadow: none;
     text-align: center;
 
@@ -46,7 +46,7 @@
   margin: 0 auto $sdrm-space-4;
   border-radius: 50%;
   background: $sdrm-tint-orange;
-  color: $sdrm-orange-ink;
+  color: $sdrm-orange;
 
   svg {
     width: 2rem;

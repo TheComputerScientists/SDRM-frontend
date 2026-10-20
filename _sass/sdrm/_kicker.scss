@@ -2,7 +2,9 @@
 //
 //   .sdrm__kicker            centered, dots on both sides
 //     --start                left aligned, dots after the text only
-//     --light                for dark/colored backgrounds (yellow text and dots)
+//     --light                for the deep band (yellow text and dots); bright fills such as the
+//                            hero and banners switch it to black by setting --sdrm-kicker-light-ink
+//                            and --sdrm-kicker-light-dot
 
 .sdrm__kicker {
   display: flex;
@@ -10,7 +12,7 @@
   justify-content: center;
   gap: $sdrm-space-3;
   margin: 0 0 $sdrm-space-3;
-  color: $sdrm-orange-ink;
+  color: $sdrm-orange;
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -42,14 +44,16 @@
   }
 
   &--light {
-    color: $sdrm-yellow;
+    --sdrm-kicker-ink: var(--sdrm-kicker-light-ink, #{$sdrm-yellow});
+    --sdrm-kicker-dot: var(--sdrm-kicker-light-dot, #{$sdrm-text-strong});
+    color: var(--sdrm-kicker-ink);
 
     &::before,
     &::after {
       background:
-        radial-gradient(circle, $sdrm-yellow 3.5px, transparent 4px) 0 50% / 0.5rem 0.5rem no-repeat,
-        radial-gradient(circle, $sdrm-white 3px, transparent 3.5px) 0.875rem 50% / 0.5rem 0.5rem no-repeat,
-        radial-gradient(circle, $sdrm-yellow 2.5px, transparent 3px) 1.75rem 50% / 0.5rem 0.5rem no-repeat;
+        radial-gradient(circle, var(--sdrm-kicker-ink) 3.5px, transparent 4px) 0 50% / 0.5rem 0.5rem no-repeat,
+        radial-gradient(circle, var(--sdrm-kicker-dot) 3px, transparent 3.5px) 0.875rem 50% / 0.5rem 0.5rem no-repeat,
+        radial-gradient(circle, var(--sdrm-kicker-ink) 2.5px, transparent 3px) 1.75rem 50% / 0.5rem 0.5rem no-repeat;
     }
   }
 }

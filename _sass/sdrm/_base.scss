@@ -8,7 +8,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  background-color: $sdrm-cream;
+  background-color: $sdrm-page-bg;
   scroll-behavior: smooth;
 
   @media (prefers-reduced-motion: reduce) {
@@ -18,8 +18,8 @@ html {
 
 body {
   margin: 0;
-  background-color: $sdrm-cream;
-  color: $sdrm-navy;
+  background-color: $sdrm-page-bg;
+  color: $sdrm-text;
   font-family: $sdrm-font-body;
   font-size: $sdrm-font-size;
   line-height: $sdrm-line-height;
@@ -36,7 +36,7 @@ h3,
 h4 {
   @include display;
   margin: 0 0 $sdrm-space-4;
-  color: $sdrm-navy;
+  color: $sdrm-text-strong;
 }
 
 h1 { font-size: clamp(2.25rem, calc(4vw + 1rem), 3.5rem); }
@@ -58,12 +58,12 @@ svg {
 }
 
 a {
-  color: $sdrm-blue-ink;
+  color: $sdrm-blue;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 
   &:hover {
-    color: $sdrm-blue-deep;
+    color: $sdrm-blue-light;
   }
 }
 
@@ -93,7 +93,7 @@ textarea {
 
 ::selection {
   background: $sdrm-yellow;
-  color: $sdrm-navy;
+  color: $sdrm-on-color;
 }
 
 // <main> is a skip-link target; it should not show a ring when focused that way.

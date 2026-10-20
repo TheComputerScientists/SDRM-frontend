@@ -1,4 +1,4 @@
-// SDRM home hero: full-width orange gradient band.
+// SDRM home hero: full-width orange band with a yellow glow behind the image.
 //
 //   .sdrm__hero
 //   .sdrm__hero-inner      two columns from 768px
@@ -7,17 +7,19 @@
 //   .sdrm__hero-media      soft circle behind the image
 //   .sdrm__hero-image      rounded placeholder image
 //
-// White text sits on the deeper left side of the gradient (4.6:1 or better);
-// the bright brand orange is used only behind the image.
+// White text fails on the palette orange (2.6:1), so the hero uses black ink (8.2:1 or better
+// everywhere on the band, since the glow only makes it lighter).
 
 .sdrm__hero {
-  --sdrm-focus: #{$sdrm-focus-on-dark};
+  --sdrm-focus: #{$sdrm-on-color};
+  --sdrm-kicker-light-ink: #{$sdrm-on-color};
+  --sdrm-kicker-light-dot: #{$sdrm-on-color};
   position: relative;
   overflow: hidden;
-  color: $sdrm-white;
+  color: $sdrm-on-color;
   background:
-    radial-gradient(circle at 88% 30%, rgba($sdrm-orange, 0.9) 0, rgba($sdrm-orange, 0) 42%),
-    linear-gradient(120deg, $sdrm-orange-deep 0%, $sdrm-orange-mid 60%, $sdrm-orange-mid 100%);
+    radial-gradient(circle at 88% 30%, rgba($sdrm-yellow, 0.55) 0, rgba($sdrm-yellow, 0) 42%),
+    $sdrm-orange;
 
   // Large decorative ring in the corner
   &::after {
@@ -49,7 +51,7 @@
 
 .sdrm__hero-title {
   margin-bottom: $sdrm-space-5;
-  color: $sdrm-white;
+  color: $sdrm-on-color;
   font-size: clamp(2.75rem, calc(5vw + 1.25rem), 4.75rem);
   font-weight: 800;
   line-height: 1.02;
@@ -90,7 +92,7 @@
 .sdrm__hero-image {
   position: relative;
   width: 100%;
-  border: 6px solid $sdrm-white;
+  border: 6px solid $sdrm-surface;
   border-radius: $sdrm-radius-lg;
-  box-shadow: 0 24px 50px rgba(14, 39, 66, 0.3);
+  box-shadow: 0 24px 50px rgba($sdrm-shade, 0.3);
 }

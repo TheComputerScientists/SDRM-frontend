@@ -26,7 +26,7 @@
     background-color: $sdrm-orange;
   }
 
-  // navy check mark drawn with two borders
+  // dark check mark drawn with two borders
   &::after {
     content: "";
     position: absolute;
@@ -34,7 +34,7 @@
     top: 0.47rem;
     width: 0.45rem;
     height: 0.75rem;
-    border: solid $sdrm-navy;
+    border: solid $sdrm-on-color;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }

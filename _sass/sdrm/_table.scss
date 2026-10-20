@@ -1,4 +1,4 @@
-// SDRM table: navy header row and zebra-striped body.
+// SDRM table: deep header row and zebra-striped body.
 //
 //   .sdrm__table-wrap        scrolls sideways inside itself if a table is too wide
 //   .sdrm__table
@@ -23,8 +23,8 @@
   }
 
   thead th {
-    background: $sdrm-navy;
-    color: $sdrm-white;
+    background: $sdrm-band;
+    color: $sdrm-text-strong;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -32,11 +32,11 @@
   }
 
   tbody tr:nth-child(even) {
-    background: $sdrm-zebra;
+    background: $sdrm-surface-raised;
   }
 
   tbody tr:nth-child(odd) {
-    background: $sdrm-white;
+    background: $sdrm-surface;
   }
 
   tbody td:last-child {

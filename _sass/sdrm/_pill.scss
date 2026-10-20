@@ -17,19 +17,19 @@
   padding: 0.2rem 0.75rem;
   border-radius: $sdrm-radius-pill;
   background: $sdrm-tint-blue;
-  color: $sdrm-navy;
+  color: $sdrm-text;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.5;
 
   &--success {
     background: $sdrm-tint-green;
-    color: #145F35;
+    color: $sdrm-green-ink;
   }
 
   &--alert {
     background: $sdrm-tint-yellow;
-    color: #7A3A00;
+    color: $sdrm-yellow;
   }
 
   &--full {
