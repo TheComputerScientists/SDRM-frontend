@@ -72,7 +72,7 @@
     background: transparent;
 
     &:nth-child(3n + 2) { --sdrm-stat-ink: #{$sdrm-blue-light}; }  // 9.8:1
-    &:nth-child(3n + 3) { --sdrm-stat-ink: #{$sdrm-yellow}; }      // 12.6:1
+    &:nth-child(3n + 3) { --sdrm-stat-ink: #{$sdrm-yellow}; }      // 8.8:1
   }
 
   .sdrm__stat + .sdrm__stat {

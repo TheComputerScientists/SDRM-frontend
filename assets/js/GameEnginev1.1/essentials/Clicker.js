@@ -23,7 +23,7 @@ class Clicker extends Npc {
         if (this.visible &&this.drawCounter && this.ctx && this.canvas) {
             this.ctx.save();
             this.ctx.font = 'bold 32px Arial';
-            this.ctx.fillStyle = 'yellow';
+            this.ctx.fillStyle = '#5691cd';
             this.ctx.textAlign = 'center';
             this.ctx.textBaseline = 'middle';
             // Center of the box

@@ -66,7 +66,7 @@ class GameLevelDesert {
        INIT_POSITION: { x: 0.6, y: 0.6 },  // 60% from left, 60% from top
        width: 40,
        height: 70,
-       color: '#FFD700',
+       color: '#5691cd',
        hitbox: { widthPercentage: 0.0, heightPercentage: 0.0 },
        zIndex: 12,
        value: 1

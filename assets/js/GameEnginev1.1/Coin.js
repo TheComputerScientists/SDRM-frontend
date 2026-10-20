@@ -22,7 +22,7 @@ class Coin extends Npc {
 		this.collectCount = 0;
 		this.collected = false;
 		this.collectCooldownUntil = 0;
-		this.color = data?.color || '#FFD700';
+		this.color = data?.color || '#5691cd';
 		
 		// Set zIndex if provided
 		if (data?.zIndex) {
@@ -56,7 +56,7 @@ class Coin extends Npc {
 		this.ctx.fill();
 		
 		// Add a border to make it more visible
-		this.ctx.strokeStyle = '#B8860B'; // Dark gold
+		this.ctx.strokeStyle = '#5691cd'; // Blue accent
 		this.ctx.lineWidth = 2;
 		this.ctx.stroke();
 		

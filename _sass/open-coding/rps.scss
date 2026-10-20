@@ -9,8 +9,8 @@
           --purple: #a855f7;        /* medium purple */
           --blue: #3b82f6;          /* bright blue */
           --brown: #92400e;         /* warm brown */
-          --light-yellow: #fef08a;  /* light yellow */
-          --warn: #fbbf24;          /* golden yellow */
+          --light-yellow: #80bbff;  /* light accent */
+          --warn: #5691cd;          /* blue accent */
           --danger: #ef4444;        /* modern red */
           --ok: #10b981;            /* fresh green */
           --ring: rgba(124,58,237,.4);
@@ -99,8 +99,8 @@
           margin: 1rem 0;
         }
         .callout--warn{ 
-          border-color: rgba(251,191,36,.5); 
-          background: linear-gradient(135deg, rgba(254,240,138,.18), rgba(251,191,36,.08));
+          border-color: rgba(86,145,205,.5);
+          background: linear-gradient(135deg, rgba(128,187,255,.18), rgba(86,145,205,.08));
           color: var(--text);
         }
         .callout--ok{ 
@@ -157,7 +157,7 @@
           padding: .25rem .6rem; border-radius: 999px; font-size: .85rem; font-weight: 600;
           background: rgba(16,185,129,.25); color: #6ee7b7; border: 1px solid rgba(16,185,129,.4);
         }
-        .badge--warn{ background: rgba(254,240,138,.25); color: var(--light-yellow); border-color: rgba(251,191,36,.4); }
+        .badge--warn{ background: rgba(86,145,205,.25); color: var(--light-yellow); border-color: rgba(86,145,205,.4); }
         .badge--danger{ background: rgba(255,107,107,.2); color: #fca5a5; border-color: rgba(255,107,107,.4); }
         .badge--pink{ background: rgba(244,114,182,.25); color: var(--pink); border-color: rgba(244,114,182,.4); }
         .badge--purple{ background: rgba(168,85,247,.25); color: var(--purple); border-color: rgba(168,85,247,.4); }
@@ -240,8 +240,8 @@
           border-color: rgba(59,130,246,.5);
         }
         .btn--yellow{
-          background: linear-gradient(135deg, rgba(254,240,138,.3), rgba(251,191,36,.25));
-          border-color: rgba(251,191,36,.5);
+          background: linear-gradient(135deg, rgba(128,187,255,.3), rgba(86,145,205,.25));
+          border-color: rgba(86,145,205,.5);
           color: #1f2937;
         }
 

@@ -259,7 +259,7 @@ class GameLevelMinesweeper {
         this.ctx.fillRect(0, 0, this.width, this.height);
 
         // Draw sun
-        this.ctx.fillStyle = '#FFD700';
+        this.ctx.fillStyle = '#5691cd';
         this.ctx.beginPath();
         this.ctx.arc(100, 100, 40, 0, Math.PI * 2);
         this.ctx.fill();
@@ -364,7 +364,7 @@ class GameLevelMinesweeper {
         if (this.gameOver) {
             this.ctx.fillStyle = 'rgba(139, 69, 19, 0.7)';  // Semi-transparent saddle brown
             this.ctx.fillRect(0, 0, this.width, this.height);
-            this.ctx.fillStyle = '#FFD700';  // Gold color
+            this.ctx.fillStyle = '#5691cd';  // Gold color
             this.ctx.font = 'bold 30px Arial';
             this.ctx.textAlign = 'center';
             this.ctx.textBaseline = 'middle';
@@ -389,7 +389,7 @@ class GameLevelMinesweeper {
             const buttonX = this.width/2 - buttonWidth/2;
             const buttonY = this.height/2 + 80;
             this.ctx.fillRect(buttonX, buttonY, buttonWidth, buttonHeight);
-            this.ctx.fillStyle = '#FFD700';  // Gold color
+            this.ctx.fillStyle = '#5691cd';  // Gold color
             this.ctx.font = '20px Arial';
             this.ctx.fillText('Play Again', this.width/2, buttonY + buttonHeight/2);
         }
@@ -409,7 +409,7 @@ class GameLevelMinesweeper {
             '#CD853F', // 3: Peru
             '#D2691E', // 4: Chocolate
             '#8B0000', // 5: Dark red
-            '#B8860B', // 6: Dark goldenrod
+            '#5691cd', // 6: Dark goldenrod
             '#DAA520', // 7: Goldenrod
             '#BDB76B'  // 8: Dark khaki
         ];

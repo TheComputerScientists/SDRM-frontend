@@ -15,7 +15,7 @@ class FloorItem {
         style.textContent = `
             .floor-item {
                 background: rgba(0, 0, 0, 0.7);
-                border: 2px solid gold;
+                border: 2px solid #5691cd;
                 border-radius: 8px;
                 padding: 10px;
                 cursor: pointer;

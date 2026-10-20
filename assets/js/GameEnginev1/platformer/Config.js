@@ -94,7 +94,7 @@ const CONFIG = {
         SPEED: 30,
         DAMAGE: 1,
         MAX_DISTANCE: 2000, // Maximum travel distance
-        COLOR: "#FFD700" // Gold color
+        COLOR: "#5691cd" // Gold color
     },
     
     // Enemy settings
