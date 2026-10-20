@@ -46,6 +46,8 @@ future: true
 #   quiet_deps: true
 #   silence_deprecations: [import]
 incremental: true
+exclude:
+  - ven
 
 remote_theme: jekyll/minima
 plugins:
