@@ -1,0 +1,59 @@
+[33mcommit 965d4b95642c135794b0e5df1adcf37df1105565[m
+Author: Aaravnadar <aaravnad@gmail.com>
+Date:   Tue Oct 20 14:15:09 2026 -0700
+
+    yellow
+
+ _includes/slim_sidebar.html                              |  2 [32m+[m[31m-[m
+ _layouts/dashboard.html                                  |  2 [32m+[m[31m-[m
+ _projects/games/castle-game/levels/BossScythe.js         |  2 [32m+[m[31m-[m
+ _projects/games/castle-game/levels/SpriteSheetCoin.js    |  2 [32m+[m[31m-[m
+ _projects/games/castle-game/levels/SuperScythe.js        | 14 [32m+++++++[m[31m-------[m
+ _projects/games/castle-game/levels/UltraScythe.js        |  2 [32m+[m[31m-[m
+ _projects/games/gamify/levels/GameLevelDesert.js         |  2 [32m+[m[31m-[m
+ _projects/games/gamify/levels/GameLevelEnd.js            |  4 [32m++[m[31m--[m
+ _projects/games/gamify/levels/GameLevelOverworld.js      |  4 [32m++[m[31m--[m
+ _projects/games/gamify/levels/PlatformerMini.js          |  4 [32m++[m[31m--[m
+ _projects/games/red-riding/levels/Bullet.js              |  2 [32m+[m[31m-[m
+ _projects/games/red-riding/levels/level1.js              |  4 [32m++[m[31m--[m
+ _sass/open-coding/documentation.scss                     |  2 [32m+[m[31m-[m
+ _sass/open-coding/elements/status-indicators/common.scss |  2 [32m+[m[31m-[m
+ _sass/open-coding/forms/leaderboard.scss                 |  2 [32m+[m[31m-[m
+ _sass/open-coding/hacks.scss                             |  2 [32m+[m[31m-[m
+ _sass/open-coding/natm-2025-tri1.scss                    | 14 [32m+++++++[m[31m-------[m
+ _sass/open-coding/pixel-submit-widget.scss               |  6 [32m+++[m[31m---[m
+ _sass/open-coding/rps.scss                               | 14 [32m+++++++[m[31m-------[m
+ _sass/open-coding/rps_lesson.scss                        |  2 [32m+[m[31m-[m
+ _sass/open-coding/theme/legacy/root-color-map.scss       |  4 [32m++[m[31m--[m
+ _sass/open-coding/theme/legacy/user-colors.scss          |  2 [32m+[m[31m-[m
+ _sass/open-coding/timeline.scss                          |  8 [32m++++[m[31m----[m
+ _sass/sdrm/_button.scss                                  |  2 [32m+[m[31m-[m
+ _sass/sdrm/_stats.scss                                   |  2 [32m+[m[31m-[m
+ _sass/sdrm/_tokens.scss                                  |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1.1/Coin.js                         |  4 [32m++[m[31m--[m
+ assets/js/GameEnginev1.1/FinTech.js                      | 30 [32m++++++++++++++[m[31m---------------[m
+ assets/js/GameEnginev1.1/FloorItem.js                    |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1.1/GameLevelDesert.js              |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1.1/GameLevelEnd.js                 |  4 [32m++[m[31m--[m
+ assets/js/GameEnginev1.1/GameLevelMeteorBlaster.js       | 10 [32m+++++[m[31m-----[m
+ assets/js/GameEnginev1.1/GameLevelMinesweeper.js         |  8 [32m++++[m[31m----[m
+ assets/js/GameEnginev1.1/GameLevelOverworld.js           |  4 [32m++[m[31m--[m
+ assets/js/GameEnginev1.1/Inventory.js                    | 58 [32m++++++++++++++++++++++++++++[m[31m----------------------------[m
+ assets/js/GameEnginev1.1/MarketEvents.js                 |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1.1/PlatformerMini.js               |  4 [32m++[m[31m--[m
+ assets/js/GameEnginev1.1/essentials/Clicker.js           |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1.1/essentials/DialogBox.js         |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1/DialogBox.js                      |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1/FinTech.js                        | 30 [32m++++++++++++++[m[31m---------------[m
+ assets/js/GameEnginev1/FloorItem.js                      |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1/GameLevelEnd.js                   |  4 [32m++[m[31m--[m
+ assets/js/GameEnginev1/GameLevelMeteorBlaster.js         | 10 [32m+++++[m[31m-----[m
+ assets/js/GameEnginev1/GameLevelMinesweeper.js           |  8 [32m++++[m[31m----[m
+ assets/js/GameEnginev1/GameLevelOverworld.js             |  4 [32m++[m[31m--[m
+ assets/js/GameEnginev1/Inventory.js                      | 58 [32m++++++++++++++++++++++++++++[m[31m----------------------------[m
+ assets/js/GameEnginev1/MarketEvents.js                   |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1/platformer/Config.js              |  2 [32m+[m[31m-[m
+ assets/js/GameEnginev1/platformer/Projectile.js          |  2 [32m+[m[31m-[m
+ assets/js/ocs-analytics-dashboard.js                     |  4 [32m++[m[31m--[m
+ grade-predictor.html                                     |  2 [32m+[m[31m-[m
+ 52 files changed, 185 insertions(+), 185 deletions(-)
