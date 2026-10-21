@@ -136,7 +136,7 @@ class GameLevelRedRidingHood1 {
                     })
                     .catch(() => {
                         this.successElement.querySelector('#inputArea').style.display = 'none';
-                        finalBtn.disabled = false; finalBtn.style.background = "#5691cd";
+                        finalBtn.disabled = false; finalBtn.style.background = "#ffc107"; 
                         finalBtn.innerHTML = "CONTINUE →";
                     });
             }

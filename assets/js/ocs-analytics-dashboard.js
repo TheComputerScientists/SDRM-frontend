@@ -147,7 +147,7 @@ export async function initOCSAnalyticsDashboard(pythonURI, javaURI, fetchOptions
                     <div class="bg-neutral-800 border border-neutral-700 rounded-lg p-6">
                         <div class="flex items-start justify-between mb-2">
                             <h3 class="text-neutral-300 font-medium">Average Accuracy</h3>
-                            <span class="text-blue-400">✅</span>
+                            <span class="text-yellow-400">✅</span>
                         </div>
                         <div class="text-3xl font-bold text-white">${(summary.averageAccuracyPercentage || 0).toFixed(1)}%</div>
                         <p class="text-xs text-neutral-500 mt-2">on assessments</p>
@@ -275,7 +275,7 @@ export async function initOCSAnalyticsDashboard(pythonURI, javaURI, fetchOptions
                     </div>
                     <div class="bg-neutral-800 border border-neutral-700 rounded-lg p-6">
                         <h3 class="text-neutral-300 text-sm font-medium mb-2">Status</h3>
-                        <div class="text-xl font-bold ${questData.questCompleted ? 'text-green-400' : 'text-blue-400'}">
+                        <div class="text-xl font-bold ${questData.questCompleted ? 'text-green-400' : 'text-yellow-400'}">
                             ${questData.questCompleted ? '✓ Completed' : 'In Progress'}
                         </div>
                     </div>

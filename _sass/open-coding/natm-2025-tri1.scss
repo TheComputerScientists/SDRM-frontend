@@ -16,7 +16,7 @@
 
 .museum-subtitle {
  text-align: center;
- color: #5691cd;
+ color: #b8860b;
  font-style: italic;
  margin-bottom: 3rem;
 }
@@ -34,7 +34,7 @@
 
 .exhibit-card {
  background: rgba(255, 255, 255, 0.1);
- border: 2px solid #5691cd;
+ border: 2px solid #b8860b;
  border-radius: 15px;
  padding: 2rem;
  position: relative;
@@ -79,7 +79,7 @@
 .exhibit-card:hover {
  transform: translateY(-10px);
  box-shadow: 0 15px 40px rgba(184, 134, 11, 0.3);
- border-color: #5691cd;
+ border-color: #ffd700;
 }
 
 
@@ -91,7 +91,7 @@
 
 
 .exhibit-title {
- color: #5691cd;
+ color: #ffd700;
  font-size: 1.5rem;
  margin-bottom: 1rem;
  text-align: center;
@@ -108,7 +108,7 @@
 
 .exhibit-link {
  display: block;
- background: linear-gradient(45deg, #5691cd, #5691cd);
+ background: linear-gradient(45deg, #b8860b, #ffd700);
  color: #1a1a2e;
  text-decoration: none;
  padding: 0.8rem 1.5rem;
@@ -120,7 +120,7 @@
 
 
 .exhibit-link:hover {
- background: linear-gradient(45deg, #5691cd, #80bbff);
+ background: linear-gradient(45deg, #ffd700, #ffed4e);
  transform: scale(1.05);
  color: #1a1a2e;
  text-decoration: none;
@@ -129,7 +129,7 @@
 
 .closing-message {
  text-align: center;
- color: #5691cd;
+ color: #b8860b;
  font-style: italic;
  margin-top: 3rem;
  font-size: 1.1rem;

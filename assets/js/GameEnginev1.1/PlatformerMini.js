@@ -789,13 +789,13 @@ class PlatformerMini {
             );
           } catch (error) {
             console.warn('Failed to draw collectible image:', error);
-            this.ctx.fillStyle = '#5691cd';
+            this.ctx.fillStyle = 'gold';
             this.ctx.beginPath();
             this.ctx.arc(this.canvas.width / 2 - 120, this.groundY - 90, 20, 0, Math.PI * 2);
             this.ctx.fill();
           }
         } else {
-          this.ctx.fillStyle = '#5691cd';
+          this.ctx.fillStyle = 'gold';
           this.ctx.beginPath();
           this.ctx.arc(this.canvas.width / 2 - 120, this.groundY - 90, 20, 0, Math.PI * 2);
           this.ctx.fill();

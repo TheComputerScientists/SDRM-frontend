@@ -14,12 +14,12 @@
 #   in _config.yml. It will appear in your document head meta (for Google search
 #   results) and in your feed.xml site description.
 
-title: SDRM Student Project
-description: "A student-built site inspired by the San Diego Rescue Mission. Not affiliated."
+title: Open Coding 
+description: "Class of 2026"
 owner_name: John Mortensen
 github_username: jm1021 
-github_repo: "SDRM-frontend"
-baseurl: "/SDRM-frontend"
+github_repo: "portfolio" 
+baseurl: "/portfolio" 
 future: true
 
 # Build settings
@@ -46,8 +46,6 @@ future: true
 #   quiet_deps: true
 #   silence_deprecations: [import]
 incremental: true
-exclude:
-  - ven
 
 remote_theme: jekyll/minima
 plugins:
@@ -112,32 +110,5 @@ minima:
     - { platform: x, user_url: "https://x.com/Open_Coding" }
     - { platform: youtube, user_url: "https://www.youtube.com/@OpenCodingSociety" } 
   nav_pages:
-    - sdrm/get-help.html
-    - sdrm/give.html
-    - sdrm/volunteer.html
-    - sdrm/about.html
     - navigation/search.md
     - navigation/about.md
-
-# SDRM top menu (_includes/sdrm/header.html), the SDRM version of `minima: nav_pages`.
-# One entry per link, in order; the Log in / My profile link is always added at the end.
-#   title  link text
-#   url    site path, without the baseurl
-#   role   optional. Only users with this role (or admins) see the link; hidden by default
-#          and shown by assets/js/sdrm/account.js. The backend still guards the page itself.
-# Jekyll only reads this file on start, so restart `make` after editing it.
-sdrm:
-  nav_pages:
-    - title: Home
-      url: /
-    - title: Get Help Now
-      url: /sdrm/get-help/
-    - title: Ways to Give
-      url: /sdrm/give/
-    - title: Volunteer
-      url: /sdrm/volunteer/
-    - title: About
-      url: /sdrm/about/
-    - title: Coordinator
-      url: /sdrm/coordinator/
-      role: coordinator

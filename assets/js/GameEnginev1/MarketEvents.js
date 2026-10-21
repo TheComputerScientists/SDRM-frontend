@@ -100,7 +100,7 @@ class MarketEvents {
                 npcEffect: {
                     speed: 0.9, // NPCs move slightly slower
                     serious: true, // NPCs look serious
-                    color: "#5691cd" // NPCs turn blue
+                    color: "gold" // NPCs turn gold
                 }
             },
             visualEffect: "gold_flash",

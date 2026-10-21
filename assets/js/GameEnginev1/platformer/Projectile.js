@@ -29,7 +29,7 @@ class Projectile {
         this.damage = CONFIG.PROJECTILE.DAMAGE;
         
         // Visual properties
-        this.color = CONFIG.PROJECTILE.COLOR || "#5691cd"; // Gold color
+        this.color = CONFIG.PROJECTILE.COLOR || "#FFD700"; // Gold color
         this.trailParticles = [];
         
         // State

@@ -38,7 +38,7 @@ class Bullet {
     ctx.save(); 
     
     // Set styles
-    ctx.fillStyle = '#5691cd';
+    ctx.fillStyle = 'yellow';
     ctx.strokeStyle = 'orange';
     ctx.lineWidth = 3;
 

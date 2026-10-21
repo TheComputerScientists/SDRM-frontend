@@ -468,7 +468,7 @@ class GameLevelMeteorBlaster {
     this.scoreElement.style.gap = "20px"
     this.scoreElement.style.alignItems = "center"
     this.scoreElement.innerHTML = `
-      <span style="color: #5691cd">Score: ${this.score}</span>
+      <span style="color: #FFD700">Score: ${this.score}</span>
       <span style="color: #00FF00">Questions: ${this.questionsAnswered}/${this.totalQuestions}</span>
     `
 
@@ -515,7 +515,7 @@ class GameLevelMeteorBlaster {
     const scoreElement = document.getElementById("meteor-score")
     if (scoreElement) {
       scoreElement.innerHTML = `
-        <span style="color: #5691cd">Score: ${this.score}</span>
+        <span style="color: #FFD700">Score: ${this.score}</span>
         <span style="color: #00FF00">Questions: ${this.questionsAnswered}/${this.totalQuestions}</span>
       `
       console.log("Display updated - Score:", this.score, "Questions:", this.questionsAnswered, "Total:", this.totalQuestions)
@@ -649,16 +649,16 @@ class GameLevelMeteorBlaster {
     keyMsg.style.top = "50%"
     keyMsg.style.left = "50%"
     keyMsg.style.transform = "translate(-50%, -50%)"
-    keyMsg.style.color = "#5691cd"
+    keyMsg.style.color = "#FFD700"
     keyMsg.style.fontSize = "36px"
     keyMsg.style.fontWeight = "bold"
     keyMsg.style.textAlign = "center"
     keyMsg.style.zIndex = "1000"
-    keyMsg.style.textShadow = "0 0 10px #5691cd"
+    keyMsg.style.textShadow = "0 0 10px #FFD700"
     keyMsg.style.backgroundColor = "rgba(0, 0, 0, 0.8)"
     keyMsg.style.padding = "20px"
     keyMsg.style.borderRadius = "10px"
-    keyMsg.style.border = "2px solid #5691cd"
+    keyMsg.style.border = "2px solid #FFD700"
     keyMsg.innerHTML = `
       🎉 CONGRATULATIONS! 🎉<br>
       You've earned the key!<br>

@@ -227,7 +227,7 @@ class UltraScythe extends Enemy {
                 explosion.style.top = y + 'px';
                 explosion.style.width = '50px';
                 explosion.style.height = '50px';
-                explosion.style.background = `radial-gradient(circle, #5691cd, #ff00ff, #00ffff)`;
+                explosion.style.background = `radial-gradient(circle, #ffd700, #ff00ff, #00ffff)`;
                 explosion.style.borderRadius = '50%';
                 explosion.style.transform = 'translate(-50%, -50%)';
                 explosion.style.pointerEvents = 'none';

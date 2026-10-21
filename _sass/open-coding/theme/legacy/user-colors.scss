@@ -6,22 +6,22 @@
 // PRIMARY COLORS
 // =============================================================================
 
-$background: #181818;
+$background: #121212;
 $black1: rgba(0, 0, 0, 1);
-$blue1: #5691cd;
-$blueShadow1: #80bbff;
-$gradient1: linear-gradient(120deg, #181818 45%, #222222);
-$gray1: #a6a6a6;
-$gray2: #959595;
-$gray3: #858585;
-$gray4: #323232;
-$gray5: #222222;
-$gray6: #1c1c1c;
-$green1: #4ec64e;
-$lightBlue1: #80bbff;
+$blue1: #007aff;
+$blueShadow1: #2196f3;
+$gradient1: linear-gradient(120deg, #1e1e1e 45%, #2a2a2a);
+$gray1: rgba(142, 142, 147, 1);
+$gray2: rgba(99, 99, 102, 1);
+$gray3: rgba(72, 72, 74, 1);
+$gray4: rgba(58, 58, 60, 1);
+$gray5: rgba(44, 44, 46, 1);
+$gray6: rgba(28, 28, 30, 1);
+$green1: #34c759;
+$lightBlue1: rgba(75, 186, 255, 1);
 $white1: rgba(255, 255, 255, 1);
 $white2: rgba(white, 0.87);
-$white3: #bbbbbb;
+$white3: rgba(225, 225, 230, 1);
 
 // =============================================================================
 // ADDITIONAL COLORS (Auto-discovered from your SCSS)
@@ -48,16 +48,3 @@ $game-overlay: rgba(13, 13, 26, 0.72);
 $game-panel-selected-bg: #2a2a4a;
 $game-selected-border: #7effff;
 $game-score-accent: #f59e0b;
-
-// Reference course theme overrides. These roles are defined in the generated
-// root color map, then reassigned here so this remains the editable palette.
-$accent: #5691cd;
-$accent-700: #3c90f5;
-$accent-700-hover: #80bbff;
-$orange: #5691cd;
-$red: #d85a5a;
-$teal: #11a69f;
-$text: #959595;
-$text-muted: #858585;
-$warn: #5691cd;
-$warn-bg: #373730;

@@ -808,7 +808,7 @@ import { javaURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.j
 
         // Show a small status line under the title
         if (!studentEvalData) {
-            modalTitle.innerHTML += `<br><span class="text-xs text-blue-400 font-normal">Student has not self-evaluated yet.</span>`;
+            modalTitle.innerHTML += `<br><span class="text-xs text-yellow-500 font-normal">Student has not self-evaluated yet.</span>`;
         } else {
             modalTitle.innerHTML += `<br><span class="text-xs text-green-400 font-normal">Student self-evaluation loaded.</span>`;
         }

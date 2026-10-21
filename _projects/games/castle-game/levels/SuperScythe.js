@@ -68,7 +68,7 @@ class SuperScythe extends Enemy {
         this.spriteSheet.src = path + "/images/mansionGame/scythe.png";
 
         // Visual distinction - golden/white rainbow glow
-        this.glowColor = '#5691cd';
+        this.glowColor = '#ffd700';
 
         // Enhanced pulsing effect
         this.pulseTimer = 0;
@@ -247,7 +247,7 @@ class SuperScythe extends Enemy {
                 explosion.style.top = y + 'px';
                 explosion.style.width = '80px';
                 explosion.style.height = '80px';
-                explosion.style.background = `radial-gradient(circle, #8B0000, #5691cd, #ff00ff, #00ffff)`;
+                explosion.style.background = `radial-gradient(circle, #8B0000, #ffd700, #ff00ff, #00ffff)`;
                 explosion.style.borderRadius = '50%';
                 explosion.style.transform = 'translate(-50%, -50%)';
                 explosion.style.pointerEvents = 'none';
@@ -287,7 +287,7 @@ class SuperScythe extends Enemy {
                 explosion.style.top = y + 'px';
                 explosion.style.width = '40px';
                 explosion.style.height = '40px';
-                explosion.style.background = `radial-gradient(circle, #5691cd, #ff6b35, #ff00ff)`;
+                explosion.style.background = `radial-gradient(circle, #ffd700, #ff6b35, #ff00ff)`;
                 explosion.style.borderRadius = '50%';
                 explosion.style.transform = 'translate(-50%, -50%)';
                 explosion.style.pointerEvents = 'none';
@@ -327,7 +327,7 @@ class SuperScythe extends Enemy {
                 explosion.style.top = y + 'px';
                 explosion.style.width = '60px';
                 explosion.style.height = '60px';
-                explosion.style.background = `radial-gradient(circle, #ffffff, #5691cd, #ff6b35)`;
+                explosion.style.background = `radial-gradient(circle, #ffffff, #ffd700, #ff6b35)`;
                 explosion.style.borderRadius = '50%';
                 explosion.style.transform = 'translate(-50%, -50%)';
                 explosion.style.pointerEvents = 'none';
@@ -364,7 +364,7 @@ class SuperScythe extends Enemy {
         explosion.style.top = y + 'px';
         explosion.style.width = '30px';
         explosion.style.height = '30px';
-        explosion.style.backgroundColor = '#5691cd';
+        explosion.style.backgroundColor = '#ffd700';
         explosion.style.borderRadius = '50%';
         explosion.style.transform = 'translate(-50%, -50%)';
         explosion.style.pointerEvents = 'none';
@@ -450,11 +450,11 @@ class SuperScythe extends Enemy {
         // Add multiple glow layers for rainbow effect
         const gradient = this.ctx.createRadialGradient(0, 0, 0, 0, 0, this.width/2);
         gradient.addColorStop(0, '#ffffff');
-        gradient.addColorStop(0.3, '#5691cd');
+        gradient.addColorStop(0.3, '#ffd700');
         gradient.addColorStop(0.6, '#ff6b35');
         gradient.addColorStop(1, '#ff00ff');
         
-        this.ctx.shadowColor = '#5691cd';
+        this.ctx.shadowColor = '#ffd700';
         this.ctx.shadowBlur = 25;
 
         this.ctx.drawImage(

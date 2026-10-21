@@ -200,7 +200,7 @@ class BossScythe extends Enemy {
                 explosion.style.top = y + 'px';
                 explosion.style.width = '80px';
                 explosion.style.height = '80px';
-                explosion.style.background = `radial-gradient(circle, #8B0000, #FF0000, #5691cd)`;
+                explosion.style.background = `radial-gradient(circle, #8B0000, #FF0000, #FFD700)`;
                 explosion.style.borderRadius = '50%';
                 explosion.style.transform = 'translate(-50%, -50%)';
                 explosion.style.pointerEvents = 'none';

@@ -461,7 +461,7 @@ class GameLevelEnd {
                         
                         // Show new record animation
                         if (timerDisplay) {
-                            timerDisplay.innerHTML = `<span style="color: #5691cd">NEW RECORD! ${formattedTime}</span>`;
+                            timerDisplay.innerHTML = `<span style="color: gold">NEW RECORD! ${formattedTime}</span>`;
                             setTimeout(() => {
                                 timerDisplay.innerHTML = `<span style="color: #00FFFF">COMPLETED: ${formattedTime}</span>`;
                             }, 3000);
@@ -636,7 +636,7 @@ class GameLevelEnd {
       if (isNewRecord) {
         const recordMsg = document.createElement('div');
         recordMsg.textContent = "NEW RECORD!";
-        recordMsg.style.color = '#5691cd';
+        recordMsg.style.color = 'gold';
         recordMsg.style.fontWeight = 'bold';
         recordMsg.style.fontSize = '14px';
         recordMsg.style.marginTop = '5px';

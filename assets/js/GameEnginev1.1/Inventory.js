@@ -27,7 +27,7 @@ class Inventory {
                 background: rgba(0, 0, 0, 0.8);
                 padding: 20px;
                 border-radius: 10px;
-                border: 2px solid #5691cd;
+                border: 2px solid #ffd700;
                 color: white;
                 z-index: 1000;
                 backdrop-filter: blur(5px);
@@ -42,7 +42,7 @@ class Inventory {
                 align-items: center;
                 margin-bottom: 20px;
                 padding-bottom: 10px;
-                border-bottom: 2px solid #5691cd;
+                border-bottom: 2px solid #ffd700;
                 cursor: move;
                 background: rgba(255, 215, 0, 0.1);
                 margin: -20px -20px 20px -20px;
@@ -52,7 +52,7 @@ class Inventory {
 
             .inventory-header h2 {
                 margin: 0;
-                color: #5691cd;
+                color: #ffd700;
                 text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
                 font-size: 18px;
                 font-weight: bold;
@@ -61,7 +61,7 @@ class Inventory {
             .close-inventory {
                 background: none;
                 border: none;
-                color: #5691cd;
+                color: #ffd700;
                 font-size: 20px;
                 cursor: pointer;
                 padding: 0 8px;
@@ -91,7 +91,7 @@ class Inventory {
             }
 
             .inventory-grid::-webkit-scrollbar-thumb {
-                background: #5691cd;
+                background: #ffd700;
                 border-radius: 4px;
             }
 
@@ -99,7 +99,7 @@ class Inventory {
                 width: 50px;
                 height: 50px;
                 background: rgba(255, 255, 255, 0.1);
-                border: 2px solid #5691cd;
+                border: 2px solid #ffd700;
                 border-radius: 5px;
                 display: flex;
                 justify-content: center;
@@ -115,7 +115,7 @@ class Inventory {
             }
 
             .empty-slot {
-                border: 2px dashed #5691cd;
+                border: 2px dashed #ffd700;
                 opacity: 0.5;
             }
 
@@ -129,7 +129,7 @@ class Inventory {
                 bottom: 2px;
                 right: 2px;
                 background: rgba(0, 0, 0, 0.8);
-                color: #5691cd;
+                color: #ffd700;
                 padding: 2px 4px;
                 border-radius: 3px;
                 font-size: 12px;
@@ -142,7 +142,7 @@ class Inventory {
                 color: white;
                 padding: 8px 12px;
                 border-radius: 5px;
-                border: 1px solid #5691cd;
+                border: 1px solid #ffd700;
                 font-size: 14px;
                 z-index: 1001;
                 white-space: pre-line;
@@ -158,7 +158,7 @@ class Inventory {
                 background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
                 padding: 20px;
                 border-radius: 12px;
-                border: 2px solid #5691cd;
+                border: 2px solid #ffd700;
                 color: white;
                 z-index: 1002;
                 width: 320px;
@@ -179,7 +179,7 @@ class Inventory {
             }
 
             .calculator-modal::-webkit-scrollbar-thumb {
-                background: #5691cd;
+                background: #ffd700;
                 border-radius: 3px;
             }
 
@@ -189,7 +189,7 @@ class Inventory {
                 align-items: center;
                 margin-bottom: 15px;
                 padding-bottom: 8px;
-                border-bottom: 1px solid #5691cd;
+                border-bottom: 1px solid #ffd700;
                 cursor: move;
                 background: rgba(255, 215, 0, 0.1);
                 margin: -20px -20px 15px -20px;
@@ -199,7 +199,7 @@ class Inventory {
 
             .calculator-title {
                 margin: 0;
-                color: #5691cd;
+                color: #ffd700;
                 font-size: 18px;
                 font-weight: bold;
             }
@@ -207,7 +207,7 @@ class Inventory {
             .calculator-close {
                 background: none;
                 border: none;
-                color: #5691cd;
+                color: #ffd700;
                 font-size: 20px;
                 cursor: pointer;
                 padding: 0 8px;
@@ -233,8 +233,8 @@ class Inventory {
             .tab-btn {
                 flex: 1;
                 background: rgba(255, 215, 0, 0.1);
-                border: 1px solid #5691cd;
-                color: #5691cd;
+                border: 1px solid #ffd700;
+                color: #ffd700;
                 padding: 6px 12px;
                 border-radius: 4px;
                 cursor: pointer;
@@ -247,7 +247,7 @@ class Inventory {
             }
 
             .tab-btn.active {
-                background: #5691cd;
+                background: #ffd700;
                 color: black;
                 font-weight: bold;
             }
@@ -255,7 +255,7 @@ class Inventory {
             .calculator-input {
                 width: 100%;
                 background: rgba(255, 255, 255, 0.1);
-                border: 1px solid #5691cd;
+                border: 1px solid #ffd700;
                 border-radius: 4px;
                 padding: 8px;
                 color: white;
@@ -270,7 +270,7 @@ class Inventory {
             }
 
             .calculator-button {
-                background: #5691cd;
+                background: #ffd700;
                 border: none;
                 border-radius: 4px;
                 padding: 8px;
@@ -293,7 +293,7 @@ class Inventory {
                 border-radius: 4px;
                 text-align: center;
                 font-size: 14px;
-                color: #5691cd;
+                color: #ffd700;
                 line-height: 1.4;
             }
 
@@ -315,18 +315,18 @@ class Inventory {
             }
 
             .trading-tips h3 {
-                color: #5691cd;
+                color: #ffd700;
                 text-align: center;
                 margin-bottom: 15px;
                 font-size: 18px;
                 text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-                border-bottom: 2px solid #5691cd;
+                border-bottom: 2px solid #ffd700;
                 padding-bottom: 10px;
             }
 
             .tip-section {
                 background: rgba(255, 255, 255, 0.1);
-                border: 1px solid #5691cd;
+                border: 1px solid #ffd700;
                 border-radius: 6px;
                 padding: 12px;
                 margin-bottom: 12px;
@@ -341,7 +341,7 @@ class Inventory {
             }
 
             .tip-section h4 {
-                color: #5691cd;
+                color: #ffd700;
                 margin: 0 0 8px 0;
                 font-size: 14px;
                 display: flex;
@@ -359,7 +359,7 @@ class Inventory {
 
             .tip-section p:before {
                 content: "•";
-                color: #5691cd;
+                color: #ffd700;
                 margin-right: 6px;
             }
 
@@ -373,7 +373,7 @@ class Inventory {
             }
 
             .nav-btn {
-                background: linear-gradient(135deg, #5691cd 0%, #ffa500 100%);
+                background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
                 border: none;
                 color: #000;
                 padding: 6px 12px;
@@ -397,7 +397,7 @@ class Inventory {
             }
 
             .page-indicator {
-                color: #5691cd;
+                color: #ffd700;
                 font-weight: bold;
                 text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
                 font-size: 12px;
@@ -457,7 +457,7 @@ class Inventory {
                 width: 50px;
                 height: 50px;
                 background: rgba(255, 255, 255, 0.1);
-                border: 2px solid #5691cd;
+                border: 2px solid #ffd700;
                 border-radius: 5px;
                 display: flex;
                 flex-direction: column;
@@ -483,7 +483,7 @@ class Inventory {
 
             .floor-item .item-name {
                 font-size: 12px;
-                color: #5691cd;
+                color: #ffd700;
                 text-align: center;
                 margin-top: 2px;
                 text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);

@@ -259,7 +259,7 @@ class StatsManager {
                 font-size: 14px;
                 margin-bottom: 15px;
                 text-align: center;
-                color: #80bbff;
+                color: #ffeb3b;
                 text-shadow: 2px 2px #000;
                 position: relative;
             }
@@ -280,7 +280,7 @@ class StatsManager {
             .pixel-stat-box:hover {
                 transform: translateX(5px);
                 background: rgba(255, 255, 255, 0.15);
-                border-color: #5691cd;
+                border-color: #ffd700;
             }
 
             .pixel-stat-box::after {
@@ -312,8 +312,8 @@ class StatsManager {
                 height: 100%;
                 background: repeating-linear-gradient(
                     45deg,
-                    #5691cd,
-                    #5691cd 10px,
+                    #ffd700,
+                    #ffd700 10px,
                     #ffb300 10px,
                     #ffb300 20px
                 );
@@ -422,7 +422,7 @@ class StatsManager {
 
         pinButton.addEventListener('mouseenter', () => {
             pinButton.style.transform = 'scale(1.2)';
-            pinButton.style.color = '#5691cd';
+            pinButton.style.color = '#ffd700';
         });
         pinButton.addEventListener('mouseleave', () => {
             pinButton.style.transform = '';
@@ -688,7 +688,7 @@ class StatsManager {
             color: white;
             padding: 20px;
             border-radius: 15px;
-            border: 3px solid #5691cd;
+            border: 3px solid #ffd700;
             box-shadow: 
                 0 8px 32px rgba(0,0,0,0.4),
                 0 0 20px rgba(255, 215, 0, 0.3),
@@ -780,7 +780,7 @@ class StatsManager {
                 <div style="display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #333; padding-bottom: 15px;">
                     <span class="notification-icon" style="font-size: 28px;">${cookieEmoji}</span>
                     <div style="flex: 1;">
-                        <div style="color: #5691cd; font-size: 14px; margin-bottom: 5px;">
+                        <div style="color: #ffd700; font-size: 14px; margin-bottom: 5px;">
                             🎉 COOKIE EARNED!
                         </div>
                         <div style="color: #fff; font-size: 10px; line-height: 1.4;">
@@ -945,7 +945,7 @@ class StatsManager {
     }
 
     getRandomSparkleColor() {
-        const colors = ['#5691cd', '#80bbff', '#4CAF50', '#03a9f4', '#e91e63', '#ff9800'];
+        const colors = ['#ffd700', '#ffeb3b', '#4CAF50', '#03a9f4', '#e91e63', '#ff9800'];
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -1063,7 +1063,7 @@ class StatsManager {
         // Add hover effects
         audioButton.addEventListener('mouseenter', () => {
             audioButton.style.transform = 'scale(1.05)';
-            audioButton.style.borderColor = '#5691cd';
+            audioButton.style.borderColor = '#ffd700';
             audioButton.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
         });
         
@@ -2030,7 +2030,7 @@ class FinTech extends Game {
                 .instruction-box:hover {
                     transform: translateX(5px);
                     background: rgba(255, 255, 255, 0.15);
-                    border-color: #5691cd;
+                    border-color: #ffd700;
                 }
                 .instruction-box::after {
                     content: '';
@@ -2060,7 +2060,7 @@ class FinTech extends Game {
                     font-size: 1.2em;
                     margin-bottom: 20px;
                     text-align: center;
-                    color: #80bbff;
+                    color: #ffeb3b;
                     text-shadow: 2px 2px #000;
                     position: relative;
                 }
@@ -2085,7 +2085,7 @@ class FinTech extends Game {
                 }
                 .game-button:hover {
                     transform: translateY(-2px);
-                    border-color: #5691cd;
+                    border-color: #ffd700;
                     box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
                 }
                 .game-button::after {
@@ -2375,7 +2375,7 @@ class FinTech extends Game {
             controllerEmoji.addEventListener('mouseenter', () => {
                 if (isCompleted) {
                     controllerEmoji.style.transform = 'scale(1.2)';
-                    controllerEmoji.style.filter = 'drop-shadow(0 0 10px #5691cd)';
+                    controllerEmoji.style.filter = 'drop-shadow(0 0 10px #ffd700)';
                 } else {
                     controllerEmoji.style.transform = 'scale(1.1)';
                     controllerEmoji.style.opacity = '0.6';
@@ -2400,7 +2400,7 @@ class FinTech extends Game {
         // Special effect when completed
         if (completedNpcs === totalNpcs) {
             progressText.textContent = '🎉 ALL CONTROLLERS UNLOCKED! 🎉';
-            progressText.style.color = '#5691cd';
+            progressText.style.color = '#ffd700';
             
             // Add celebration effect to all controllers
             const controllers = progressEmojis.querySelectorAll('span');
@@ -2568,7 +2568,7 @@ class FinTech extends Game {
         // Add hover effects
         audioButton.addEventListener('mouseenter', () => {
             audioButton.style.transform = 'scale(1.05)';
-            audioButton.style.borderColor = '#5691cd';
+            audioButton.style.borderColor = '#ffd700';
             audioButton.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
         });
         
