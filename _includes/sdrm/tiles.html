@@ -1,0 +1,30 @@
+{%- comment -%}
+  One ocs__hub-card per tile in _data/sdrm_hub.yml, for the hub (index.md).
+  A tile with `signed_in` renders twice: data-sdrm-show="signed-out" (visible) and
+  data-sdrm-show="signed-in" (hidden). A tile with `role` starts hidden with data-sdrm-role.
+  assets/js/sdrm/account.js shows the right ones once it knows who is logged in.
+{%- endcomment -%}
+{%- for tile in site.data.sdrm_hub.tiles -%}
+  {%- if tile.signed_in -%}
+    {%- assign versions = "signed-out,signed-in" | split: "," -%}
+  {%- else -%}
+    {%- assign versions = "any" | split: "," -%}
+  {%- endif -%}
+  {%- for version in versions -%}
+    {%- if version == "signed-in" -%}
+      {%- assign t = tile.signed_in -%}
+    {%- else -%}
+      {%- assign t = tile -%}
+    {%- endif -%}
+    {%- capture attrs -%}
+      {%- if version != "any" %} data-sdrm-show="{{ version }}"{% endif -%}
+      {%- if tile.role %} data-sdrm-role="{{ tile.role | escape }}"{% endif -%}
+      {%- if version == "signed-in" or tile.role %} hidden{% endif -%}
+    {%- endcapture %}
+    <a class="ocs__hub-card" href="{{ t.url | relative_url }}"{{ attrs }}>
+      <span class="ocs__nav-card-kicker">{{ t.kicker | escape }}</span>
+      <span class="ocs__hub-card-title">{{ t.title | escape }}</span>
+      <p>{{ t.text | escape }}</p>
+    </a>
+  {%- endfor -%}
+{%- endfor -%}

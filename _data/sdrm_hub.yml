@@ -1,0 +1,71 @@
+# SDRM hub content: the home page (index.md) is built from this file.
+# To add, remove or reorder a tile, edit `tiles` below; no HTML changes are needed.
+# (The top menu on every page is a separate list: `sdrm: nav_pages` in _config.yml.)
+#
+# Tile fields
+#   kicker   small label above the title
+#   title    tile name
+#   text     one short sentence
+#   url      site path, without the /SDRM-frontend baseurl
+#   role     optional. Only users with this role (or admins) see the tile, e.g. "coordinator".
+#            Hidden by default and shown by assets/js/sdrm/account.js; the backend still
+#            guards the page itself.
+#   signed_in  optional. Replaces kicker/title/text/url once someone is logged in
+#              (also swapped by account.js; without the backend the signed-out tile stays).
+
+title: Help and Hope in San Diego
+description: A student-built guide to finding help, giving, and volunteering, inspired by the work of the San Diego Rescue Mission. Pick where you want to go.
+
+tiles:
+  - kicker: Find support
+    title: Get Help Now
+    text: Shelter, meals, family services, and recovery programs, filtered by what you need and where you are.
+    url: /sdrm/get-help/
+  - kicker: Make an impact
+    title: Ways to Give
+    text: See how a one-time or monthly gift could turn into meals and nights of shelter.
+    url: /sdrm/give/
+  - kicker: Give your time
+    title: Volunteer
+    text: Pick the days and interests that suit you, then claim an open spot on a shift.
+    url: /sdrm/volunteer/
+  - kicker: Behind the project
+    title: About
+    text: Why students built this site, how it works, and what data it keeps.
+    url: /sdrm/about/
+  - kicker: Your account
+    title: Log in
+    text: Log in or create a volunteer account in about a minute.
+    url: /sdrm/login/
+    signed_in:
+      kicker: Your account
+      title: My profile
+      text: Your account details and your parent or guardian's contact.
+      url: /sdrm/profile/
+  - kicker: Coordinators
+    title: Coordinator tools
+    text: Tools for volunteer coordinators, starting with the volunteer needs board.
+    url: /sdrm/coordinator/
+    role: coordinator
+
+# "Find help fast" row: each option opens /sdrm/get-help/?need=<id>.
+# The ids must match the `needs` ids in assets/data/sdrm/resources.json.
+quick_help:
+  heading: Find help fast
+  label: What do you need?
+  button: Show places
+  url: /sdrm/get-help/
+  options:
+    - id: shelter
+      label: Shelter
+    - id: meals
+      label: Meals
+    - id: family
+      label: Family services
+    - id: recovery
+      label: Recovery
+
+emergency:
+  heading: Need help right now?
+  text: In an emergency, call 911. For other community services in San Diego County, dial 211.
+  note: "Every program, rate, and shift on this site is placeholder data marked “TODO: verify”. For real, current services, visit sdrescue.org."

@@ -1,51 +1,42 @@
-{%- comment -%} SDRM site header: slim action bar, then the white bar with our wordmark and main nav. {%- endcomment -%}
-{%- assign sdrm_links = "/|Home;/sdrm/get-help/|Get Help Now;/sdrm/give/|Ways to Give;/sdrm/volunteer/|Volunteer;/sdrm/about/|About" | split: ";" -%}
-<header class="sdrm__header" data-sdrm-header>
-  <a class="sdrm__header-skip" href="#main">Skip to main content</a>
+{%- comment -%}
+  SDRM top menu, built like the OCS header (_includes/themes/minima/header.html):
+  site-title link to the hub, then a site-nav with the checkbox hamburger (under 768px) and
+  one page-link per entry in `sdrm: nav_pages` in _config.yml. To add a page, edit that list.
+  Sticky at the top of every SDRM page (_sass/sdrm/_header.scss).
+    role        entry starts hidden with data-sdrm-role; account.js shows it to that role/admins
+    #loginArea  "Log in" by default; account.js turns it into the user's profile link
+{%- endcomment -%}
+<header class="site-header">
+  <a class="sdrm__skip" href="#main">Skip to main content</a>
 
-  <div class="sdrm__header-topbar">
-    <nav class="sdrm__header-topbar-inner" aria-label="Quick actions">
-      <a class="sdrm__header-cta sdrm__header-cta--orange" href="{{ '/sdrm/get-help/' | relative_url }}">Get help now</a>
-      <a class="sdrm__header-cta sdrm__header-cta--blue" href="{{ '/sdrm/volunteer/' | relative_url }}">Volunteer</a>
-      <a class="sdrm__header-cta sdrm__header-cta--red" href="{{ '/sdrm/give/' | relative_url }}">Donate</a>
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
+      <span class="site-title-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" focusable="false"><path fill="currentColor" d="M16 3 2.5 14.2l1.9 2.3L6 15.2V28h20V15.2l1.6 1.3 1.9-2.3L16 3Zm0 21.2-.7-.6C11.2 20 8.8 17.9 8.8 15.3c0-2 1.6-3.6 3.6-3.6 1.5 0 2.8.8 3.6 2 .8-1.2 2.1-2 3.6-2 2 0 3.6 1.6 3.6 3.6 0 2.6-2.4 4.7-6.5 8.3l-.7.6Z"/></svg>
+      </span>
+      <span class="site-title-name">Help &amp; Hope</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="sdrm__visually-hidden">Menu</span>
+        <span class="menu-icon" aria-hidden="true">
+          <svg viewBox="0 0 18 15" width="18px" height="15px" focusable="false">
+            <path fill="currentColor" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger">
+        {%- for item in site.sdrm.nav_pages %}
+        <a class="page-link" href="{{ item.url | relative_url }}"
+          {%- if item.role %} data-sdrm-role="{{ item.role | escape }}" hidden{% endif -%}
+          {%- if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+        {%- endfor %}
+        <a id="loginArea" class="page-link" href="{{ '/sdrm/login/' | relative_url }}" data-profile-href="{{ '/sdrm/profile/' | relative_url }}"
+          {%- if page.url == "/sdrm/login/" or page.url == "/sdrm/profile/" %} aria-current="page"{% endif %}>Log in</a>
+      </div>
     </nav>
-  </div>
-
-  <div class="sdrm__header-main">
-    <div class="sdrm__header-main-inner">
-      <a class="sdrm__header-brand" href="{{ '/' | relative_url }}">
-        <span class="sdrm__header-brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" focusable="false"><path fill="currentColor" d="M16 3 2.5 14.2l1.9 2.3L6 15.2V28h20V15.2l1.6 1.3 1.9-2.3L16 3Zm0 21.2-.7-.6C11.2 20 8.8 17.9 8.8 15.3c0-2 1.6-3.6 3.6-3.6 1.5 0 2.8.8 3.6 2 .8-1.2 2.1-2 3.6-2 2 0 3.6 1.6 3.6 3.6 0 2.6-2.4 4.7-6.5 8.3l-.7.6Z"/></svg>
-        </span>
-        <span>
-          <span class="sdrm__header-brand-name">Help &amp; Hope</span>
-          <span class="sdrm__header-brand-tag">A student project</span>
-        </span>
-      </a>
-
-      <button class="sdrm__header-toggle" type="button" aria-expanded="false" aria-controls="sdrm-site-nav" hidden>
-        <span class="sdrm__header-toggle-bars" aria-hidden="true"></span>
-        Menu
-      </button>
-
-      <nav class="sdrm__header-nav" id="sdrm-site-nav" aria-label="Main">
-        <ul class="sdrm__header-links">
-          {%- for item in sdrm_links -%}
-          {%- assign parts = item | split: "|" %}
-          <li><a class="sdrm__header-link" href="{{ parts[0] | relative_url }}"{% if page.url == parts[0] or page.url == "/index.html" and parts[0] == "/" %} aria-current="page"{% endif %}>{{ parts[1] }}</a></li>
-          {%- endfor %}
-          {%- comment -%} Shown by assets/js/sdrm/account.js for coordinators and admins only; the backend still guards the page. {%- endcomment %}
-          <li data-sdrm-coordinator-link hidden><a class="sdrm__header-link" href="{{ '/sdrm/coordinator/' | relative_url }}"{% if page.url == "/sdrm/coordinator/" %} aria-current="page"{% endif %}>Coordinator</a></li>
-        </ul>
-
-        {%- comment -%} Logged-out markup by default; assets/js/sdrm/account.js swaps in the greeting (a link to the profile page) and Log out button. {%- endcomment %}
-        <div class="sdrm__header-account" data-sdrm-account>
-          <a class="sdrm__button sdrm__button--blue sdrm__header-account-button" href="{{ '/sdrm/login/' | relative_url }}" data-sdrm-account-login{% if page.url == "/sdrm/login/" %} aria-current="page"{% endif %}>Log in</a>
-          <a class="sdrm__header-account-greeting" href="{{ '/sdrm/profile/' | relative_url }}" data-sdrm-account-greeting{% if page.url == "/sdrm/profile/" %} aria-current="page"{% endif %} hidden></a>
-          <button class="sdrm__button sdrm__button--outline sdrm__header-account-button" type="button" data-sdrm-account-logout hidden>Log out</button>
-          <p class="sdrm__header-account-status" role="status" data-sdrm-account-status></p>
-        </div>
-      </nav>
-    </div>
   </div>
 </header>

@@ -2,7 +2,6 @@
 //
 //   .sdrm__section                full-width band with vertical padding
 //     --cream | --white | --dots  page, raised, or dotted background (alternate down the page)
-//     --navy                      deep band (white text)
 //   .sdrm__container              centered column, max 1200px
 //   .sdrm__section-header         centered heading block (kicker, heading, intro)
 //     .sdrm__section-heading / .sdrm__section-intro
@@ -26,19 +25,6 @@
     background-size: 24px 24px;
   }
 
-  &--navy {
-    background-color: $sdrm-band;
-    color: $sdrm-text-strong;
-
-    h2,
-    h3 {
-      color: $sdrm-text-strong;
-    }
-
-    code {
-      background: rgba($sdrm-text-strong, 0.16);
-    }
-  }
 }
 
 .sdrm__container {
@@ -60,10 +46,6 @@
   margin: 0;
   color: $sdrm-muted;
   font-size: 1.1875rem;
-
-  .sdrm__section--navy & {
-    color: $sdrm-text-strong;
-  }
 }
 
 .sdrm__split {

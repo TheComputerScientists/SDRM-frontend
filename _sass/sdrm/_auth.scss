@@ -1,10 +1,7 @@
-// SDRM accounts: the header account area and the /sdrm/login/, /sdrm/profile/ and
+// SDRM accounts: the /sdrm/login/, /sdrm/profile/ and
 // /sdrm/coordinator/ pages.
 // Builds on the shared card, button and form styles; only adds what they lack.
 //
-//   .sdrm__header-account           Log in link, or "Hi, name" + Log out (in the main nav)
-//     --signed-in
-//     -button / -greeting / -status
 //   .sdrm__auth                     two-card grid (stacked below 768px)
 //   .sdrm__auth-card                --login (orange top) | --signup (blue top)
 //   .sdrm__auth-form / -form-error
@@ -20,79 +17,6 @@
 //   .sdrm__account-details          read-only "Label  value" list on the profile
 //     .sdrm__account-detail
 //   .sdrm__button--loading          spinner on a busy submit button
-
-/* ---------- header account area ---------- */
-
-.sdrm__header-nav {
-  @include bp(md) {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: $sdrm-space-2 $sdrm-space-4;
-  }
-}
-
-.sdrm__header-account {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: $sdrm-space-2 $sdrm-space-3;
-  min-width: 0;
-
-  @include bp(md, down) {
-    padding: $sdrm-space-3 $sdrm-space-2 $sdrm-space-2;
-    border-top: 1px solid $sdrm-line;
-  }
-}
-
-.sdrm__header-account-button {
-  min-height: 2.5rem;
-  padding: 0.45rem 1.1rem;
-  font-size: 0.9375rem;
-
-  &[aria-current="page"] {
-    box-shadow: 0 0 0 3px $sdrm-tint-blue;
-  }
-}
-
-// Links to the profile page
-.sdrm__header-account-greeting {
-  display: block;
-  max-width: 14rem;
-  margin: 0;
-  overflow: hidden;
-  color: $sdrm-text-strong;
-  font-weight: 700;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  &:hover,
-  &[aria-current="page"] {
-    color: $sdrm-blue;
-    text-decoration: underline;
-  }
-
-  @include bp(md, down) {
-    max-width: 100%;
-  }
-}
-
-.sdrm__header-account-status {
-  flex-basis: 100%;
-  margin: 0;
-  color: $sdrm-muted;
-  font-size: 0.875rem;
-
-  &:empty {
-    display: none;
-  }
-
-  @include bp(md) {
-    text-align: right;
-  }
-}
 
 /* ---------- login page ---------- */
 

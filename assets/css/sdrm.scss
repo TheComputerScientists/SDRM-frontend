@@ -1,8 +1,9 @@
 ---
 ---
 // Stylesheet for the SDRM student project pages (index.md and sdrm/*).
-// Standalone: it does not use the Open Coding Society / minima styles, only the class
-// color palette, which sdrm/tokens maps onto our own token names.
+// Standalone: no minima styles. It uses the class color palette (mapped onto our own token
+// names in sdrm/tokens) and only the Open Coding Society grammar partials that sdrm/ocs
+// imports (hub tiles, page switcher, ocs__btn), with --pref-* variables set from our tokens.
 // Partials live in _sass/sdrm/ and use sdrm__block-element--modifier names.
 
 @import "user-colors";
@@ -11,11 +12,11 @@
 @import "sdrm/mixins";
 @import "sdrm/base";
 @import "sdrm/layout";
+@import "sdrm/ocs";
 @import "sdrm/header";
-@import "sdrm/hero";
+@import "sdrm/hub";
 @import "sdrm/banner";
 @import "sdrm/kicker";
-@import "sdrm/feature-card";
 @import "sdrm/stats";
 @import "sdrm/card";
 @import "sdrm/button";

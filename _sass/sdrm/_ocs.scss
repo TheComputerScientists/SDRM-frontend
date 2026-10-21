@@ -1,0 +1,83 @@
+// Open Coding Society grammar on the SDRM pages (hub tiles and cards, ocs__btn).
+//
+// The sdrm layout only loads assets/css/sdrm.css, so this partial brings in just the OCS
+// element partials the pages use, straight from _sass/open-coding/ (never edited here):
+//   containers  ocs__container
+//   capstone    ocs__description, ocs__card, ocs__callout, ocs__section-title,
+//               ocs__hub-grid, ocs__hub-card(-title), ocs__nav-card-kicker (tile label)
+//   buttons     ocs__btn <size> <tone> <modifiers>, ocs__links, focus/disabled states
+// elements/buttons/_main.scss is not imported whole: its variant-filled/calculator/dragdrop
+// files restyle every <button> with literal colors, which would override the SDRM forms.
+//
+// The OCS partials read --pref-* preference variables (and --panel, --ui-border, --text-muted).
+// They are defined below from the SDRM tokens, which all come from the class palette.
+
+@import "open-coding/mixins/variables";
+@import "open-coding/mixins/container";
+@import "open-coding/mixins/buttons";
+@import "open-coding/elements/buttons/tokens";
+@import "open-coding/elements/buttons/api";
+@import "open-coding/elements/buttons/utilities";
+@import "open-coding/elements/buttons/state-focus-disabled";
+@import "open-coding/elements/containers/common";
+@import "open-coding/elements/capstone/main";
+
+.sdrm {
+  --pref-bg-color: #{$sdrm-page-bg};
+  --pref-text-color: #{$sdrm-text};
+  --pref-accent-color: #{$sdrm-blue};
+  --pref-font-family: #{$sdrm-font-body};
+  --pref-font-size: 1rem;
+  --text-muted: #{$sdrm-muted};
+  --panel: #{$sdrm-surface};
+  --panel-mid: #{$sdrm-surface-raised};
+  --ui-border: #{$sdrm-line};
+}
+
+// SDRM look for the grammar: blocky corners (no pill shapes), display-font titles,
+// and the shared focus ring on every tile and button.
+.sdrm {
+  .ocs__card,
+  .ocs__callout,
+  .ocs__hub-card {
+    border-radius: $sdrm-radius-sm;
+  }
+
+  .ocs__btn.small,
+  .ocs__btn.medium,
+  .ocs__btn.large {
+    border-radius: $sdrm-radius-xs;
+    font-weight: 700;
+  }
+
+  .ocs__hub-card-title {
+    @include display(800);
+    color: $sdrm-text-strong;
+  }
+
+  .ocs__nav-card-kicker {
+    color: $sdrm-muted;
+  }
+
+  .ocs__hub-card,
+  .ocs__btn {
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  .ocs__hub-card:focus-visible {
+    border-color: var(--pref-accent-color);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ocs__hub-card,
+    .ocs__btn {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

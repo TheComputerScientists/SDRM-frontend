@@ -1,328 +1,230 @@
-// SDRM site header.
+// SDRM top menu: the OCS header classes (_includes/themes/minima/header.html) styled for our
+// standalone layout. A dark bar, sticky at the top of every page, site title on the left and
+// page links on the right; under 768px the links fold into the checkbox hamburger.
 //
-//   .sdrm__header                    wrapper ([data-sdrm-header] for header.js)
-//     --enhanced                     added by JS: the nav collapses under 768px
-//     --open                         added by JS while the mobile menu is open
-//   .sdrm__header-skip               skip link (visible on focus)
-//   .sdrm__header-topbar             slim strip with the action buttons on the right
-//   .sdrm__header-topbar-inner
-//   .sdrm__header-cta                angled action button
-//     --orange | --blue | --red
-//   .sdrm__header-main               raised bar: wordmark + nav
-//   .sdrm__header-main-inner
-//   .sdrm__header-brand              wordmark link
-//     -mark | -name | -tag
-//   .sdrm__header-toggle             hamburger button (hidden until JS runs)
-//     -bars
-//   .sdrm__header-nav                primary nav
-//   .sdrm__header-links / -link      uppercase links with thin dividers; aria-current marks the page
+//   .site-header         sticky dark bar
+//   .sdrm__skip          skip link (visible on focus)
+//   .wrapper             centered row: title left, nav right
+//   .site-title          logo mark + name, links to the hub (768-1023px: mark only, like OCS)
+//   .site-nav            .nav-trigger checkbox + label (hamburger), .trigger (the links)
+//   .page-link           one menu link; aria-current="page" marks the current page
+//   #loginArea           Log in / profile link, always last
 
-.sdrm__header {
-  position: relative;
-  z-index: 10;
-  background: $sdrm-surface;
-  box-shadow: 0 2px 0 $sdrm-line, 0 8px 24px rgba($sdrm-shade, 0.4);
+$sdrm-header-height: 4.25rem;
+
+// Anchor and skip-link targets land below the sticky bar, not under it.
+html {
+  scroll-padding-top: $sdrm-header-height + $sdrm-space-4;
 }
 
-.sdrm__header-skip {
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $sdrm-band;
+  border-bottom: 1px solid $sdrm-line;
+  box-shadow: 0 8px 24px rgba($sdrm-shade, 0.4);
+  font-weight: 700;
+}
+
+.sdrm__skip {
   position: absolute;
   top: $sdrm-space-2;
   left: $sdrm-space-2;
-  z-index: 20;
+  z-index: 1;
   padding: $sdrm-space-2 $sdrm-space-4;
   border-radius: $sdrm-radius-sm;
-  background: $sdrm-band;
+  background: $sdrm-surface;
   color: $sdrm-text-strong;
-  font-weight: 700;
   transform: translateY(-200%);
 
   &:focus {
-    --sdrm-focus: #{$sdrm-yellow};
     transform: none;
     color: $sdrm-text-strong;
   }
 }
 
-// Top bar
-.sdrm__header-topbar {
-  background: $sdrm-page-bg;
-  border-bottom: 1px solid $sdrm-line;
-}
-
-.sdrm__header-topbar-inner {
+.site-header .wrapper {
   @include container;
-  display: flex;
-  justify-content: flex-end;
-  gap: $sdrm-space-2;
-  padding-block: $sdrm-space-2;
-
-  @include bp(sm, down) {
-    justify-content: center;
-    gap: $sdrm-space-1;
-    padding-inline: $sdrm-space-2;
-  }
-}
-
-.sdrm__header-cta {
-  --sdrm-cta-fill: #{$sdrm-orange};
-  --sdrm-cta-ink: #{$sdrm-on-color};
   position: relative;
-  isolation: isolate;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 1.15rem;
-  color: var(--sdrm-cta-ink);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.3;
-  text-decoration: none;
-  text-transform: uppercase;
-  white-space: nowrap;
-
-  // Angled shape sits behind the text so the label and focus ring stay square.
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: var(--sdrm-cta-fill);
-    transform: skewX(-14deg);
-    transition: transform 0.15s ease, filter 0.15s ease;
-  }
-
-  &:hover,
-  &:focus-visible {
-    color: var(--sdrm-cta-ink);
-  }
-
-  &:hover::before {
-    filter: brightness(1.08);   // lighten: the fills carry black text
-    transform: skewX(-14deg) translateY(-1px);
-  }
-
-  &--orange {
-    --sdrm-cta-fill: #{$sdrm-orange};
-    --sdrm-cta-ink: #{$sdrm-on-color};
-  }
-
-  &--blue {
-    --sdrm-cta-fill: #{$sdrm-blue};
-    --sdrm-cta-ink: #{$sdrm-on-color};
-  }
-
-  &--red {
-    --sdrm-cta-fill: #{$sdrm-red};
-    --sdrm-cta-ink: #{$sdrm-on-color};
-  }
-
-  @include bp(sm, down) {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.6875rem;
-    letter-spacing: 0.04em;
-  }
-}
-
-// Main bar
-.sdrm__header-main-inner {
-  @include container;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: $sdrm-space-3 $sdrm-space-5;
-  padding-block: $sdrm-space-4;
-
-  @include bp(md, down) {
-    gap: $sdrm-space-3;
-    padding-block: $sdrm-space-3;
-  }
+  gap: $sdrm-space-4;
+  min-height: $sdrm-header-height;
 }
 
-.sdrm__header-brand {
+.site-title {
+  @include display(800);
   display: inline-flex;
   align-items: center;
   gap: $sdrm-space-3;
   color: $sdrm-text-strong;
+  font-size: 1.5rem;
   text-decoration: none;
+  white-space: nowrap;
 
   &:hover {
     color: $sdrm-text-strong;
   }
 }
 
-.sdrm__header-brand-mark {
+.site-title-mark {
   display: grid;
   place-items: center;
   flex: none;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: $sdrm-orange;
   color: $sdrm-on-color;
 
   svg {
-    width: 1.75rem;
-    height: 1.75rem;
-  }
-
-  @include bp(sm, down) {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
-.sdrm__header-brand-name {
-  @include display(800);
-  display: block;
-  font-size: 1.625rem;
-  line-height: 1;
-
-  @include bp(sm, down) {
-    font-size: 1.375rem;
+// Tablet: the full menu only fits beside the logo mark, so the name is kept for screen readers only.
+.site-title-name {
+  @include bp(md) {
+    @include bp(lg, down) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
   }
 }
 
-.sdrm__header-brand-tag {
-  display: block;
-  margin-top: 0.2rem;
-  color: $sdrm-muted;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+.site-nav {
+  // The checkbox stays focusable (keyboard users toggle it with Space) but is drawn by its label.
+  .nav-trigger {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
 
-.sdrm__header-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: $sdrm-space-2;
-  padding: $sdrm-space-2 $sdrm-space-4;
-  border: 2px solid $sdrm-text;
-  border-radius: $sdrm-radius-pill;
-  background: $sdrm-surface;
-  color: $sdrm-text;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.875rem;
-  cursor: pointer;
+  label {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid $sdrm-line;
+    border-radius: $sdrm-radius-xs;
+    color: $sdrm-text-strong;
+    cursor: pointer;
+
+    svg {
+      width: 18px;
+      height: 15px;
+    }
+  }
+
+  .nav-trigger:focus-visible + label {
+    @include focus-ring;
+  }
+
+  .nav-trigger:checked + label {
+    border-color: $sdrm-blue;
+    color: $sdrm-blue;
+  }
+
+  // Phone: links drop down as a full-width panel under the bar.
+  .trigger {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: $sdrm-space-2 $sdrm-gutter $sdrm-space-4;
+    background: $sdrm-band;
+    border-bottom: 1px solid $sdrm-line;
+    box-shadow: 0 16px 24px rgba($sdrm-shade, 0.5);
+  }
+
+  .nav-trigger:checked + label + .trigger {
+    display: flex;
+  }
 
   @include bp(md) {
-    display: none;
-  }
-}
-
-.sdrm__header-toggle-bars {
-  position: relative;
-  width: 1.125rem;
-  height: 2px;
-  background: currentColor;
-  transition: background 0.15s ease;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: currentColor;
-    transition: transform 0.15s ease;
-  }
-
-  &::before { top: -6px; }
-  &::after { top: 6px; }
-
-  [aria-expanded="true"] > & {
-    background: transparent;
-
-    &::before { transform: translateY(6px) rotate(45deg); }
-    &::after { transform: translateY(-6px) rotate(-45deg); }
-  }
-}
-
-.sdrm__header-nav {
-  @include bp(md, down) {
-    flex-basis: 100%;
-
-    .sdrm__header--enhanced:not(.sdrm__header--open) & {
+    .nav-trigger,
+    label {
       display: none;
     }
-  }
-}
 
-.sdrm__header-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li + li {
-    border-left: 1px solid $sdrm-line;
-  }
-
-  @include bp(md, down) {
-    flex-direction: column;
-    align-items: stretch;
-    border-top: 1px solid $sdrm-line;
-
-    li + li {
-      border-left: 0;
-      border-top: 1px solid $sdrm-line;
+    .trigger {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      align-items: center;
+      padding: 0;
+      background: none;
+      border: 0;
+      box-shadow: none;
     }
   }
 }
 
-.sdrm__header-link {
-  position: relative;
+.page-link {
   display: block;
-  padding: $sdrm-space-2 $sdrm-space-4;
+  padding: $sdrm-space-3 $sdrm-space-3;
+  border-radius: $sdrm-radius-xs;
   color: $sdrm-text;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 1rem;
+  line-height: 1.3;
   text-decoration: none;
-  text-transform: uppercase;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: $sdrm-space-4;
-    right: $sdrm-space-4;
-    bottom: 0.15rem;
-    height: 3px;
-    border-radius: 3px;
-    background: $sdrm-orange;
-    transform: scaleX(0);
-    transition: transform 0.15s ease;
+  &:hover {
+    color: $sdrm-blue-light;
+    background: $sdrm-surface;
   }
+
+  &[aria-current="page"] {
+    color: $sdrm-text-strong;
+    background: $sdrm-surface;
+    box-shadow: inset 4px 0 0 $sdrm-orange;
+  }
+
+  @include bp(md) {
+    padding: $sdrm-space-2;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+
+    &[aria-current="page"] {
+      box-shadow: inset 0 -3px 0 $sdrm-orange;
+    }
+  }
+
+  @include bp(lg) {
+    padding-inline: $sdrm-space-3;
+    font-size: 1rem;
+  }
+}
+
+#loginArea {
+  margin-top: $sdrm-space-2;
+  border: 1px solid $sdrm-blue;
+  color: $sdrm-blue;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:hover,
   &[aria-current="page"] {
-    color: $sdrm-text-strong;
-
-    &::after {
-      transform: scaleX(1);
-    }
+    color: $sdrm-blue-light;
   }
 
-  @include bp(md, down) {
-    padding: $sdrm-space-3 $sdrm-space-2;
-
-    &::after {
-      left: $sdrm-space-2;
-      right: auto;
-      width: 2.5rem;
-    }
+  @include bp(md) {
+    max-width: 7rem;
+    margin: 0 0 0 $sdrm-space-2;
   }
 
-  @include bp(lg, down) {
-    @include bp(md) {
-      padding-inline: $sdrm-space-3;
-      font-size: 0.8125rem;
-    }
+  @include bp(lg) {
+    max-width: 12rem;
   }
 }

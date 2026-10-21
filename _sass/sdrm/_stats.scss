@@ -1,11 +1,9 @@
 // SDRM stats: big colorful numbers.
 //
 //   .sdrm__stats              grid of stats (calculator results)
-//     --band                  three stats on the deep home band
 //   .sdrm__stat               one stat; color cycles orange / blue / red / white
 //   .sdrm__stat-value         the big number
 //   .sdrm__stat-label         what it counts
-//   .sdrm__stats-note         small placeholder note under the band
 
 .sdrm__stats {
   display: grid;
@@ -52,48 +50,4 @@
   color: $sdrm-muted;
   font-weight: 700;
   font-size: 1rem;
-}
-
-// Deep home band
-.sdrm__stats--band {
-  gap: $sdrm-space-6;
-  margin-top: 0;
-  text-align: center;
-
-  @include bp(md) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .sdrm__stat {
-    --sdrm-stat-ink: #{$sdrm-orange};   // 8.2:1 on the band
-    align-items: center;
-    padding: $sdrm-space-5 $sdrm-space-4;
-    border: 0;
-    background: transparent;
-
-    &:nth-child(3n + 2) { --sdrm-stat-ink: #{$sdrm-blue-light}; }  // 9.8:1
-    &:nth-child(3n + 3) { --sdrm-stat-ink: #{$sdrm-yellow}; }      // 8.8:1
-  }
-
-  .sdrm__stat + .sdrm__stat {
-    @include bp(md) {
-      border-left: 1px solid rgba($sdrm-text-strong, 0.2);
-    }
-  }
-
-  .sdrm__stat-value {
-    font-size: clamp(3.25rem, calc(4vw + 2rem), 5rem);
-  }
-
-  .sdrm__stat-label {
-    color: $sdrm-text-strong;
-    font-size: 1.125rem;
-  }
-}
-
-.sdrm__stats-note {
-  margin: $sdrm-space-6 0 0;
-  color: $sdrm-text-strong;
-  font-size: 0.9375rem;
-  text-align: center;
 }

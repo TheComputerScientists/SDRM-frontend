@@ -8,8 +8,10 @@
     title    page <h1> (and <title>)
     lead     optional subheading under the title
     kicker   optional small label above the title
-    hero     "custom" when the page renders its own hero with the <h1> (home);
-             otherwise a colored page banner is rendered here
+    hero     "custom" when the page renders its own <h1> (the hub, index.md); otherwise
+             a colored page banner is rendered here
+  The top menu (_includes/sdrm/header.html) is on every page; its links come from
+  `sdrm: nav_pages` in _config.yml.
     tone     banner color: orange (default), red, blue, navy
 {%- endcomment -%}
 <!doctype html>
@@ -49,7 +51,6 @@
 
   {%- include sdrm/footer.html %}
 
-  <script src="{{ '/assets/js/sdrm/header.js' | relative_url }}" defer></script>
   <script type="module" src="{{ '/assets/js/sdrm/account.js' | relative_url }}"></script>
 </body>
 </html>

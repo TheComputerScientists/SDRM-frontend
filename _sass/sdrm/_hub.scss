@@ -1,0 +1,27 @@
+// SDRM hub (index.md). The tiles themselves are OCS grammar
+// (see _ocs.scss); this only places them on the SDRM pages.
+//
+//   .sdrm__hub          the hub's ocs__container
+//   .sdrm__hub-intro    centered <h1> and description
+//   .sdrm__hub-quick    "Find help fast" card
+
+.sdrm__hub {
+  padding-block: $sdrm-space-6 $sdrm-space-7;
+}
+
+.sdrm__hub-intro {
+  text-align: center;
+
+  h1 {
+    margin-bottom: $sdrm-space-3;
+  }
+}
+
+.sdrm__hub-quick {
+  margin-top: $sdrm-space-6;
+
+  .sdrm__field-row {
+    margin: 0;
+  }
+}
+
