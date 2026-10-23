@@ -31,7 +31,7 @@
     (function () {
       try {
         var theme = localStorage.getItem("sdrm-theme");
-        if (theme === "forest" || theme === "sunset") {
+        if (theme && theme !== "default") {
           document.documentElement.dataset.sdrmTheme = theme;
         }
       } catch (error) {

@@ -1,18 +1,79 @@
-// Optional visitor-selected accent themes. The default blue theme uses the
-// existing compiled SDRM colors and needs no override.
-
-html[data-sdrm-theme="forest"] {
-  --sdrm-theme-accent: #2D8A5A;
-  --sdrm-theme-accent-light: #68C391;
+// Visitor-selected preset themes. The default theme is the existing SDRM palette.
+html[data-sdrm-theme="default"] {
+  --sdrm-theme-background: #121212;
+  --sdrm-theme-text: #F0F0F0;
+  --sdrm-theme-accent: #4CAFEF;
 }
 
-html[data-sdrm-theme="sunset"] {
-  --sdrm-theme-accent: #8B4FA3;
-  --sdrm-theme-accent-light: #C58BDA;
+html[data-sdrm-theme="midnight"] {
+  --sdrm-theme-background: #0b1220;
+  --sdrm-theme-text: #e6eef8;
+  --sdrm-theme-accent: #3b82f6;
 }
 
-html[data-sdrm-theme="forest"],
-html[data-sdrm-theme="sunset"] {
+html[data-sdrm-theme="light"] {
+  --sdrm-theme-background: #ffffff;
+  --sdrm-theme-text: #FF80AA;
+  --sdrm-theme-accent: #2563eb;
+}
+
+html[data-sdrm-theme="green"] {
+  --sdrm-theme-background: #154734;
+  --sdrm-theme-text: #e6f6ef;
+  --sdrm-theme-accent: #10b981;
+}
+
+html[data-sdrm-theme="sepia"] {
+  --sdrm-theme-background: #f4ecd8;
+  --sdrm-theme-text: #A52A2A;
+  --sdrm-theme-accent: #b45309;
+}
+
+html[data-sdrm-theme="cyberpunk"] {
+  --sdrm-theme-background: #0a0a0f;
+  --sdrm-theme-text: #f0f0f0;
+  --sdrm-theme-accent: #f72585;
+}
+
+html[data-sdrm-theme="ocean"] {
+  --sdrm-theme-background: #0c1929;
+  --sdrm-theme-text: #e0f2fe;
+  --sdrm-theme-accent: #06b6d4;
+}
+
+html[data-sdrm-theme] {
+  background: var(--sdrm-theme-background);
+
+  body.sdrm {
+    background: var(--sdrm-theme-background);
+    color: var(--sdrm-theme-text);
+  }
+
+  .site-header,
+  .site-nav .trigger,
+  .sdrm__footer,
+  .sdrm__footer-bottom {
+    background: var(--sdrm-theme-background);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .site-title,
+  .page-link,
+  .sdrm__footer,
+  .sdrm__footer a,
+  .sdrm__section-intro,
+  .sdrm__text {
+    color: var(--sdrm-theme-text);
+  }
+
+  a,
+  .page-link[aria-current="page"] {
+    color: var(--sdrm-theme-accent);
+  }
+
   .site-title-mark {
     background: var(--sdrm-theme-accent);
   }
@@ -35,18 +96,35 @@ html[data-sdrm-theme="sunset"] {
 
   .sdrm__banner {
     --sdrm-banner-from: var(--sdrm-theme-accent);
-    --sdrm-banner-to: var(--sdrm-theme-accent-light);
-    --sdrm-banner-shape: var(--sdrm-theme-accent-light);
+    --sdrm-banner-to: var(--sdrm-theme-accent);
+    --sdrm-banner-shape: var(--sdrm-theme-accent);
+  }
+
+  .sdrm__section--white,
+  .sdrm__section--cream,
+  .sdrm__card,
+  .sdrm__callout,
+  .sdrm__appearance-option {
+    background: var(--sdrm-theme-background);
+    color: var(--sdrm-theme-text);
+  }
+
+  .sdrm__appearance-option:has(input:checked) {
+    border-color: var(--sdrm-theme-accent);
   }
 }
 
 .sdrm__appearance-options {
   display: grid;
   gap: $sdrm-space-4;
-  max-width: 42rem;
+  max-width: 56rem;
   margin: 0;
   padding: 0;
   border: 0;
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .sdrm__appearance-option {
@@ -84,7 +162,11 @@ html[data-sdrm-theme="sunset"] {
   height: 2rem;
   border-radius: 50%;
 
-  &--blue { background: $sdrm-blue; }
-  &--forest { background: #2D8A5A; }
-  &--sunset { background: #8B4FA3; }
+  &--blue { background: #4CAFEF; }
+  &--midnight { background: #3b82f6; }
+  &--light { background: #2563eb; }
+  &--green { background: #10b981; }
+  &--sepia { background: #b45309; }
+  &--cyberpunk { background: #f72585; }
+  &--ocean { background: #06b6d4; }
 }
