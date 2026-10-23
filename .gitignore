@@ -84,3 +84,4 @@ _notebooks/**/*_content.md
 
 # Claude Code session artifacts
 .claude/
+ven/
