@@ -19,7 +19,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.url == "/" %}{{ site.title | escape }}{% else %}{{ page.title | escape }} | {{ site.title | escape }}{% endif %}</title>
+  <title>{% if page.url == "/" %}{{ site.data.sdrm_hub.title | escape }}{% else %}{{ page.title | escape }} | {{ site.data.sdrm_hub.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.lead | default: site.description | strip_html | escape }}">
   <meta name="theme-color" content="#14345A">
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">

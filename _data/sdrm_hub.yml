@@ -13,7 +13,7 @@
 #   signed_in  optional. Replaces kicker/title/text/url once someone is logged in
 #              (also swapped by account.js; without the backend the signed-out tile stays).
 
-title: Help and Hope in San Diego
+title: San Diego Rescue Mission
 description: A student-built guide to finding help, giving, and volunteering, inspired by the work of the San Diego Rescue Mission. Pick where you want to go.
 
 tiles:
