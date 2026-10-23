@@ -27,6 +27,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
   <link rel="stylesheet" href="{{ '/assets/css/sdrm.css' | relative_url }}">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("sdrm-theme");
+        if (theme === "forest" || theme === "sunset") {
+          document.documentElement.dataset.sdrmTheme = theme;
+        }
+      } catch (error) {
+        console.warn("Unable to restore the saved SDRM theme.", error);
+      }
+    }());
+  </script>
 </head>
 <body class="sdrm">
   {%- include sdrm/header.html %}
@@ -52,5 +64,6 @@
   {%- include sdrm/footer.html %}
 
   <script type="module" src="{{ '/assets/js/sdrm/account.js' | relative_url }}"></script>
+  <script type="module" src="{{ '/assets/js/sdrm/appearance.js' | relative_url }}"></script>
 </body>
 </html>

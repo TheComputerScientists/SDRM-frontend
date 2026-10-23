@@ -1,0 +1,90 @@
+// Optional visitor-selected accent themes. The default blue theme uses the
+// existing compiled SDRM colors and needs no override.
+
+html[data-sdrm-theme="forest"] {
+  --sdrm-theme-accent: #2D8A5A;
+  --sdrm-theme-accent-light: #68C391;
+}
+
+html[data-sdrm-theme="sunset"] {
+  --sdrm-theme-accent: #8B4FA3;
+  --sdrm-theme-accent-light: #C58BDA;
+}
+
+html[data-sdrm-theme="forest"],
+html[data-sdrm-theme="sunset"] {
+  .site-title-mark {
+    background: var(--sdrm-theme-accent);
+  }
+
+  .site-header .nav-trigger:checked + label,
+  .page-link[aria-current="page"] {
+    border-color: var(--sdrm-theme-accent);
+    color: var(--sdrm-theme-accent);
+  }
+
+  .sdrm__footer {
+    border-top-color: var(--sdrm-theme-accent);
+  }
+
+  .sdrm__button--orange,
+  .sdrm__checklist-marker {
+    background: var(--sdrm-theme-accent);
+    border-color: var(--sdrm-theme-accent);
+  }
+
+  .sdrm__banner {
+    --sdrm-banner-from: var(--sdrm-theme-accent);
+    --sdrm-banner-to: var(--sdrm-theme-accent-light);
+    --sdrm-banner-shape: var(--sdrm-theme-accent-light);
+  }
+}
+
+.sdrm__appearance-options {
+  display: grid;
+  gap: $sdrm-space-4;
+  max-width: 42rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sdrm__appearance-option {
+  display: flex;
+  align-items: center;
+  gap: $sdrm-space-3;
+  padding: $sdrm-space-4;
+  border: 2px solid $sdrm-line;
+  border-radius: $sdrm-radius-sm;
+  background: $sdrm-surface;
+  cursor: pointer;
+
+  &:has(input:checked) {
+    border-color: $sdrm-blue;
+  }
+
+  input {
+    flex: none;
+  }
+
+  strong,
+  span:last-child {
+    display: block;
+  }
+
+  span:last-child {
+    color: $sdrm-muted;
+    font-size: 0.95rem;
+  }
+}
+
+.sdrm__appearance-swatch {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+
+  &--blue { background: $sdrm-blue; }
+  &--forest { background: #2D8A5A; }
+  &--sunset { background: #8B4FA3; }
+}
