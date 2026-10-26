@@ -46,7 +46,17 @@
 
   &:has(input:checked) {
     border-color: $sdrm-blue;
+    background: $sdrm-blue;
     box-shadow: 0 0 0 3px $sdrm-tint-blue;
+
+    .sdrm__persona-option-content strong,
+    .sdrm__persona-option-content span {
+      color: $sdrm-on-color;
+    }
+
+    input {
+      accent-color: $sdrm-on-color;
+    }
   }
 
   input {
@@ -102,6 +112,25 @@
 html[data-sdrm-theme] {
   .sdrm__persona-option {
     background: var(--sdrm-theme-background);
+  }
+
+  .sdrm__persona-option:hover,
+  .sdrm__persona-option:has(input:checked) {
+    border-color: var(--sdrm-theme-accent);
+  }
+
+  .sdrm__persona-option:has(input:checked) {
+    background: var(--sdrm-theme-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--sdrm-theme-accent) 35%, transparent);
+
+    .sdrm__persona-option-content strong,
+    .sdrm__persona-option-content span {
+      color: var(--sdrm-theme-background);
+    }
+
+    input {
+      accent-color: var(--sdrm-theme-background);
+    }
   }
 
   .sdrm__persona-option-content strong,
