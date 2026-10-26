@@ -58,4 +58,90 @@ kicker: Coordinators
   </div>
 </section>
 
+{%- comment -%}
+  Manage resources (issue #5): add, edit and delete the help resources listed on Get Help Now.
+  Shown only once the server confirms coordinator access; every change goes through
+  /api/sdrm/resources, which also checks the role. assets/js/sdrm/coordinator-resources.js runs it.
+{%- endcomment %}
+<section class="sdrm__section sdrm__section--white" aria-labelledby="resources-heading" data-sdrm-coordinator-state="allowed" data-sdrm-resources hidden>
+  <div class="sdrm__container">
+    <header class="sdrm__section-header">
+      <p class="sdrm__kicker">Get Help Now</p>
+      <h2 class="sdrm__section-heading" id="resources-heading">Manage resources</h2>
+      <p class="sdrm__section-intro">Public program information only: name, area, hours, and how to reach the program. Never add details about the people the Mission serves.</p>
+    </header>
+
+    <div class="sdrm__grid sdrm__grid--two sdrm__auth">
+      <article class="sdrm__card sdrm__auth-card" aria-labelledby="resource-form-heading">
+        <h3 class="sdrm__card-title" id="resource-form-heading" data-resource-form-title>Add a resource</h3>
+
+        <p class="sdrm__auth-success" id="resource-success" role="status"></p>
+
+        <form class="sdrm__auth-form" id="resource-form" novalidate>
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="resource-name">Name</label>
+            <input class="sdrm__input" id="resource-name" name="name" type="text" maxlength="200" autocomplete="off" required>
+          </div>
+
+          <fieldset class="sdrm__fieldset">
+            <legend class="sdrm__fieldset-legend">Needs it helps with</legend>
+            <div class="sdrm__fieldset-options" id="resource-needs"></div>
+          </fieldset>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="resource-location">Area</label>
+            <select class="sdrm__input" id="resource-location" name="location" required>
+              <option value="">Choose an area</option>
+            </select>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="resource-description">Description</label>
+            <textarea class="sdrm__input" id="resource-description" name="description" rows="3" maxlength="1000" required></textarea>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="resource-address">Address</label>
+            <input class="sdrm__input" id="resource-address" name="address" type="text" maxlength="200" autocomplete="off" aria-describedby="resource-todo-hint">
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="resource-hours">Hours</label>
+            <input class="sdrm__input" id="resource-hours" name="hours" type="text" maxlength="100" autocomplete="off" aria-describedby="resource-todo-hint">
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="resource-phone">Program phone</label>
+            <input class="sdrm__input" id="resource-phone" name="phone" type="text" maxlength="40" autocomplete="off" aria-describedby="resource-todo-hint">
+            <p class="sdrm__field-hint" id="resource-todo-hint">Leave address, hours, or phone empty if they aren't confirmed yet; they'll show as “TODO: verify”.</p>
+          </div>
+
+          <p class="sdrm__field-error sdrm__auth-form-error" id="resource-form-error" role="alert"></p>
+
+          <div class="sdrm__actions">
+            <button class="sdrm__button sdrm__button--blue sdrm__auth-submit" type="submit" data-busy-label="Saving…" data-resource-submit>Add resource</button>
+            <button class="sdrm__button sdrm__button--outline" type="button" data-resource-cancel hidden>Cancel editing</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="sdrm__card" aria-labelledby="resource-list-heading">
+        <h3 class="sdrm__card-title" id="resource-list-heading">Current resources</h3>
+        <p class="sdrm__field-error" id="resource-list-error" role="alert"></p>
+        <div class="sdrm__table-wrap">
+          <table class="sdrm__table">
+            <caption class="sdrm__visually-hidden">Help resources shown on Get Help Now</caption>
+            <thead>
+              <tr><th scope="col">Name</th><th scope="col">Area</th><th scope="col">Actions</th></tr>
+            </thead>
+            <tbody id="resource-rows">
+              <tr><td colspan="3">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <script type="module" src="{{ '/assets/js/sdrm/coordinator.js' | relative_url }}"></script>

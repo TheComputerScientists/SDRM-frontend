@@ -14,6 +14,10 @@ kicker: Find support
         <h2 class="sdrm__card-title" id="filters-heading">Filter resources</h2>
         <form id="help-filters" class="sdrm__field-row" aria-describedby="help-summary">
           <div class="sdrm__field sdrm__field--grow">
+            <label class="sdrm__field-label" for="help-q">Search</label>
+            <input class="sdrm__input" id="help-q" name="q" type="search" autocomplete="off" placeholder="For example: meals">
+          </div>
+          <div class="sdrm__field sdrm__field--grow">
             <label class="sdrm__field-label" for="help-need">What do you need?</label>
             <select class="sdrm__input" id="help-need" name="need">
               <option value="all">All needs</option>
@@ -39,6 +43,7 @@ kicker: Find support
         <p class="sdrm__kicker">Results</p>
         <h2 class="sdrm__section-heading" id="results-heading">Matching resources</h2>
         <p class="sdrm__section-intro" id="help-summary" role="status" aria-live="polite">Loading resources…</p>
+        <p class="sdrm__muted" id="help-source" hidden>Showing saved list</p>
       </header>
 
       <div class="sdrm__grid" id="help-results"></div>
@@ -46,7 +51,7 @@ kicker: Find support
       <div class="sdrm__callout sdrm__callout--empty" id="help-empty" hidden>
         <span class="sdrm__callout-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg></span>
         <h3 class="sdrm__callout-title">Nothing here yet</h3>
-        <p class="sdrm__text">No resources match those filters. Try choosing “All locations” or a different need, or reset the filters to see everything.</p>
+        <p class="sdrm__text">No resources match those filters. Try a different search word, choose “All locations” or a different need, or reset the filters to see everything.</p>
         <p class="sdrm__actions">
           <button class="sdrm__button sdrm__button--orange" type="button" data-help-reset>Show all resources</button>
         </p>

@@ -4,6 +4,7 @@
 // link is hidden for volunteers too, but typing the URL lands here and gets the
 // friendly "Coordinators only" panel instead of the tools.
 import { getCurrentUser, pingCoordinator } from "./auth.js";
+import { startResources } from "./coordinator-resources.js";
 
 const panels = document.querySelectorAll("[data-sdrm-coordinator-state]");
 
@@ -19,6 +20,7 @@ async function start() {
     const user = await getCurrentUser();
     document.querySelector("[data-sdrm-coordinator-name]").textContent = user ? String(user.name || user.uid) : "coordinator";
     showState("allowed");
+    startResources(document.querySelector("[data-sdrm-resources]"));
   } catch (error) {
     if (error.kind === "forbidden" || error.kind === "session") {
       showState(error.kind);
