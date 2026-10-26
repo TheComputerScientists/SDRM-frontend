@@ -34,6 +34,8 @@
           {%- if item.role %} data-sdrm-role="{{ item.role | escape }}" hidden{% endif -%}
           {%- if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
         {%- endfor %}
+        <a class="page-link" href="{{ '/sdrm/persona/' | relative_url }}"
+          {%- if page.url == "/sdrm/persona/" %} aria-current="page"{% endif %}>Persona</a>
         <a class="page-link" href="{{ '/sdrm/appearance/' | relative_url }}"
           {%- if page.url == "/sdrm/appearance/" %} aria-current="page"{% endif %}>Appearance</a>
         <a id="loginArea" class="page-link" href="{{ '/sdrm/login/' | relative_url }}" data-profile-href="{{ '/sdrm/profile/' | relative_url }}"
