@@ -1,0 +1,111 @@
+.sdrm__persona-form {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+.sdrm__persona-question {
+  margin: 0 0 $sdrm-space-7;
+  padding: 0;
+  border: 0;
+}
+
+.sdrm__persona-question-title {
+  grid-column: 1 / -1;
+  margin-bottom: $sdrm-space-4;
+  color: $sdrm-text-strong;
+  font-family: $sdrm-font-display;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.sdrm__persona-question {
+  display: grid;
+  gap: $sdrm-space-4;
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.sdrm__persona-option {
+  display: flex;
+  align-items: flex-start;
+  gap: $sdrm-space-4;
+  min-height: 9rem;
+  padding: $sdrm-space-5;
+  border: 2px solid $sdrm-line;
+  border-radius: $sdrm-radius-sm;
+  background: $sdrm-surface;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: $sdrm-blue;
+    transform: translateY(-2px);
+  }
+
+  &:has(input:checked) {
+    border-color: $sdrm-blue;
+    box-shadow: 0 0 0 3px $sdrm-tint-blue;
+  }
+
+  input {
+    flex: none;
+    margin-top: 0.3rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.sdrm__persona-option-content {
+  display: grid;
+  gap: $sdrm-space-2;
+
+  strong {
+    color: $sdrm-text-strong;
+    font-size: 1.25rem;
+  }
+
+  span {
+    color: $sdrm-muted;
+  }
+}
+
+.sdrm__persona-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sdrm-space-4;
+  margin-top: $sdrm-space-5;
+}
+
+.sdrm__persona-progress,
+.sdrm__persona-status {
+  margin: 0;
+  color: $sdrm-muted;
+  font-size: 0.95rem;
+}
+
+.sdrm__persona-status {
+  min-height: 1.5rem;
+  margin-top: $sdrm-space-3;
+  color: $sdrm-green-ink;
+  font-weight: 700;
+}
+
+html[data-sdrm-theme] {
+  .sdrm__persona-option {
+    background: var(--sdrm-theme-background);
+  }
+
+  .sdrm__persona-option-content strong,
+  .sdrm__persona-progress {
+    color: var(--sdrm-theme-text);
+  }
+}
