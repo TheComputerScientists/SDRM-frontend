@@ -41,6 +41,17 @@ html[data-sdrm-theme="ocean"] {
   --sdrm-theme-accent: #06b6d4;
 }
 
+html[data-sdrm-theme="halloween"] {
+  --sdrm-theme-background: #0b0b0b;
+  --sdrm-theme-text: #fff7ed;
+  --sdrm-theme-accent: #f97316;
+
+  .site-title::after {
+    display: inline;
+    content: "🎃";
+  }
+}
+
 html[data-sdrm-theme] {
   background: var(--sdrm-theme-background);
 
@@ -169,4 +180,5 @@ html[data-sdrm-theme] {
   &--sepia { background: #b45309; }
   &--cyberpunk { background: #f72585; }
   &--ocean { background: #06b6d4; }
+  &--halloween { background: #f97316; }
 }

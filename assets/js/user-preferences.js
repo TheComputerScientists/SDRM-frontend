@@ -69,6 +69,13 @@
       size: 15,
       accent: '#06b6d4',
     },
+    Halloween: {
+      bg: '#0b0b0b',
+      text: '#fff7ed',
+      font: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+      size: 14,
+      accent: '#f97316',
+    },
   };
 
   const storageKey = 'sitePreferences';

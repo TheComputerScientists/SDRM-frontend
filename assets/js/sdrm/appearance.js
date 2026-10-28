@@ -1,5 +1,5 @@
 const STORAGE_KEY = "sdrm-theme";
-const THEMES = new Set(["default", "midnight", "light", "green", "sepia", "cyberpunk", "ocean"]);
+const THEMES = new Set(["default", "midnight", "light", "green", "sepia", "cyberpunk", "ocean", "halloween"]);
 
 function readTheme() {
   try {
