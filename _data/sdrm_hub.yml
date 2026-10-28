@@ -67,7 +67,7 @@ quick_help:
 
 emergency:
   heading: Need help right now?
-  text: In an emergency, call 911. For other community services in San Diego County, dial 211.
+  text: In an emergency, call 911.
   note: "Every program, rate, and shift on this site is placeholder data marked “TODO: verify”. For real, current services, visit sdrescue.org."
 
 support:
@@ -89,4 +89,3 @@ support:
       url: https://sdrescue.org/volunteer/
     - label: Donate
       url: https://sdrescue.org/donate/
-  immediate_help: For immediate help, call 2-1-1.

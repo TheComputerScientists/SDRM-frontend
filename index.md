@@ -53,7 +53,6 @@ permalink: /
       <a class="ocs__btn small accent" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label | escape }}</a>
       {%- endfor %}
     </p>
-    <p class="sdrm__text"><strong>{{ hub.support.immediate_help | escape }}</strong></p>
   </section>
 
   <aside class="ocs__callout" aria-labelledby="emergency-heading">
