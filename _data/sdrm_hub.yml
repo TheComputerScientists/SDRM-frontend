@@ -69,3 +69,24 @@ emergency:
   heading: Need help right now?
   text: In an emergency, call 911. For other community services in San Diego County, dial 211.
   note: "Every program, rate, and shift on this site is placeholder data marked “TODO: verify”. For real, current services, visit sdrescue.org."
+
+support:
+  heading: Supporting San Diego Rescue Mission
+  intro: This student project was built to support the San Diego Rescue Mission by making it easier to find help, volunteer, and give. It is not the official San Diego Rescue Mission website.
+  contact_label: Main contact
+  email: sdrminfo@sdrescue.org
+  email_url: mailto:sdrminfo@sdrescue.org
+  phone: (619) 687-3720
+  phone_url: tel:+16196873720
+  address: 120 Elm Street, San Diego, CA 92101
+  links_label: Visit the official site
+  links:
+    - label: San Diego Rescue Mission
+      url: https://sdrescue.org/
+    - label: Get Help Now
+      url: https://sdrescue.org/get-help/
+    - label: Volunteer
+      url: https://sdrescue.org/volunteer/
+    - label: Donate
+      url: https://sdrescue.org/donate/
+  immediate_help: For immediate help, call 2-1-1.

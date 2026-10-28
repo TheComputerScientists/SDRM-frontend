@@ -38,6 +38,24 @@ permalink: /
     </form>
   </section>
 
+  <section class="ocs__card" aria-labelledby="support-heading">
+    <h2 class="ocs__section-title" id="support-heading">{{ hub.support.heading | escape }}</h2>
+    <p class="sdrm__text">{{ hub.support.intro | escape }}</p>
+    <h3 class="sdrm__card-title">{{ hub.support.contact_label | escape }}</h3>
+    <p class="sdrm__text">
+      <a href="{{ hub.support.email_url | escape }}">{{ hub.support.email | escape }}</a><br>
+      <a href="{{ hub.support.phone_url | escape }}">{{ hub.support.phone | escape }}</a><br>
+      {{ hub.support.address | escape }}
+    </p>
+    <h3 class="sdrm__card-title">{{ hub.support.links_label | escape }}</h3>
+    <p class="sdrm__actions">
+      {%- for link in hub.support.links %}
+      <a class="ocs__btn small accent" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label | escape }}</a>
+      {%- endfor %}
+    </p>
+    <p class="sdrm__text"><strong>{{ hub.support.immediate_help | escape }}</strong></p>
+  </section>
+
   <aside class="ocs__callout" aria-labelledby="emergency-heading">
     <h2 class="ocs__section-title" id="emergency-heading">{{ hub.emergency.heading | escape }}</h2>
     <p class="sdrm__text"><strong>{{ hub.emergency.text | escape }}</strong></p>
