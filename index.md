@@ -55,9 +55,4 @@ permalink: /
     </p>
   </section>
 
-  <aside class="ocs__callout" aria-labelledby="emergency-heading">
-    <h2 class="ocs__section-title" id="emergency-heading">{{ hub.emergency.heading | escape }}</h2>
-    <p class="sdrm__text"><strong>{{ hub.emergency.text | escape }}</strong></p>
-    <p class="sdrm__text">{{ hub.emergency.note | escape }}</p>
-  </aside>
 </div>

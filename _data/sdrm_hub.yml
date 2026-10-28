@@ -65,11 +65,6 @@ quick_help:
     - id: recovery
       label: Recovery
 
-emergency:
-  heading: Need help right now?
-  text: In an emergency, call 911.
-  note: "Every program, rate, and shift on this site is placeholder data marked “TODO: verify”. For real, current services, visit sdrescue.org."
-
 support:
   heading: Supporting San Diego Rescue Mission
   intro: This student project was built to support the San Diego Rescue Mission by making it easier to find help, volunteer, and give. It is not the official San Diego Rescue Mission website.
