@@ -91,4 +91,82 @@ kicker: Your account
   </div>
 </section>
 
+{%- comment -%}
+  My hours (issue #3): service hours logged on shifts you signed up for, and their totals.
+  Shown only once /api/id says you're logged in; if the server can't be reached the alert at
+  the top of the page shows instead. assets/js/sdrm/profile-hours.js runs it (/api/sdrm/hours).
+{%- endcomment %}
+<section class="sdrm__section sdrm__section--white" id="my-hours" aria-labelledby="hours-heading" data-sdrm-hours hidden>
+  <div class="sdrm__container">
+    <header class="sdrm__section-header">
+      <p class="sdrm__kicker">Service hours</p>
+      <h2 class="sdrm__section-heading" id="hours-heading">My hours</h2>
+      <p class="sdrm__section-intro">Log the hours you served on shifts you signed up for. A volunteer coordinator approves them before they count toward your total.</p>
+    </header>
+
+    <div class="sdrm__grid sdrm__grid--two sdrm__auth">
+      <article class="sdrm__card sdrm__auth-card" aria-labelledby="hours-form-heading">
+        <h3 class="sdrm__card-title" id="hours-form-heading">Log hours</h3>
+
+        <p class="sdrm__auth-success" id="hours-success" role="status"></p>
+
+        <p class="sdrm__text" data-hours-no-shifts hidden>Sign up for a shift first, then come back to log your hours. <a href="{{ '/sdrm/volunteer/' | relative_url }}">Find volunteer shifts</a></p>
+
+        <form class="sdrm__auth-form" id="hours-form" novalidate>
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="hours-shift">Shift</label>
+            <select class="sdrm__input" id="hours-shift" name="opportunity" required>
+              <option value="">Choose a shift you signed up for</option>
+            </select>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="hours-hours">Hours</label>
+            <input class="sdrm__input" id="hours-hours" name="hours" type="number" min="0.25" max="12" step="0.25" inputmode="decimal" required aria-describedby="hours-hours-hint">
+            <p class="sdrm__field-hint" id="hours-hours-hint">From 0.25 to 12, in quarter hours (for example 1.5 for an hour and a half).</p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="hours-note">Note (optional)</label>
+            <textarea class="sdrm__input" id="hours-note" name="note" rows="2" maxlength="300"></textarea>
+          </div>
+
+          <p class="sdrm__field-error sdrm__auth-form-error" id="hours-form-error" role="alert"></p>
+
+          <div class="sdrm__actions">
+            <button class="sdrm__button sdrm__button--blue sdrm__auth-submit" type="submit" data-busy-label="Saving…">Log hours</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="sdrm__card" aria-labelledby="hours-list-heading">
+        <h3 class="sdrm__card-title" id="hours-list-heading">Your service hours</h3>
+        <dl class="sdrm__account-details">
+          <div class="sdrm__account-detail">
+            <dt>Approved hours</dt>
+            <dd data-hours-total="approved">0</dd>
+          </div>
+          <div class="sdrm__account-detail">
+            <dt>Pending hours</dt>
+            <dd data-hours-total="pending">0</dd>
+          </div>
+        </dl>
+        <p class="sdrm__field-error" id="hours-list-error" role="alert"></p>
+        <div class="sdrm__table-wrap">
+          <table class="sdrm__table">
+            <caption class="sdrm__visually-hidden">Hours you have logged</caption>
+            <thead>
+              <tr><th scope="col">Shift</th><th scope="col">Hours</th><th scope="col">Status</th><th scope="col">Actions</th></tr>
+            </thead>
+            <tbody id="hours-rows">
+              <tr><td colspan="4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <script type="module" src="{{ '/assets/js/sdrm/profile.js' | relative_url }}"></script>
+<script type="module" src="{{ '/assets/js/sdrm/profile-hours.js' | relative_url }}"></script>

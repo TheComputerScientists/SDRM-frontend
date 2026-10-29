@@ -12,6 +12,8 @@
 #            guards the page itself.
 #   signed_in  optional. Replaces kicker/title/text/url once someone is logged in
 #              (also swapped by account.js; without the backend the signed-out tile stays).
+#   show     optional. "signed-in" hides the tile until someone is logged in (shown by
+#            account.js; without the backend it stays hidden).
 
 title: San Diego Rescue Mission
 description: A student-built guide to finding help, giving, and volunteering, inspired by the work of the San Diego Rescue Mission. Pick where you want to go.
@@ -42,6 +44,11 @@ tiles:
       title: My profile
       text: Your account details and your parent or guardian's contact.
       url: /sdrm/profile/
+  - kicker: Your account
+    title: My hours
+    text: Log the hours you served on your shifts and see your approved total.
+    url: /sdrm/profile/#my-hours
+    show: signed-in
   - kicker: Coordinators
     title: Coordinator tools
     text: Tools for volunteer coordinators, starting with the volunteer needs board.

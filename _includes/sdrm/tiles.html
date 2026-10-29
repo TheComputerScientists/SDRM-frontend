@@ -2,6 +2,7 @@
   One ocs__hub-card per tile in _data/sdrm_hub.yml, for the hub (index.md).
   A tile with `signed_in` renders twice: data-sdrm-show="signed-out" (visible) and
   data-sdrm-show="signed-in" (hidden). A tile with `role` starts hidden with data-sdrm-role.
+  A tile with `show: signed-in` renders once, hidden, with data-sdrm-show="signed-in".
   assets/js/sdrm/account.js shows the right ones once it knows who is logged in.
 {%- endcomment -%}
 {%- for tile in site.data.sdrm_hub.tiles -%}
@@ -17,9 +18,9 @@
       {%- assign t = tile -%}
     {%- endif -%}
     {%- capture attrs -%}
-      {%- if version != "any" %} data-sdrm-show="{{ version }}"{% endif -%}
+      {%- if version != "any" %} data-sdrm-show="{{ version }}"{% elsif tile.show %} data-sdrm-show="{{ tile.show | escape }}"{% endif -%}
       {%- if tile.role %} data-sdrm-role="{{ tile.role | escape }}"{% endif -%}
-      {%- if version == "signed-in" or tile.role %} hidden{% endif -%}
+      {%- if version == "signed-in" or tile.role or tile.show == "signed-in" %} hidden{% endif -%}
     {%- endcapture %}
     <a class="ocs__hub-card" href="{{ t.url | relative_url }}"{{ attrs }}>
       <span class="ocs__nav-card-kicker">{{ t.kicker | escape }}</span>

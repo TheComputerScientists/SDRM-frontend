@@ -5,6 +5,8 @@
 // friendly "Coordinators only" panel instead of the tools.
 import { getCurrentUser, pingCoordinator } from "./auth.js";
 import { startResources } from "./coordinator-resources.js";
+import { startHoursReview } from "./coordinator-hours.js";
+import { startShifts } from "./coordinator-shifts.js";
 
 const panels = document.querySelectorAll("[data-sdrm-coordinator-state]");
 
@@ -21,6 +23,8 @@ async function start() {
     document.querySelector("[data-sdrm-coordinator-name]").textContent = user ? String(user.name || user.uid) : "coordinator";
     showState("allowed");
     startResources(document.querySelector("[data-sdrm-resources]"));
+    startHoursReview(document.querySelector("[data-sdrm-hours-review]"));
+    startShifts(document.querySelector("[data-sdrm-shifts]"));
   } catch (error) {
     if (error.kind === "forbidden" || error.kind === "session") {
       showState(error.kind);

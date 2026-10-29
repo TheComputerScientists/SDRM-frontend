@@ -1,11 +1,16 @@
 // Volunteer: filter the shifts from GET /api/sdrm/opportunities by day and interest.
-// Signing up takes a spot on the server (POST/DELETE .../<id>/signup), so it needs an
-// account; logged-out visitors get a "Log in to sign up" link instead of the button.
+// Signing up takes spots on the server (POST/DELETE .../<id>/signup), one per person in
+// the group (Group size, 1-10), so it needs an account; logged-out visitors get a
+// "Log in to sign up" link instead of the button.
 // When the server can't be reached (e.g. on GitHub Pages) the shifts come from
 // opportunities.json instead, with every Sign up button disabled.
 import { apiFetch, loadJSON, el, toggle, showLoadError, NetworkError } from "./common.js";
 
 const root = document.querySelector("[data-sdrm-volunteer]");
+
+// Same limits the server checks (GROUP_SIZE_MIN / GROUP_SIZE_MAX in model/sdrm.py)
+const GROUP_MIN = 1;
+const GROUP_MAX = 10;
 
 if (root) {
   init(root);
@@ -59,15 +64,25 @@ async function init(rootEl) {
     return input;
   });
 
-  /** Take or give back a spot on the server; updates the card from the server's answer. */
+  /** Take (or resize) or give back spots on the server; updates the card from the server's answer. */
   async function change(opp, method) {
     const card = cards.get(opp.id);
     if (card.busy) return;
+    const groupSize = Number(card.group.value);
+    card.groupError.textContent = "";
+    if (method === "POST" && !(Number.isInteger(groupSize) && groupSize >= GROUP_MIN && groupSize <= GROUP_MAX)) {
+      card.groupError.textContent = `Group size must be a whole number from ${GROUP_MIN} to ${GROUP_MAX}.`;
+      card.group.focus();
+      return;
+    }
     card.busy = true;
     card.signUp.setAttribute("aria-disabled", "true");
     card.cancel.setAttribute("aria-disabled", "true");
     try {
-      const response = await apiFetch(`/api/sdrm/opportunities/${encodeURIComponent(opp.id)}/signup`, { method });
+      const response = await apiFetch(`/api/sdrm/opportunities/${encodeURIComponent(opp.id)}/signup`, {
+        method,
+        body: method === "POST" ? { groupSize } : undefined,
+      });
       if (response.status === 401) {
         loggedIn = false;
         data.opportunities.forEach((o) => (o.signedUp = false));
@@ -75,10 +90,13 @@ async function init(rootEl) {
         announce.textContent = "Your session ended. Log in to sign up for shifts.";
         return;
       }
-      if (response.status === 409) {
-        opp.spots = 0;
+      if (response.status === 400) {
+        // Not enough spots left for this group (or a bad size): the server says why
+        const body = await response.json().catch(() => ({}));
+        if (!opp.signedUp && typeof body.spots === "number") opp.spots = body.spots;
         update(opp);
-        announce.textContent = `Sorry, ${opp.title} just filled up.`;
+        card.groupError.textContent = body.message || "That group size didn't work. Please try a smaller group.";
+        card.group.focus();
         return;
       }
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -86,7 +104,7 @@ async function init(rootEl) {
       Object.assign(opp, await response.json());
       update(opp);
       if (opp.signedUp) {
-        announce.textContent = `You're signed up for ${opp.title} on ${opp.day}. ${spotsText(opp.spots)}.`;
+        announce.textContent = `You're signed up for ${opp.title} on ${opp.day}${groupText(opp.groupSize)}. ${spotsText(opp.spots)}.`;
         card.cancel.focus();
       } else {
         announce.textContent = `Sign-up for ${opp.title} cancelled. ${spotsText(opp.spots)}.`;
@@ -125,6 +143,22 @@ async function init(rootEl) {
       attrs: { href: loginUrl, "aria-describedby": `vol-${opp.id}-title vol-${opp.id}-spots` },
     });
     pill.id = `vol-${opp.id}-spots`;
+    const groupId = `vol-${opp.id}-group`;
+    const group = el("input", {
+      className: "sdrm__input",
+      attrs: {
+        type: "number",
+        id: groupId,
+        name: "groupSize",
+        min: String(GROUP_MIN),
+        max: String(GROUP_MAX),
+        step: "1",
+        inputmode: "numeric",
+        value: String(opp.groupSize || GROUP_MIN),
+        "aria-describedby": `vol-${opp.id}-spots ${groupId}-error`,
+      },
+    });
+    const groupError = el("p", { className: "sdrm__field-error", attrs: { id: `${groupId}-error`, role: "alert" } });
 
     const article = el("article", { className: "sdrm__card sdrm__card--topline" }, [
       el("h3", { className: "sdrm__card-title", text: opp.title, attrs: { id: `vol-${opp.id}-title` } }),
@@ -135,23 +169,37 @@ async function init(rootEl) {
       ]),
       el("p", { className: "sdrm__text", text: opp.description }),
       el("p", { className: "sdrm__card-detail" }, [el("strong", { text: "Time: " }), opp.time]),
+      el("div", { className: "sdrm__field" }, [
+        el("label", { className: "sdrm__field-label", text: "Group size", attrs: { for: groupId } }),
+        group,
+        groupError,
+      ]),
       el("p", { className: "sdrm__actions" }, [signUp, login, cancel]),
     ]);
 
     signUp.addEventListener("click", () => {
-      if (!opp.signedUp && opp.spots > 0) change(opp, "POST");
+      if (opp.signedUp ? resizing(opp) : opp.spots > 0) change(opp, "POST");
+    });
+    group.addEventListener("input", () => {
+      groupError.textContent = "";
+      update(opp);
     });
     cancel.addEventListener("click", () => {
       if (opp.signedUp) change(opp, "DELETE");
     });
 
-    cards.set(opp.id, { article, pill, signUp, cancel, login, busy: false });
+    cards.set(opp.id, { article, pill, signUp, cancel, login, group, groupError, busy: false });
     results.append(article);
     update(opp);
   });
 
+  /** True when the user is signed up and has typed a different group size. */
+  function resizing(opp) {
+    return opp.signedUp && Number(cards.get(opp.id).group.value) !== opp.groupSize;
+  }
+
   function update(opp) {
-    const { pill, signUp, cancel, login } = cards.get(opp.id);
+    const { pill, signUp, cancel, login, group } = cards.get(opp.id);
     const left = opp.spots;
 
     pill.textContent = spotsText(left);
@@ -163,14 +211,20 @@ async function init(rootEl) {
       signUp.hidden = false;
       signUp.disabled = true;
       signUp.textContent = left === 0 ? "Full" : "Sign up";
+      group.disabled = true;
       return;
     }
 
     // Logged out: a login link while there's room, otherwise the disabled "Full" button
     login.hidden = loggedIn || left === 0;
     signUp.hidden = !login.hidden;
-    signUp.disabled = opp.signedUp || left === 0;
-    signUp.textContent = opp.signedUp ? "Signed up" : left === 0 ? "Full" : "Sign up";
+    group.disabled = !loggedIn || (!opp.signedUp && left === 0);
+    if (opp.signedUp && document.activeElement !== group && !cards.get(opp.id).busy) {
+      group.value = String(opp.groupSize);
+    }
+    // Signed up with a new number typed in: the same button saves the new group size
+    signUp.disabled = opp.signedUp ? !resizing(opp) : left === 0;
+    signUp.textContent = resizing(opp) ? "Update group size" : opp.signedUp ? "Signed up" : left === 0 ? "Full" : "Sign up";
     cancel.hidden = !opp.signedUp;
   }
 
@@ -201,6 +255,10 @@ async function init(rootEl) {
   });
 
   filter();
+}
+
+function groupText(size) {
+  return size > 1 ? ` for a group of ${size}` : "";
 }
 
 function spotsText(left) {

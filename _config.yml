@@ -19,7 +19,7 @@ description: "Class of 2026"
 owner_name: John Mortensen
 github_username: jm1021 
 github_repo: "portfolio" 
-baseurl: "/portfolio" 
+baseurl: "/SDRM-frontend"
 future: true
 
 # Build settings
@@ -46,6 +46,21 @@ future: true
 #   quiet_deps: true
 #   silence_deprecations: [import]
 incremental: true
+
+# Files Jekyll must not copy into _site. In Jekyll 3.9 this list replaces the
+# defaults, so the Gemfile/node_modules/vendor entries are repeated here.
+exclude:
+  - venv/
+  - .venv/
+  - port_venv/
+  - ven/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 
 remote_theme: jekyll/minima
 plugins:

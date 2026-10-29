@@ -144,4 +144,120 @@ kicker: Coordinators
   </div>
 </section>
 
+{%- comment -%}
+  Review hours (issue #3): approve or reject the service hours volunteers logged on their
+  profile. Shown only once the server confirms coordinator access; /api/sdrm/hours checks the
+  role again. assets/js/sdrm/coordinator-hours.js runs it.
+{%- endcomment %}
+<section class="sdrm__section sdrm__section--cream" aria-labelledby="hours-review-heading" data-sdrm-coordinator-state="allowed" data-sdrm-hours-review hidden>
+  <div class="sdrm__container">
+    <header class="sdrm__section-header">
+      <p class="sdrm__kicker">Service hours</p>
+      <h2 class="sdrm__section-heading" id="hours-review-heading">Review hours</h2>
+      <p class="sdrm__section-intro">Hours volunteers logged on shifts they signed up for. Approved hours count toward their total; you can't review your own.</p>
+    </header>
+
+    <article class="sdrm__card" aria-labelledby="hours-pending-heading">
+      <h3 class="sdrm__card-title" id="hours-pending-heading">Waiting for review</h3>
+      <p class="sdrm__auth-success" id="hours-review-success" role="status"></p>
+      <p class="sdrm__field-error" id="hours-review-error" role="alert"></p>
+      <div class="sdrm__table-wrap">
+        <table class="sdrm__table">
+          <caption class="sdrm__visually-hidden">Service hours waiting for review</caption>
+          <thead>
+            <tr><th scope="col">Volunteer</th><th scope="col">Shift</th><th scope="col">Hours</th><th scope="col">Note</th><th scope="col">Actions</th></tr>
+          </thead>
+          <tbody id="hours-review-rows">
+            <tr><td colspan="5">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </div>
+</section>
+
+{%- comment -%}
+  Manage shifts (issue #3): add, edit and delete the volunteer shifts listed on Volunteer.
+  Same pattern as Manage resources; every change goes through /api/sdrm/opportunities,
+  which also checks the role. assets/js/sdrm/coordinator-shifts.js runs it.
+{%- endcomment %}
+<section class="sdrm__section sdrm__section--white" aria-labelledby="shifts-heading" data-sdrm-coordinator-state="allowed" data-sdrm-shifts hidden>
+  <div class="sdrm__container">
+    <header class="sdrm__section-header">
+      <p class="sdrm__kicker">Volunteer</p>
+      <h2 class="sdrm__section-heading" id="shifts-heading">Manage shifts</h2>
+      <p class="sdrm__section-intro">The shifts volunteers can sign up for. Capacity is how many people a shift takes; a group sign-up uses one spot per person.</p>
+    </header>
+
+    <div class="sdrm__grid sdrm__grid--two sdrm__auth">
+      <article class="sdrm__card sdrm__auth-card" aria-labelledby="shift-form-heading">
+        <h3 class="sdrm__card-title" id="shift-form-heading" data-shift-form-title>Add a shift</h3>
+
+        <p class="sdrm__auth-success" id="shift-success" role="status"></p>
+
+        <form class="sdrm__auth-form" id="shift-form" novalidate>
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="shift-title">Title</label>
+            <input class="sdrm__input" id="shift-title" name="title" type="text" maxlength="200" autocomplete="off" required>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="shift-day">Day</label>
+            <select class="sdrm__input" id="shift-day" name="day" required>
+              <option value="">Choose a day</option>
+            </select>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="shift-interest">Kind of work</label>
+            <select class="sdrm__input" id="shift-interest" name="interest" required>
+              <option value="">Choose a kind of work</option>
+            </select>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="shift-time">Time</label>
+            <input class="sdrm__input" id="shift-time" name="time" type="text" maxlength="100" autocomplete="off" aria-describedby="shift-time-hint">
+            <p class="sdrm__field-hint" id="shift-time-hint">Leave empty if it isn't confirmed yet; it'll show as “TODO: verify”.</p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="shift-capacity">Capacity</label>
+            <input class="sdrm__input" id="shift-capacity" name="capacity" type="number" min="0" max="500" step="1" inputmode="numeric" required aria-describedby="shift-capacity-hint">
+            <p class="sdrm__field-hint" id="shift-capacity-hint">How many people the shift takes, from 0 (closed) to 500.</p>
+          </div>
+
+          <div class="sdrm__field">
+            <label class="sdrm__field-label" for="shift-description">Description</label>
+            <textarea class="sdrm__input" id="shift-description" name="description" rows="3" maxlength="1000" required></textarea>
+          </div>
+
+          <p class="sdrm__field-error sdrm__auth-form-error" id="shift-form-error" role="alert"></p>
+
+          <div class="sdrm__actions">
+            <button class="sdrm__button sdrm__button--blue sdrm__auth-submit" type="submit" data-busy-label="Saving…" data-shift-submit>Add shift</button>
+            <button class="sdrm__button sdrm__button--outline" type="button" data-shift-cancel hidden>Cancel editing</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="sdrm__card" aria-labelledby="shift-list-heading">
+        <h3 class="sdrm__card-title" id="shift-list-heading">Current shifts</h3>
+        <p class="sdrm__field-error" id="shift-list-error" role="alert"></p>
+        <div class="sdrm__table-wrap">
+          <table class="sdrm__table">
+            <caption class="sdrm__visually-hidden">Volunteer shifts shown on Volunteer</caption>
+            <thead>
+              <tr><th scope="col">Title</th><th scope="col">Day</th><th scope="col">Spots left</th><th scope="col">Actions</th></tr>
+            </thead>
+            <tbody id="shift-rows">
+              <tr><td colspan="4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <script type="module" src="{{ '/assets/js/sdrm/coordinator.js' | relative_url }}"></script>
