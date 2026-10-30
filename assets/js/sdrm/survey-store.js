@@ -1,5 +1,5 @@
-// Saved survey answers, shared by the persona page (persona.js) and the hub pop-up
-// (survey-popup.js). Stored in localStorage as { role, group, interest, availability }.
+// Saved survey answers for the persona page (persona.js).
+// Stored in localStorage as { role, group, interest, availability }.
 export const STORAGE_KEY = "sdrm-persona";
 
 export function readPersona() {

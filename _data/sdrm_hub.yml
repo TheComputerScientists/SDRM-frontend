@@ -95,12 +95,3 @@ support:
       url: https://sdrescue.org/volunteer/
     - label: Donate
       url: https://sdrescue.org/donate/
-
-# Survey pop-up shown on first visit (questions come from _data/sdrm/survey.yml).
-survey_popup:
-  heading: Help us point you the right way
-  intro: Answer a few quick questions so we can show you what matters most. You can skip any of them.
-  save: Save
-  later: Maybe later
-  full_survey_label: See the full survey page
-  full_survey_url: /sdrm/persona/
