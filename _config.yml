@@ -125,5 +125,10 @@ minima:
     - { platform: x, user_url: "https://x.com/Open_Coding" }
     - { platform: youtube, user_url: "https://www.youtube.com/@OpenCodingSociety" } 
   nav_pages:
-    - navigation/search.md
-    - navigation/about.md
+    - sdrm/get-help.html
+    - sdrm/volunteer.html
+    - sdrm/give.html
+    - sdrm/about.html
+    - sdrm/persona.html
+    - sdrm/coordinator.html
+    - sdrm/appearance.html
