@@ -44,11 +44,15 @@ tiles:
       title: My profile
       text: Your account details and your parent or guardian's contact.
       url: /sdrm/profile/
-  - kicker: Your account
-    title: My hours
-    text: Log the hours you served on your shifts and see your approved total.
-    url: /sdrm/profile/#my-hours
-    show: signed-in
+  - kicker: Point me the right way
+    title: Take the survey
+    text: Answer four quick questions so we can point you to the right help, shifts, or ways to give.
+    url: /sdrm/persona/
+    signed_in:
+      kicker: Your account
+      title: My hours
+      text: Log the hours you served on your shifts and see your approved total.
+      url: /sdrm/profile/#my-hours
   - kicker: Coordinators
     title: Coordinator tools
     text: Tools for volunteer coordinators, starting with the volunteer needs board.
