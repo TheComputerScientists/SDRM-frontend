@@ -1,35 +1,6 @@
-const STORAGE_KEY = "sdrm-persona";
+import { readPersona, savePersona } from "./survey-store.js";
 
-const QUESTIONS = ["use", "learning", "interest", "goal"];
-
-function readPersona() {
-  let saved;
-  try {
-    saved = localStorage.getItem(STORAGE_KEY);
-  } catch (error) {
-    console.warn("Unable to read the saved SDRM persona.", error);
-    return {};
-  }
-  if (!saved) return {};
-  try {
-    const parsed = JSON.parse(saved);
-    return parsed && typeof parsed === "object" ? parsed : { use: saved };
-  } catch (error) {
-    return { use: saved };
-  }
-}
-
-function savePersona(persona) {
-  try {
-    if (Object.keys(persona).length) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(persona));
-    } else {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-  } catch (error) {
-    console.warn("Unable to save the SDRM persona.", error);
-  }
-}
+const QUESTIONS = ["role", "group", "interest", "availability"];
 
 document.addEventListener("DOMContentLoaded", () => {
   const options = [...document.querySelectorAll("[data-sdrm-persona-option]")];

@@ -1,0 +1,64 @@
+# SDRM survey questions. Shared by the persona page (sdrm/persona.html) and the hub pop-up
+# (index.md) through _includes/sdrm/survey-questions.html. Answers are saved in localStorage
+# under "sdrm-persona" as { <question id>: <option value> } by assets/js/sdrm/survey-store.js.
+# description is optional; it shows as the smaller line under the label.
+- id: role
+  prompt: What brings you here?
+  options:
+    - value: need_help
+      label: I need help
+      description: I'm looking for food, shelter, or other support for myself or someone close to me.
+    - value: volunteer
+      label: I want to volunteer
+      description: I'd like to give my time by serving meals, tutoring, or helping at events.
+    - value: donate
+      label: I want to donate
+      description: I want to give money, food, or supplies to support the Mission's work.
+    - value: learn
+      label: I want to learn about the Mission
+      description: I'm curious about what the Mission does and who it serves.
+
+- id: group
+  prompt: Who are you?
+  options:
+    - value: individual
+      label: Just me
+      description: I'm here on my own.
+    - value: student_group
+      label: A student group
+      description: I'm with a class, club, or school team.
+    - value: family
+      label: My family
+      description: I'm here for my household or with family members.
+    - value: organization
+      label: A company or organization
+      description: I represent a business, church, or other group.
+
+- id: interest
+  prompt: What are you most interested in?
+  options:
+    - value: meals
+      label: Meals
+      description: Hot meals, food boxes, and kitchen work.
+    - value: shelter
+      label: Shelter
+      description: A safe place to stay and help finding housing.
+    - value: education
+      label: Tutoring and education
+      description: Classes, tutoring, and job readiness programs.
+    - value: events
+      label: Events
+      description: Drives, holiday meals, and community events.
+
+- id: availability
+  prompt: When are you usually free?
+  options:
+    - value: weekdays
+      label: Weekdays
+      description: Monday through Friday works best.
+    - value: weekends
+      label: Weekends
+      description: Saturday and Sunday work best.
+    - value: either
+      label: Either
+      description: My schedule is flexible.

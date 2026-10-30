@@ -1,0 +1,21 @@
+{%- comment -%}
+  Survey radio questions from _data/sdrm/survey.yml. Used by the persona page and the hub
+  pop-up; the scripts find the inputs by data-sdrm-persona-option and data-question.
+{%- endcomment -%}
+{%- for question in site.data.sdrm.survey %}
+      <fieldset class="sdrm__persona-question">
+        <legend class="sdrm__persona-question-title">{{ question.prompt | escape }}</legend>
+        {%- for option in question.options %}
+
+        <label class="sdrm__persona-option">
+          <input type="radio" name="sdrm-persona-{{ question.id | escape }}" value="{{ option.value | escape }}" data-sdrm-persona-option data-question="{{ question.id | escape }}">
+          <span class="sdrm__persona-option-content">
+            <strong>{{ option.label | escape }}</strong>
+            {%- if option.description %}
+            <span>{{ option.description | escape }}</span>
+            {%- endif %}
+          </span>
+        </label>
+        {%- endfor %}
+      </fieldset>
+{%- endfor %}

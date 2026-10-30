@@ -7,6 +7,7 @@ permalink: /
   SDRM hub. All text and tiles come from _data/sdrm_hub.yml; edit that file, not this one.
   Tiles and the "Find help fast" row work without JavaScript or the backend (the form is a
   plain GET to the Get Help page); account.js only swaps the account and coordinator tiles.
+  survey-popup.js opens the first-visit survey <dialog> at the bottom.
 {%- endcomment -%}
 {%- assign hub = site.data.sdrm_hub -%}
 <div class="ocs__container sdrm__hub">
@@ -55,4 +56,19 @@ permalink: /
     </p>
   </section>
 
+  <dialog class="sdrm__card" aria-labelledby="survey-popup-heading" data-sdrm-survey-popup>
+    <h2 class="sdrm__card-title" id="survey-popup-heading">{{ hub.survey_popup.heading | escape }}</h2>
+    <p class="sdrm__section-intro">{{ hub.survey_popup.intro | escape }}</p>
+    <form class="sdrm__persona-form" data-sdrm-survey-form>
+      {%- include sdrm/survey-questions.html %}
+      <p class="sdrm__persona-status" data-sdrm-survey-status role="status" aria-live="polite"></p>
+      <div class="sdrm__actions">
+        <button class="sdrm__button sdrm__button--blue" type="submit" data-sdrm-survey-save>{{ hub.survey_popup.save | escape }}</button>
+        <button class="sdrm__button sdrm__button--outline" type="button" data-sdrm-survey-later>{{ hub.survey_popup.later | escape }}</button>
+        <a href="{{ hub.survey_popup.full_survey_url | relative_url }}">{{ hub.survey_popup.full_survey_label | escape }}</a>
+      </div>
+    </form>
+  </dialog>
 </div>
+
+<script type="module" src="{{ '/assets/js/sdrm/survey-popup.js' | relative_url }}"></script>
