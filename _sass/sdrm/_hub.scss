@@ -17,6 +17,29 @@
   }
 }
 
+.sdrm__hub-card--help {
+  grid-column: 1 / -1;
+  min-height: 12rem;
+  padding: $sdrm-space-7;
+  border: 2px solid var(--pref-accent-color);
+  background: color-mix(in srgb, var(--pref-accent-color) 20%, var(--pref-bg-color));
+  text-align: center;
+
+  .ocs__hub-card-title {
+    font-size: 2rem;
+  }
+
+  p {
+    max-width: 48rem;
+    margin-inline: auto;
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    background: color-mix(in srgb, var(--pref-accent-color) 30%, var(--pref-bg-color));
+  }
+}
+
 .sdrm__hub-quick {
   margin-top: $sdrm-space-6;
 
@@ -24,4 +47,3 @@
     margin: 0;
   }
 }
-

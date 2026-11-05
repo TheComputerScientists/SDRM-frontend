@@ -22,7 +22,7 @@
       {%- if tile.role %} data-sdrm-role="{{ tile.role | escape }}"{% endif -%}
       {%- if version == "signed-in" or tile.role or tile.show == "signed-in" %} hidden{% endif -%}
     {%- endcapture %}
-    <a class="ocs__hub-card" href="{{ t.url | relative_url }}"{{ attrs }}>
+    <a class="ocs__hub-card{% if t.url == '/sdrm/get-help/' %} sdrm__hub-card--help{% endif %}" href="{{ t.url | relative_url }}"{{ attrs }}>
       <span class="ocs__nav-card-kicker">{{ t.kicker | escape }}</span>
       <span class="ocs__hub-card-title">{{ t.title | escape }}</span>
       <p>{{ t.text | escape }}</p>
