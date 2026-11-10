@@ -1,54 +1,30 @@
-// Visitor-selected preset themes. The default theme is the existing SDRM palette.
-html[data-sdrm-theme="default"] {
-  --sdrm-theme-background: #121212;
-  --sdrm-theme-text: #F0F0F0;
-  --sdrm-theme-accent: #4CAFEF;
-}
+// Visitor-selected preset themes. The map keeps palettes and seasonal decorations in Sass
+// while custom properties let the JavaScript theme switch update shared component styles.
+$sdrm-themes: (
+  default: (#121212, #F0F0F0, #4CAFEF, null),
+  midnight: (#0b1220, #e6eef8, #3b82f6, null),
+  light: (#ffffff, #FF80AA, #2563eb, null),
+  green: (#154734, #e6f6ef, #10b981, null),
+  sepia: (#f4ecd8, #A52A2A, #b45309, null),
+  cyberpunk: (#0a0a0f, #f0f0f0, #f72585, null),
+  ocean: (#0c1929, #e0f2fe, #06b6d4, null),
+  halloween: (#0b0b0b, #fff7ed, #f97316, "🎃"),
+  christmas: (#123524, #fff7ed, #dc2626, "🎄"),
+  new-year: (#101827, #fef3c7, #facc15, "🎆")
+);
 
-html[data-sdrm-theme="midnight"] {
-  --sdrm-theme-background: #0b1220;
-  --sdrm-theme-text: #e6eef8;
-  --sdrm-theme-accent: #3b82f6;
-}
+@each $theme-name, $theme-values in $sdrm-themes {
+  html[data-sdrm-theme="#{$theme-name}"] {
+    --sdrm-theme-background: #{nth($theme-values, 1)};
+    --sdrm-theme-text: #{nth($theme-values, 2)};
+    --sdrm-theme-accent: #{nth($theme-values, 3)};
 
-html[data-sdrm-theme="light"] {
-  --sdrm-theme-background: #ffffff;
-  --sdrm-theme-text: #FF80AA;
-  --sdrm-theme-accent: #2563eb;
-}
-
-html[data-sdrm-theme="green"] {
-  --sdrm-theme-background: #154734;
-  --sdrm-theme-text: #e6f6ef;
-  --sdrm-theme-accent: #10b981;
-}
-
-html[data-sdrm-theme="sepia"] {
-  --sdrm-theme-background: #f4ecd8;
-  --sdrm-theme-text: #A52A2A;
-  --sdrm-theme-accent: #b45309;
-}
-
-html[data-sdrm-theme="cyberpunk"] {
-  --sdrm-theme-background: #0a0a0f;
-  --sdrm-theme-text: #f0f0f0;
-  --sdrm-theme-accent: #f72585;
-}
-
-html[data-sdrm-theme="ocean"] {
-  --sdrm-theme-background: #0c1929;
-  --sdrm-theme-text: #e0f2fe;
-  --sdrm-theme-accent: #06b6d4;
-}
-
-html[data-sdrm-theme="halloween"] {
-  --sdrm-theme-background: #0b0b0b;
-  --sdrm-theme-text: #fff7ed;
-  --sdrm-theme-accent: #f97316;
-
-  .site-title::after {
-    display: inline;
-    content: "🎃";
+    @if nth($theme-values, 4) {
+      .site-title::after {
+        display: inline;
+        content: "#{nth($theme-values, 4)}";
+      }
+    }
   }
 }
 
@@ -181,4 +157,6 @@ html[data-sdrm-theme] {
   &--cyberpunk { background: #f72585; }
   &--ocean { background: #06b6d4; }
   &--halloween { background: #f97316; }
+  &--christmas { background: #dc2626; }
+  &--new-year { background: #facc15; }
 }
