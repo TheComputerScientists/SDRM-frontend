@@ -18,6 +18,25 @@
 title: San Diego Rescue Mission
 description: A student-built guide to finding help, giving, and volunteering, inspired by the work of the San Diego Rescue Mission. Pick where you want to go.
 
+# Welcome banner at the top of the hub. Buttons use sdrm__button modifiers (no style = dark).
+hero:
+  kicker: Serving San Diego since 1955
+  buttons:
+    - label: Get Help Now
+      url: /sdrm/get-help/
+      style: large
+    - label: Volunteer
+      url: /sdrm/volunteer/
+      style: outline
+    - label: Ways to Give
+      url: /sdrm/give/
+      style: outline
+
+# Heading above the tiles.
+start:
+  kicker: Start here
+  heading: Where do you want to go?
+
 tiles:
   - kicker: Find support
     title: Get Help Now
@@ -99,3 +118,80 @@ support:
       url: https://sdrescue.org/volunteer/
     - label: Donate
       url: https://sdrescue.org/donate/
+  kicker: Get in touch
+
+# "By the numbers" row. These are real numbers from the sdrescue.org home page, unlike the
+# placeholder data in assets/data/sdrm/, so keep the source line.
+impact:
+  kicker: By the numbers
+  heading: Lives changed in San Diego
+  intro: The San Diego Rescue Mission has helped people facing homelessness, hunger, and abuse since 1955.
+  stats:
+    - value: "482,184"
+      label: Nutritious meals served
+    - value: "131,400"
+      label: Nights of shelter
+    - value: "42,048"
+      label: Hours of job training and classes
+    - value: "1955"
+      label: The year the Mission opened
+  source: Numbers from the San Diego Rescue Mission home page.
+  source_url: https://www.sdrescue.org/
+
+# "What the Mission does" cards. Written in our own words; links stay on our site.
+programs:
+  kicker: What the Mission does
+  heading: Help for every step
+  intro: From a first night off the street to a home of their own, there is a program for where each person is.
+  items:
+    - title: Emergency Shelters
+      text: Beds at 30-day navigation centers, so people get a safe place to sleep and a plan for what comes next.
+      link: Find shelter
+      url: /sdrm/get-help/?need=shelter
+    - title: Residential Program
+      text: A longer program for people ready to rebuild, with recovery support, classes, and job training.
+      link: Find recovery programs
+      url: /sdrm/get-help/?need=recovery
+    - title: Family Services
+      text: Support for parents and kids, like school help and parenting tools, so families can stay together.
+      link: Find family services
+      url: /sdrm/get-help/?need=family
+    - title: Hunger Relief
+      text: Meals three times a day for neighbors who need them, plus food for the wider community.
+      link: Find meals
+      url: /sdrm/get-help/?need=meals
+    - title: County-Wide Outreach
+      text: Teams that go out across San Diego County to meet people where they are and connect them to help.
+      link: Get Help Now
+      url: /sdrm/get-help/
+    - title: Not sure where to start?
+      text: Answer four quick questions and we will point you to the right help, shifts, or ways to give.
+      link: Take the survey
+      url: /sdrm/persona/
+
+# "Ways you can help" split, with the volunteer picture from images/sdrm/.
+help_out:
+  kicker: Get involved
+  heading: Ways you can help
+  intro: You do not have to do a lot to make a difference. Here are a few easy ways to start.
+  items:
+    - Sign up for a volunteer shift on the days that work for you.
+    - See how a one-time or monthly gift turns into meals and nights of shelter.
+    - Take the survey to find the kind of help that fits you best.
+    - Tell a friend about the Mission or share this page.
+  # Side box: common reasons people end up without a home, as listed on sdrescue.org.
+  why:
+    title: Why people lose their homes
+    text: It can happen to anyone. Some of the most common reasons are
+    reasons:
+      - Losing a job or someone they love
+      - Rent going up faster than pay
+      - Health problems or addiction
+      - Raising kids alone on one income
+  buttons:
+    - label: Volunteer
+      url: /sdrm/volunteer/
+      style: blue
+    - label: Ways to Give
+      url: /sdrm/give/
+      style: outline
