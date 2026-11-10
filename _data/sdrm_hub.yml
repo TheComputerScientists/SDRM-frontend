@@ -53,6 +53,10 @@ tiles:
       title: My hours
       text: Log the hours you served on your shifts and see your approved total.
       url: /sdrm/profile/#my-hours
+  - kicker: Make it yours
+    title: Appearance
+    text: Choose your preferred color theme for the SDRM site.
+    url: /sdrm/appearance/
   - kicker: Coordinators
     title: Coordinator tools
     text: Tools for volunteer coordinators, starting with the volunteer needs board.
